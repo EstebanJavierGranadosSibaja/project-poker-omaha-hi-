@@ -4,8 +4,6 @@ class Dealer
 {
 private:
 
-
 public:
-
 
 }; 
