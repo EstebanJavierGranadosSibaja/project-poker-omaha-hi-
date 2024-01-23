@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="..\Classes\card.cpp" />
     <ClCompile Include="..\Classes\dealer.cpp" />
+    <ClCompile Include="..\Classes\deck.cpp" />
     <ClCompile Include="poker_omaha_hi.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="..\Classes\card.h" />
     <ClInclude Include="..\Classes\dealer.h" />
+    <ClInclude Include="..\Classes\deck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
