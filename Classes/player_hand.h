@@ -1,8 +1,17 @@
 #pragma once
+#include "Card.h"
+
+const int SIZE_OF_PLAYER_DECK = 4;
+
 class PlayerHand
 {
-private: 
+private:
+	Card** hand;
 
-public: 
+public:
+	PlayerHand();
+	PlayerHand(Card** newHand) = delete;
 
+	void setHand(Card** newHand);
+	Card** getHand();
 };
