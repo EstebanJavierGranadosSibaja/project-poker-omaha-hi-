@@ -2,13 +2,22 @@
 
 Deck::Deck()
 {
-	//define 52 cards on the vector, with all the attributes
 	amountCards = 52;
+	int position = 0; 
+
 	deck = new Card * [amountCards];
 	for (int i = 0; i < amountCards; i++) {
-		deck[i] = nullptr;
+		deck[i] = new Card();
 	}
-	//make a method to build the 52 cards and put them into the vector
+
+	for (int i = 0; i < numberOfTypes; i++)
+	{
+		for (int j = 0; j < numberOfValues; j++)
+		{
+			deck[position] = new Card(arrayOfValues[j], arrayOfTypes[i], j+1, " ");
+			position++; 
+		}
+	}
 }
 
 Deck::~Deck()

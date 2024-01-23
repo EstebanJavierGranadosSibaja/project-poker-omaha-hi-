@@ -1,22 +1,22 @@
 #include"dealer.h"
 
-void Dealer::shuffleDeck(Deck* newDeck)
+void Dealer::shuffleDeck(Deck* deck)
 {
-    int startDeck = 0;
+
 	int maxPosicion = 52;
 	int randomPosicion;
 	srand(time(NULL));
 
-    for (int i = startDeck; i < maxPosicion; i++) 
+    for (int startDeck = 0; startDeck < maxPosicion; startDeck++)
     {
 		maxPosicion -= startDeck;
 		randomPosicion = maxPosicion + rand() % startDeck;
 
-		Deck tempDeck = newDeck[i];
-		newDeck[i] = newDeck[randomPosicion];
-		newDeck[randomPosicion] = tempDeck;
+		Deck tempDeck = deck[startDeck];
+		deck[startDeck] = deck[randomPosicion];
+		deck[randomPosicion] = tempDeck;
 
-		startDeck += 1;
+		
     }
 }
 

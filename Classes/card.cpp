@@ -3,16 +3,14 @@
 Card::Card()
 {
 	value = 0;
-	color = "";
 	type = "";
 	number = 0;
 	url = "";
 }
 
-Card::Card(int aValue, string aColor, string aType, int aNumber, string aUrl)
+Card::Card(char aValue, string aType, int aNumber, string aUrl)
 {
 	value = aValue;
-	color = aColor;
 	type = aType;
 	number = aNumber;
 	url = aUrl;
@@ -22,14 +20,9 @@ Card::~Card()
 {
 }
 
-void Card::setValue(int newValue)
+void Card::setValue(char newValue)
 {
 	value = newValue;
-}
-
-void Card::setColor(string newColor)
-{
-	color = newColor;
 }
 
 void Card::setType(string newType)
@@ -47,14 +40,9 @@ void Card::setUrl(string newUrl)
 	url = newUrl;
 }
 
-int Card::getValue()
+char Card::getValue()
 {
 	return value;
-}
-
-string Card::getColor()
-{
-	return color;
 }
 
 string Card::getType()
