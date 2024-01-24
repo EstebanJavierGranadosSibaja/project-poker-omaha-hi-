@@ -91,5 +91,5 @@ Card** Dealer::getRiver()
 
 Card** Dealer::getShowedCards()
 {
-	return nullptr;
+	return communityCards;
 }
