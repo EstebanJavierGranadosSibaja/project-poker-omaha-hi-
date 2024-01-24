@@ -1,5 +1,5 @@
 #pragma once
-#include "Card.h"
+#include "deck.h"
 
 const int SIZE_OF_PLAYER_DECK = 4;
 
@@ -7,6 +7,7 @@ class PlayerHand
 {
 private:
 	Card** hand;
+	int quantityOfHands = 3;
 
 public:
 	PlayerHand();
@@ -14,4 +15,5 @@ public:
 
 	void setHand(Card** newHand);
 	Card** getHand();
+	int getQuantityOfHands();
 };

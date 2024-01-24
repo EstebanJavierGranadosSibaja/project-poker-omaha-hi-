@@ -5,10 +5,11 @@
 class Dealer
 {
 private:
+	Card** communityCards;
 
 public:
 	void shuffleDeck(Deck*& newDeck);
-	PlayerHand** getPlayerCards(PlayerHand** newHand);
+	PlayerHand** getPlayerCards(PlayerHand** newHand, int newQuantityOfHands);
 	Card** getFloat();
 	Card** getTurn();
 	Card** getRiver();

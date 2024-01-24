@@ -17,3 +17,8 @@ Card** PlayerHand::getHand()
 {
 	return hand;
 }
+
+int PlayerHand::getQuantityOfHands()
+{
+	return quantityOfHands;
+}

@@ -16,8 +16,18 @@ void Dealer::shuffleDeck(Deck*& deck)
 	deck = randomDeck; 
 }
 
-PlayerHand** Dealer::getPlayerCards(PlayerHand** newHand)
+PlayerHand** Dealer::getPlayerCards(PlayerHand** newHand, int quantityOfHands)
 {
+	Deck* handDeck = new Deck;
+
+	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
+	{
+		for (int j = 0; j < SIZE_OF_PLAYER_DECK; j++)
+		{
+
+		}
+	}
+
 	return nullptr;
 }
 
