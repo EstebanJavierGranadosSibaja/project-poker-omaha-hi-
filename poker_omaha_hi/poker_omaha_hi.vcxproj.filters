@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de encabezado\classes">
+      <UniqueIdentifier>{da615d81-39b9-44e9-bb8d-7a1f72eace37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="poker_omaha_hi.cpp">
@@ -42,22 +45,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\card.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\dealer.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\deck.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\player_hand.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\poker_table.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\player.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\player_hand.h">
+      <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\poker_table.h">
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

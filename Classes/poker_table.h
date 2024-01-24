@@ -15,6 +15,7 @@ private:
 
 
 public: 
+	PokerTable(); 
 	PokerTable(int aNumberOfPlayers);
 	PokerTable(int aPot, int aBigBlind, int aSmallBlind, int aNumberOfPlayers, Dealer* newDealer, Deck* newDeck, Player** newPlayers);
 	~PokerTable();

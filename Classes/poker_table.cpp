@@ -1,5 +1,9 @@
 #include "poker_table.h"
 
+PokerTable::PokerTable()
+{
+}
+
 PokerTable::PokerTable(int aNumberOfPlayers)
 {
 	pot = 0;
