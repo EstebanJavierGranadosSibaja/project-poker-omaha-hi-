@@ -7,7 +7,8 @@ class PlayerHand
 {
 private:
 	Card** hand;
-	int quantityOfHands = 3;
+	
+	
 
 public:
 	PlayerHand();
@@ -15,5 +16,5 @@ public:
 
 	void setHand(Card** newHand);
 	Card** getHand();
-	int getQuantityOfHands();
+	
 };
