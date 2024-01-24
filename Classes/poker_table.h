@@ -33,6 +33,6 @@ public:
 	int getNumberOfPlayers();
 	Dealer* getDealer();
 	Deck* getDeck();
-	Player** getPlayer(); 
+	Player** getPlayers(); 
 
 };

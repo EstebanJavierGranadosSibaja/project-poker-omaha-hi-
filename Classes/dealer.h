@@ -10,7 +10,7 @@ private:
 
 public:
 	void shuffleDeck(Deck*& newDeck);
-	PlayerHand** getPlayerCards(PokerTable* pokerTable);
+	Player** getPlayerCards(PokerTable*& pokerTable);
 	Card** getFloat();
 	Card** getTurn();
 	Card** getRiver();

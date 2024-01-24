@@ -7,14 +7,15 @@ PokerTable::PokerTable(int aNumberOfPlayers)
 	smallBlind = 0;
 	numberOfPlayers = aNumberOfPlayers;
 	dealer = new Dealer();
-	deck = new Deck();
-	players = new Player* [numberOfPlayers]; 
+	deck = new Deck;
+	players = new Player * [numberOfPlayers];
 
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
-		players[i] = new Player(); 
-
+		players[i] = new Player();
 	}
+
+	dealer->shuffleDeck(deck); 
 }
 
 PokerTable::PokerTable(int aPot, int aBigBlind, int aSmallBlind, int aNumberOfPlayers, Dealer* newDealer, Deck* newDeck, Player** newPlayers)
@@ -64,7 +65,7 @@ void PokerTable::setDeck(Deck* newDeck)
 
 void PokerTable::setPlayer(Player** newPlayers)
 {
-	players = newPlayers; 
+	players = newPlayers;
 }
 
 int PokerTable::getPot()
@@ -97,7 +98,7 @@ Deck* PokerTable::getDeck()
 	return deck;
 }
 
-Player** PokerTable::getPlayer()
+Player** PokerTable::getPlayers()
 {
 	return players;
 }
