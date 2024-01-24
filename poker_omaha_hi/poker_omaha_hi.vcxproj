@@ -130,6 +130,7 @@
     <ClCompile Include="..\Classes\card.cpp" />
     <ClCompile Include="..\Classes\dealer.cpp" />
     <ClCompile Include="..\Classes\deck.cpp" />
+    <ClCompile Include="..\Classes\player.cpp" />
     <ClCompile Include="..\Classes\player_hand.cpp" />
     <ClCompile Include="..\Classes\poker_table.cpp" />
     <ClCompile Include="poker_omaha_hi.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="..\Classes\card.h" />
     <ClInclude Include="..\Classes\dealer.h" />
     <ClInclude Include="..\Classes\deck.h" />
+    <ClInclude Include="..\Classes\player.h" />
     <ClInclude Include="..\Classes\player_hand.h" />
     <ClInclude Include="..\Classes\poker_table.h" />
   </ItemGroup>

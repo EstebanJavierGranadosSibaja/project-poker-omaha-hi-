@@ -6,8 +6,8 @@ PokerTable::PokerTable()
 	bigBlind = 0;
 	smallBlind = 0;
 	numberOfPlayers = 0;
-	dealer = nullptr;
-	deck = nullptr;
+	dealer = new Dealer();
+	deck = new Deck();
 }
 
 PokerTable::PokerTable(int aPot, int aBigBlind, int aSmallBlind, int aNumberOfPlayers, Dealer* aDealer, Deck* aDeck)
