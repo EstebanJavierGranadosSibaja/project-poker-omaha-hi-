@@ -7,7 +7,7 @@ class Dealer
 private:
 
 public:
-	void shuffleDeck(Deck* newDeck);
+	void shuffleDeck(Deck*& newDeck);
 	PlayerHand** getPlayerCards(PlayerHand** newHand);
 	Card** getFloat();
 	Card** getTurn();

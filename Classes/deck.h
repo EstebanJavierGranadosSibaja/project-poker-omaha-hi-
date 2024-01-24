@@ -20,4 +20,5 @@ public:
 
 	Card** getDeck();
 	int getAmountCards();
+	Deck* eraseAPosition(int index); 
 };

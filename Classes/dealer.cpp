@@ -1,23 +1,19 @@
 #include"dealer.h"
 
-void Dealer::shuffleDeck(Deck* deck)
+void Dealer::shuffleDeck(Deck*& deck)
 {
+	int auxiliary = 0; 
+	int sizeDeck = deck->getAmountCards(); 
+	Deck* randomDeck = new Deck; 
 
-	int maxPosicion = 52;
-	int randomPosicion;
-	srand(time(NULL));
-
-    for (int startDeck = 0; startDeck < maxPosicion; startDeck++)
-    {
-		maxPosicion -= startDeck;
-		randomPosicion = maxPosicion + rand() % startDeck;
-
-		Deck tempDeck = deck[startDeck];
-		deck[startDeck] = deck[randomPosicion];
-		deck[randomPosicion] = tempDeck;
-
-		
-    }
+	for (int i = 0; i < sizeDeck; i++)
+	{
+		auxiliary = rand() % sizeDeck; 
+		randomDeck->getDeck()[i] = deck->getDeck()[auxiliary]; 
+		deck = deck->eraseAPosition(auxiliary); 
+	}
+	delete[] deck; 
+	deck = randomDeck; 
 }
 
 PlayerHand** Dealer::getPlayerCards(PlayerHand** newHand)

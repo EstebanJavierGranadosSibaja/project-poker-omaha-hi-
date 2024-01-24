@@ -47,3 +47,25 @@ int Deck::getAmountCards()
 {
 	return amountCards;
 }
+
+Deck* Deck::eraseAPosition(int index)
+{
+	Deck* newDeck = new Deck();
+	newDeck->setAmountCards(amountCards - 1); 
+	int increase = 0; 
+	
+	for (int i = 0; i < amountCards; i++)
+	{
+		bool isSameCard = deck[i] == deck[index];
+
+		if (isSameCard)
+		{
+			continue; 
+		}
+
+		newDeck-> getDeck()[increase] = deck[i];
+		increase++;
+	}
+
+	return newDeck; 
+}
