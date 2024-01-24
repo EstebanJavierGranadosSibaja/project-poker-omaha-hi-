@@ -16,11 +16,11 @@ void Dealer::shuffleDeck(Deck*& deck)
 	deck = randomDeck; 
 }
 
-PlayerHand** Dealer::getPlayerCards(PlayerHand** newHand, int newQuantityOfHands)
+PlayerHand** Dealer::getPlayerCards(PokerTable* pokerTable)
 {
 	Deck* handDeck = new Deck;
 
-	for (int i = 0; i < newQuantityOfHands; i++)
+	for (int i = 0; i < ; i++)
 	{
 		for (int j = 0; j < SIZE_OF_PLAYER_DECK; j++)
 		{

@@ -1,23 +1,31 @@
 #include "poker_table.h"
 
-PokerTable::PokerTable()
+PokerTable::PokerTable(int aNumberOfPlayers)
 {
 	pot = 0;
 	bigBlind = 0;
 	smallBlind = 0;
-	numberOfPlayers = 0;
+	numberOfPlayers = aNumberOfPlayers;
 	dealer = new Dealer();
 	deck = new Deck();
+	players = new Player* [numberOfPlayers]; 
+
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		players[i] = new Player(); 
+
+	}
 }
 
-PokerTable::PokerTable(int aPot, int aBigBlind, int aSmallBlind, int aNumberOfPlayers, Dealer* aDealer, Deck* aDeck)
+PokerTable::PokerTable(int aPot, int aBigBlind, int aSmallBlind, int aNumberOfPlayers, Dealer* newDealer, Deck* newDeck, Player** newPlayers)
 {
 	pot = aPot;
 	bigBlind = aBigBlind;
 	smallBlind = aSmallBlind;
 	numberOfPlayers = aNumberOfPlayers;
-	dealer = aDealer;
-	deck = aDeck;
+	dealer = newDealer;
+	deck = newDeck;
+	players = newPlayers;
 }
 
 PokerTable::~PokerTable()
@@ -54,6 +62,11 @@ void PokerTable::setDeck(Deck* newDeck)
 	deck = newDeck;
 }
 
+void PokerTable::setPlayer(Player** newPlayers)
+{
+	players = newPlayers; 
+}
+
 int PokerTable::getPot()
 {
 	return pot;
@@ -82,4 +95,9 @@ Dealer* PokerTable::getDealer()
 Deck* PokerTable::getDeck()
 {
 	return deck;
+}
+
+Player** PokerTable::getPlayer()
+{
+	return players;
 }

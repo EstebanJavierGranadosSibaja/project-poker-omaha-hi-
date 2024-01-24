@@ -3,7 +3,7 @@
 Player::Player()
 {
 	numberPlayer = 0; 
-	isActive = false; 
+	isActive = true; 
 	userBlind = 100; 
 	userHand = new PlayerHand(); 
 }

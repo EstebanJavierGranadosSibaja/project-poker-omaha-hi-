@@ -4,7 +4,7 @@ PlayerHand::PlayerHand()
 {
 	hand = new Card * [SIZE_OF_PLAYER_DECK];
 	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++) {
-		hand[i] = nullptr;
+		hand[i] = new Card();
 	}
 }
 
