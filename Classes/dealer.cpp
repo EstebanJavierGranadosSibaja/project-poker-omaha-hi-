@@ -1,5 +1,29 @@
 #include"dealer.h"
 
+Dealer::Dealer()
+{
+	communityCards = new Card* [COMMUNITY_CARD_SIZE]; 
+
+	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
+	{
+		communityCards[i] = new Card(); 
+	}
+}
+
+Dealer::Dealer(Card** newCommunityCads)
+{
+	communityCards = newCommunityCads; 
+}
+
+void Dealer::setCommunityCards(Deck*& deck)
+{
+	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
+	{
+		communityCards[i] = deck-> getDeck()[i];
+		deck = deck->eraseAPosition(i); 
+	}
+}
+
 void Dealer::shuffleDeck(Deck*& deck)
 {
 	int auxiliary = 0; 
@@ -33,17 +57,36 @@ Player** Dealer::getPlayerCards(PokerTable*& pokerTable)
 
 Card** Dealer::getFloat()
 {
-	return nullptr;
+	int threePositions = 3; 
+	Card** firstThreePositions = new Card * [threePositions]; 
+
+	for (int i = 0; i < threePositions; i++)
+	{
+		firstThreePositions[i] = communityCards[i];
+	}
+
+	return firstThreePositions; 
 }
 
 Card** Dealer::getTurn()
 {
-	return nullptr;
+	int fourthPosition = 1;
+	Card** fourthPositions = new Card* [fourthPosition];
+
+	fourthPositions[0] = communityCards[3]; 
+
+	return fourthPositions;
 }
 
 Card** Dealer::getRiver()
 {
-	return nullptr;
+	int fifthPosition = 1;
+	Card** fifthPositions = new Card * [fifthPosition];
+
+	fifthPositions[0] = communityCards[4];
+
+	return fifthPositions;
+	
 }
 
 Card** Dealer::getShowedCards()
