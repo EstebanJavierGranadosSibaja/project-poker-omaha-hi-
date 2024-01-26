@@ -10,11 +10,11 @@ Deck::Deck()
 		deck[i] = new Card();
 	}
 
-	for (int i = 0; i < numberOfTypes; i++)
+	for (int i = 0; i < NUMBER_OF_TYPES; i++)
 	{
-		for (int j = 0; j < numberOfValues; j++)
+		for (int j = 0; j < NUMBER_OF_VALUES; j++)
 		{
-			deck[position] = new Card(arrayOfValues[j], arrayOfTypes[i], j+1, " ");
+			deck[position] = new Card(ARRAY_OF_VALUES[j], ARRAY_OF_TYPES[i], j+1, " ");
 			position++; 
 		}
 	}

@@ -55,6 +55,11 @@ Player** Dealer::getPlayerCards(PokerTable*& pokerTable)
 	return pokerTable-> getPlayers();
 }
 
+Card** Dealer::getCommunityCards()
+{
+	return communityCards;
+}
+
 Card** Dealer::getFloat()
 {
 	int threePositions = 3; 

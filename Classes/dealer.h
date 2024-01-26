@@ -16,6 +16,7 @@ public:
 	void setCommunityCards(Deck*& deck); 
 	void shuffleDeck(Deck*& newDeck);
 	Player** getPlayerCards(PokerTable*& pokerTable);
+	Card** getCommunityCards();
 	Card** getFloat();
 	Card** getTurn();
 	Card** getRiver();

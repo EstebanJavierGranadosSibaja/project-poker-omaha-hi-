@@ -1,10 +1,10 @@
 #pragma once
 #include"card.h"
 
-const int numberOfTypes = 4;
-const int numberOfValues = 13;
-const string arrayOfTypes[numberOfTypes] = { "Hearts", "Diamonds", "Clubs", "Pikes" };
-const char arrayOfValues[numberOfValues] = { 'A', '2', '3', '4', '5', '6', '7', '8', '9','10','J','Q', 'K' };
+const int NUMBER_OF_TYPES = 4;
+const int NUMBER_OF_VALUES = 13;
+const string ARRAY_OF_TYPES[NUMBER_OF_TYPES] = { "Hearts", "Diamonds", "Clubs", "Pikes" };
+const char ARRAY_OF_VALUES[NUMBER_OF_VALUES] = { 'A', '2', '3', '4', '5', '6', '7', '8', '9','10','J','Q', 'K' };
 
 class Deck {
 private:
