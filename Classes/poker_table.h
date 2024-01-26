@@ -13,7 +13,6 @@ private:
 	Deck* deck; 
 	Player** players;
 
-
 public: 
 	PokerTable(); 
 	PokerTable(int aNumberOfPlayers);
@@ -35,5 +34,4 @@ public:
 	Dealer* getDealer();
 	Deck* getDeck();
 	Player** getPlayers(); 
-
 };

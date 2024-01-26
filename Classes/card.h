@@ -2,8 +2,6 @@
 #include <iostream>
 using namespace std;
 
-
-
 class Card
 {
 private: 
@@ -26,5 +24,4 @@ public:
 	string getType();
 	int getNumber();
 	string getUrl();
-
 };

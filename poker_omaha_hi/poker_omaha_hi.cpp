@@ -13,8 +13,6 @@ int main()
 	Dealer casos;
 	cout << casos.getPlayerCards(mesa);
 
-
-
 	return 0;
 }
 

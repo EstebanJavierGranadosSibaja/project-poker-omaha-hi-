@@ -86,7 +86,6 @@ Card** Dealer::getRiver()
 	fifthPositions[0] = communityCards[4];
 
 	return fifthPositions;
-	
 }
 
 Card** Dealer::getShowedCards()

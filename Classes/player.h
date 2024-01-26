@@ -1,5 +1,5 @@
 #pragma once
-#include"player_hand.h"
+#include"dealer.h"
 
 class Player
 {
@@ -22,8 +22,4 @@ public:
 	bool getIsActive(); 
 	int getUserBlind(); 
 	PlayerHand* getUserHand(); 
-
-
-
-
 };

@@ -18,4 +18,7 @@ Card** PlayerHand::getHand()
 	return hand;
 }
 
-
+int PlayerHand::getPlayerHandRankin(Card** communityCards)
+{
+	return 0;
+}

@@ -20,7 +20,4 @@ public:
 	Card** getTurn();
 	Card** getRiver();
 	Card** getShowedCards();
-
-
-
 }; 
