@@ -134,6 +134,7 @@
     <ClCompile Include="..\Classes\player_hand.cpp" />
     <ClCompile Include="..\Classes\poker_table.cpp" />
     <ClCompile Include="poker_omaha_hi.cpp" />
+    <ClCompile Include="winning_play.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -145,6 +146,7 @@
     <ClInclude Include="..\Classes\player.h" />
     <ClInclude Include="..\Classes\player_hand.h" />
     <ClInclude Include="..\Classes\poker_table.h" />
+    <ClInclude Include="winning_play.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

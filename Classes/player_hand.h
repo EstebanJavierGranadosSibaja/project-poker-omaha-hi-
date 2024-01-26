@@ -14,6 +14,4 @@ public:
 
 	void setHand(Card** newHand);
 	Card** getHand();
-
-	virtual int getPlayerHandRankin(Card** communityCards);
 };

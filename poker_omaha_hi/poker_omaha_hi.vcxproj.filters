@@ -39,6 +39,9 @@
     <ClCompile Include="..\Classes\player.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="winning_play.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -61,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\poker_table.h">
       <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="winning_play.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
