@@ -45,6 +45,9 @@
     <ClCompile Include="royal_flush.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="high_card.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -68,11 +71,14 @@
     <ClInclude Include="..\Classes\poker_table.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
-    <ClInclude Include="winning_play.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="high_card.h">
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="royal_flush.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="winning_play.h">
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
