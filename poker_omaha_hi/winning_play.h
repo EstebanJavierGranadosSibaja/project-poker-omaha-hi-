@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "../Classes/player_hand.h"
 
 using namespace std;
@@ -12,7 +11,7 @@ class WinningPlay
 private:
 
 public:
-	WinningPlay();
+	WinningPlay(){};
 
 	virtual int getPlayerHandRankin(Card** newHand, Card** newCommunityCards) = 0;
 

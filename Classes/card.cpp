@@ -2,7 +2,7 @@
 
 Card::Card()
 {
-	value = 0;
+	value = ' ';
 	type = "";
 	number = 0;
 	url = "";

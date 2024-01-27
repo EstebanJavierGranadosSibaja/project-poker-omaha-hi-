@@ -1,5 +1,5 @@
 #pragma once
-#include"dealer.h"
+#include"player_hand.h"
 
 class Player
 {

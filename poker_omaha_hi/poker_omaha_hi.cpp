@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	Deck *mazo = new Deck;
+	/*Deck *mazo = new Deck;
 
 	cout << mazo;
 
@@ -13,6 +13,8 @@ int main()
 	Dealer casos;
 	cout << casos.getPlayerCards(mesa);
 
-	return 0;
+	return 0;*/
+
+	
 }
 

@@ -40,19 +40,19 @@ void Dealer::shuffleDeck(Deck*& deck)
 	deck = randomDeck; 
 }
 
-Player** Dealer::getPlayerCards(PokerTable*& pokerTable)
+Player** Dealer::getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck)
 {
 	int firtsPosition = 0; 
-	for (int i = 0; i < pokerTable->getNumberOfPlayers(); i++)
+	for (int i = 0; i < amountOfPlayers; i++)
 	{
 		for (int j = 0; j < SIZE_OF_PLAYER_DECK; j++)
 		{
-			pokerTable->getPlayers()[i]-> getUserHand()-> getHand()[j] = pokerTable-> getDeck()-> getDeck()[firtsPosition];
-			pokerTable-> setDeck(pokerTable->getDeck()->eraseAPosition(firtsPosition));
+			players[i]-> getUserHand()-> getHand()[j] = pokerTableDeck-> getDeck()[firtsPosition];
+			pokerTableDeck = pokerTableDeck->eraseAPosition(firtsPosition);
 		}
 	}
 
-	return pokerTable-> getPlayers();
+	return players;
 }
 
 Card** Dealer::getCommunityCards()

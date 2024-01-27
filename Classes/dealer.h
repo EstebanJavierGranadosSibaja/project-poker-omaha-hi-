@@ -1,7 +1,6 @@
 #pragma once
 #include "deck.h"
-#include "player_hand.h"
-#include"poker_table.h"
+#include"player.h"
 
 const int COMMUNITY_CARD_SIZE = 5;
 
@@ -15,7 +14,7 @@ public:
 	Dealer(Card** newCommunityCads); 
 	void setCommunityCards(Deck*& deck); 
 	void shuffleDeck(Deck*& newDeck);
-	Player** getPlayerCards(PokerTable*& pokerTable);
+	Player** getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck);
 	Card** getCommunityCards();
 	Card** getFloat();
 	Card** getTurn();

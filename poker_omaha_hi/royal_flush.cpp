@@ -9,11 +9,15 @@ RoyalFlush::RoyalFlush()
 		heartskRoyalFlush[i] = 'X';
 		diamondsRoyalFlush[i] = 'X';
 	}
+	for (int i = 0; i < 2; i++)
+	{
+		parameterOfRoyalFlush[i] = 0;
+	}
 }
 
 int RoyalFlush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
-	int clubsCounter, pikesCounter, heartsCounter, diamondsCounter;
+	int clubsCounter = 0, pikesCounter = 0, heartsCounter = 0, diamondsCounter = 0;
 	bool isRoyalFLush = clubsCounter == 5 || pikesCounter == 5 || heartsCounter == 5 || diamondsCounter == 5;
 
 	for (int i = 0; i < NUMBER_OF_ROYAL_FLUSH_VALUES; i++)

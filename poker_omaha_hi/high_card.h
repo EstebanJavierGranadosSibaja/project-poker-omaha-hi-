@@ -11,7 +11,7 @@ public:
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 
-	bool checkHighCard();
+	//bool checkHighCard();
 
 };
 
