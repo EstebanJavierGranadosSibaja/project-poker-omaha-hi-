@@ -154,7 +154,7 @@ void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 bool RoyalFlush::checkRoyalFlush(Card* newCard, char* newRoyalFlushVector, int* newParameters)
 {
-	bool isCorrectValue = newCard->getType() = ARRAY_OF_TYPES[newParameters[0];
+	bool isCorrectValue = newCard->getType() = ARRAY_OF_TYPES[newParameters[0]];
 
 	for (int i = 0; i < NUMBER_OF_ROYAL_FLUSH_VALUES; i++)
 	{
@@ -162,7 +162,7 @@ bool RoyalFlush::checkRoyalFlush(Card* newCard, char* newRoyalFlushVector, int* 
 
 		if (isSameValue && isCorrectValue)
 		{
-			newRoyalFlushVector[newParameters[1] = ROYAL_FLUSH_VALUES[i];
+			newRoyalFlushVector[newParameters[1] = ROYAL_FLUSH_VALUES[i]];
 			return true;
 		}
 	}
