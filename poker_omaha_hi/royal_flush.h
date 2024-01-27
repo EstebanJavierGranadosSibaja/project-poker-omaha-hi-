@@ -12,6 +12,7 @@ private:
 	char pikesRoyalFlush[NUMBER_OF_ROYAL_FLUSH_VALUES];
 	char heartskRoyalFlush[NUMBER_OF_ROYAL_FLUSH_VALUES];
 	char diamondsRoyalFlush[NUMBER_OF_ROYAL_FLUSH_VALUES];
+	int parameterOfRoyalFlush[2];
 
 public:
 	RoyalFlush();
@@ -23,7 +24,8 @@ public:
 	void getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards);
 	void getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards);
 
-	bool checkRoyalFlush(Card* newCard, int newPikesPosition, int newNumberOfType);
+	bool checkRoyalFlush(Card* newCard, char* newRoyalFlushVector, int* newParameters);
+	bool checkRankingRoyalFlush(char newRoyalFlushValue);
 
 };
 
