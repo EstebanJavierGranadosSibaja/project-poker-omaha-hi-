@@ -20,6 +20,11 @@ int RoyalFlush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 	int clubsCounter = 0, pikesCounter = 0, heartsCounter = 0, diamondsCounter = 0;
 	bool isRoyalFLush = clubsCounter == 5 || pikesCounter == 5 || heartsCounter == 5 || diamondsCounter == 5;
 
+	getClubsRoyalFlush(newHand, newCommunityCards);
+	getPikesRoyalFlush(newHand, newCommunityCards);
+	getHeartsRoyalFlush(newHand, newCommunityCards);
+	getDiamondsRoyalFlush(newHand, newCommunityCards);
+
 	for (int i = 0; i < NUMBER_OF_ROYAL_FLUSH_VALUES; i++)
 	{
 		if (checkRankingRoyalFlush(clubsRoyalFlush[i]))
@@ -67,7 +72,7 @@ void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
 	{
-		if (checkRoyalFlush(newCommunityCards[i], clubsRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], clubsRoyalFlush, parameterOfRoyalFlush))
 		{
 			clubsPosition += 1;
 			break;
@@ -94,7 +99,7 @@ void RoyalFlush::getPikesRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
 	{
-		if (checkRoyalFlush(newCommunityCards[i], pikesRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], pikesRoyalFlush, parameterOfRoyalFlush))
 		{
 			pikesPosition += 1;
 			break;
@@ -121,7 +126,7 @@ void RoyalFlush::getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
 	{
-		if (checkRoyalFlush(newCommunityCards[i], heartskRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], heartskRoyalFlush, parameterOfRoyalFlush))
 		{
 			heartsPosition += 1;
 			break;
@@ -148,7 +153,7 @@ void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
 	{
-		if (checkRoyalFlush(newCommunityCards[i], heartskRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], heartskRoyalFlush, parameterOfRoyalFlush))
 		{
 			diamondsPosition += 1;
 			break;
