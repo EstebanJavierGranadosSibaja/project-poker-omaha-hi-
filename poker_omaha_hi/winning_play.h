@@ -5,6 +5,7 @@ using namespace std;
 
 const int NUMBER_OF_VALID_COMMUNITY_HAND = 3;
 const int NUMBER_OF_VALID_PLAYER_HAND = 2;
+const int SIZE_OF_COMMUNITY_CARDS = 5;
 
 class WinningPlay
 {
