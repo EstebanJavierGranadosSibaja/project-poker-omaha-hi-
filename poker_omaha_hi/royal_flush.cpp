@@ -4,10 +4,10 @@ RoyalFlush::RoyalFlush()
 {
 	for (int i = 0; i < NUMBER_OF_ROYAL_FLUSH_VALUES; i++)
 	{
-		clubsRoyalFlush[i] = 'X';
-		pikesRoyalFlush[i] = 'X';
-		heartskRoyalFlush[i] = 'X';
-		diamondsRoyalFlush[i] = 'X';
+		clubsRoyalFlush[i] = ' ';
+		pikesRoyalFlush[i] = ' ';
+		heartskRoyalFlush[i] = ' ';
+		diamondsRoyalFlush[i] = ' ';
 	}
 	for (int i = 0; i < 2; i++)
 	{
@@ -59,10 +59,11 @@ void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	int numberOfType = 2;
 
 	parameterOfRoyalFlush[0] = numberOfType;
-	parameterOfRoyalFlush[1] = clubsPosition;
 
 	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
 	{
+		parameterOfRoyalFlush[1] = clubsPosition;
+
 		if (checkRoyalFlush(newCommunityCards[i], clubsRoyalFlush, parameterOfRoyalFlush))
 		{
 			clubsPosition += 1;
@@ -72,6 +73,8 @@ void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
 	{
+		parameterOfRoyalFlush[1] = clubsPosition;
+
 		if (checkRoyalFlush(newHand[i], clubsRoyalFlush, parameterOfRoyalFlush))
 		{
 			clubsPosition += 1;
@@ -86,10 +89,11 @@ void RoyalFlush::getPikesRoyalFlush(Card** newHand, Card** newCommunityCards)
 	int numberOfType = 3;
 
 	parameterOfRoyalFlush[0] = numberOfType;
-	parameterOfRoyalFlush[1] = pikesPosition;
 
 	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
 	{
+		parameterOfRoyalFlush[1] = pikesPosition;
+
 		if (checkRoyalFlush(newCommunityCards[i], pikesRoyalFlush, parameterOfRoyalFlush))
 		{
 			pikesPosition += 1;
@@ -99,6 +103,8 @@ void RoyalFlush::getPikesRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
 	{
+		parameterOfRoyalFlush[1] = pikesPosition;
+
 		if (checkRoyalFlush(newHand[i], pikesRoyalFlush, parameterOfRoyalFlush))
 		{
 			pikesPosition += 1;
@@ -113,10 +119,11 @@ void RoyalFlush::getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	int numberOfType = 0;
 
 	parameterOfRoyalFlush[0] = numberOfType;
-	parameterOfRoyalFlush[1] = heartsPosition;
 
 	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
 	{
+		parameterOfRoyalFlush[1] = heartsPosition;
+
 		if (checkRoyalFlush(newCommunityCards[i], heartskRoyalFlush, parameterOfRoyalFlush))
 		{
 			heartsPosition += 1;
@@ -126,6 +133,8 @@ void RoyalFlush::getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
 	{
+		parameterOfRoyalFlush[1] = heartsPosition;
+
 		if (checkRoyalFlush(newHand[i], heartskRoyalFlush, parameterOfRoyalFlush))
 		{
 			heartsPosition += 1;
@@ -137,13 +146,14 @@ void RoyalFlush::getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards)
 void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
 {
 	int diamondsPosition = 0;
-	int numberOfType = 3;
+	int numberOfType = 1;
 
 	parameterOfRoyalFlush[0] = numberOfType;
-	parameterOfRoyalFlush[1] = diamondsPosition;
 
 	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
 	{
+		parameterOfRoyalFlush[1] = diamondsPosition;
+
 		if (checkRoyalFlush(newCommunityCards[i], diamondsRoyalFlush, parameterOfRoyalFlush))
 		{
 			diamondsPosition += 1;
@@ -153,6 +163,8 @@ void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
 
 	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
 	{
+		parameterOfRoyalFlush[1] = diamondsPosition;
+
 		if (checkRoyalFlush(newHand[i], heartskRoyalFlush, parameterOfRoyalFlush))
 		{
 			diamondsPosition += 1;
@@ -171,7 +183,7 @@ bool RoyalFlush::checkRoyalFlush(Card* newCard, char* newRoyalFlushVector, int* 
 
 		if (isSameValue && isCorrectValue)
 		{
-			newRoyalFlushVector[newParameters[1] = ROYAL_FLUSH_VALUES[i]];
+			newRoyalFlushVector[newParameters[1]] = ROYAL_FLUSH_VALUES[i];
 			return true;
 		}
 	}
