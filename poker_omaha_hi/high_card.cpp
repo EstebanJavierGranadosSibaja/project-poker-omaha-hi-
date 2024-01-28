@@ -25,19 +25,26 @@ int HighCard::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 		highCardNumber = HandHighCardNumber[i];
 	}
 
-
 	return getTheMostHigherNumber();
 }
 
 int HighCard::getHighNumbers(Card** newCards, int newHighCardNumber)
 {
 	int numberCompare = 0;
+	int compareCard;
+	bool isHigherCard = (compareCard > numberCompare) && (compareCard != newHighCardNumber);
+	bool isAsCard = compareCard == 1;
 
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
-		int compareCard = newCards[i]->getNumber();
+		compareCard = newCards[i]->getNumber();
 
-		if ((compareCard > numberCompare) && (compareCard != newHighCardNumber))
+		if (isHigherCard && !isAsCard)
+		{
+			numberCompare = compareCard;
+			continue;
+		}
+		if (isAsCard)
 		{
 			numberCompare = compareCard;
 		}
@@ -49,12 +56,18 @@ int HighCard::getHighNumbers(Card** newCards, int newHighCardNumber)
 int HighCard::getTheMostHigherNumber()
 {
 	int mostHigherNumber = 0;
+	int asValue = 14;
+	bool isAsCard = mostHigherNumber == 1;
 
 	for (int i = 0; i < SIZE_OF_HAND_HIGH_CARD; i++)
 	{
-		if (mostHigherNumber < HandHighCardNumber[i])
+		if ((mostHigherNumber < HandHighCardNumber[i]) && !isAsCard)
 		{
 			mostHigherNumber = HandHighCardNumber[i];
+		}
+		if (isAsCard)
+		{
+			return asValue;
 		}
 	}
 
