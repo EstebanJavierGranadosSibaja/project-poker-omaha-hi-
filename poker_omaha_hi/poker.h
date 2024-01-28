@@ -7,7 +7,11 @@ private:
 
 
 public: 
+	virtual int getPlayerHandRankin(Card** newHand, Card** newCommunityCards);
+	void communityCardCombinations(Card** combinationOfCards, int sizeCommunityCards, Card** newCommunityCards);
 
+	
+	
 
 
 
