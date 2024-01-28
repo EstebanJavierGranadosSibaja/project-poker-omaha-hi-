@@ -4,7 +4,7 @@
 class Player
 {
 private:
-	int numberPlayer; 
+	int numberPlayer;
 	bool isActive; 
 	int userBlind; 
 	PlayerHand* userHand; 

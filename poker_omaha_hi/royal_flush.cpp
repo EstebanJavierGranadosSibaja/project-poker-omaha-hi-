@@ -45,7 +45,7 @@ int RoyalFlush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 		return 300;
 	}
 
-	return 0;
+	return -1;
 }
 
 void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)

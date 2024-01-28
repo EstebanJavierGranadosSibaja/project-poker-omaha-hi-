@@ -1,17 +1,22 @@
 #pragma once
 #include "winning_play.h"
 
+const int SIZE_OF_HAND_HIGH_CARD = 5;
+
 class HighCard : public WinningPlay
 {
 private:
 	Card* highCard;
+	int HandHighCardNumber[SIZE_OF_HAND_HIGH_CARD];
 
 public:
 	HighCard();
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 
-	//bool checkHighCard();
+	int getHighNumbers(Card** newCommunityCards, int newHighCardIndex);
+
+	int getTheMostHigherNumber();
 
 };
 
