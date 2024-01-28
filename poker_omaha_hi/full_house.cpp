@@ -66,9 +66,9 @@ void FullHouse::sortTheCards(Card**& vectorOfCombinations)
 		{
 			if (vectorOfCombinations[j]->getValue() > vectorOfCombinations[j + 1]->getValue())
 			{
-				char temp = vectorOfCombinations[j]->getValue();
-				vectorOfCombinations[j]->setValue(vectorOfCombinations[j + 1]->getValue());
-				vectorOfCombinations[j + 1]->setValue(temp);
+				Card* temp = vectorOfCombinations[j];
+				vectorOfCombinations[j] = vectorOfCombinations[j + 1];
+				vectorOfCombinations[j + 1] = temp;
 			}
 		}
 	}
@@ -76,6 +76,17 @@ void FullHouse::sortTheCards(Card**& vectorOfCombinations)
 
 bool FullHouse::isAFullHouse(Card** vectorOfCombinations)
 {
+	sortTheCards(vectorOfCombinations);
+
+	bool threeAndTwo = (vectorOfCombinations[0] == vectorOfCombinations[1]  && vectorOfCombinations[1] == vectorOfCombinations[2])
+		&& vectorOfCombinations[3] == vectorOfCombinations[4];
+	bool twoAndThree = vectorOfCombinations[0] == vectorOfCombinations[1] &&
+		(vectorOfCombinations[2] == vectorOfCombinations[3] && vectorOfCombinations[3] == vectorOfCombinations[4]);
+
+	if (threeAndTwo || twoAndThree) {
+		return true;
+	}
+
 	return false;
 }
 
