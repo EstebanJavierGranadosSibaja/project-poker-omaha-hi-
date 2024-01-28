@@ -51,6 +51,9 @@
     <ClCompile Include="poker.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="full_house.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="poker.h">
       <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="full_house.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
