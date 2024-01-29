@@ -76,5 +76,15 @@ void DoubleCouple::sortTheCards(Card**& vectorOfCombinations)
 
 bool DoubleCouple::isADoubleCouple(Card** vectorOfCombinations)
 {
-	return false;
+	sortTheCards(vectorOfCombinations);
+
+	bool twoCouplesAtTheBeginning = vectorOfCombinations[0] == vectorOfCombinations[1] && vectorOfCombinations[2] == vectorOfCombinations[3];
+	bool twoCouplesInTheMiddle = vectorOfCombinations[0] == vectorOfCombinations[1] && vectorOfCombinations[3] == vectorOfCombinations[4];
+	bool twoCouplesAtTheEnd = vectorOfCombinations[1] == vectorOfCombinations[2] && vectorOfCombinations[3] == vectorOfCombinations[4];
+
+	if (twoCouplesAtTheBeginning || twoCouplesInTheMiddle || twoCouplesAtTheEnd)
+	{
+		return true; 
+	}
+	return false; 
 }
