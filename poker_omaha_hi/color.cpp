@@ -3,14 +3,24 @@
 Color::Color()
 {
 	cardType = "";
+
+	for (int i = 0; i < NUMBER_OF_VALUES; i++)
+	{
+		clubsTypes[i] = new Card(' ', "ANYONE", -1, " ");
+		pikesTypes[i] = new Card(' ', "ANYONE", -1, " ");
+		heartsTypes[i] = new Card(' ', "ANYONE", -1, " ");
+		diamondsTypes[i] = new Card(' ', "ANYONE", -1, " ");
+	}
+
+	for (int i = 0; i < NUMBER_OF_CARD_PARAMETERS; i++)
+	{
+		cardParameters[i] = -1;
+	}
 }
 
 int Color::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
 	int heartsTypesPosition = 0, diamondsTypePosition = 1, clubsTypePosition = 2, pikesTypePosition = 3;
-	int clubsCounter = 0, pikesCounter = 0, heartsCounter = 0, diamondsCounter = 0;
-
-	bool isColor = clubsCounter == 5 || pikesCounter == 5 || heartsCounter == 5 || diamondsCounter == 5;
 
 	cardParameters[0] = heartsTypesPosition;
 	getTypesColor(heartsTypes, newHand, newCommunityCards);
@@ -24,26 +34,19 @@ int Color::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 	cardParameters[0] = pikesTypePosition;
 	getTypesColor(pikesTypes, newHand, newCommunityCards);
 
-	for (int i = 0; i < NUMBER_OF_VALUES; i++)
+	if (isColorHand(clubsTypes, "Clubs"))
 	{
-		if (isColorHand(clubsTypes[i], "Clubs"))
-		{
-			clubsCounter += 1;
-		}
-		if (isColorHand(pikesTypes[i], "Pikes"))
-		{
-			pikesCounter += 1;
-		}
-		if (isColorHand(heartsTypes[i], "Hearts"))
-		{
-			heartsCounter += 1;
-		}
-		if (isColorHand(heartsTypes[i], "Diamonds"))
-		{
-			diamondsCounter += 1;
-		}
+		return 50;
 	}
-	if (isColor)
+	if (isColorHand(pikesTypes, "Pikes"))
+	{
+		return 50;
+	}
+	if (isColorHand(heartsTypes, "Hearts"))
+	{
+		return 50;
+	}
+	if (isColorHand(diamondsTypes, "Diamonds"))
 	{
 		return 50;
 	}
@@ -65,7 +68,7 @@ void Color::getTypesColor(Card** newVectorType, Card** newHand, Card** newCommun
 
 		if (checkColor(actualType, cardParameters))
 		{
-			newVectorType[actualPosition]->setType(actualType);
+			newVectorType[actualPosition] = newCommunityCards[i];
 			actualPosition += 1;
 		}
 	}
@@ -77,7 +80,7 @@ void Color::getTypesColor(Card** newVectorType, Card** newHand, Card** newCommun
 
 		if (checkColor(actualType, cardParameters))
 		{
-			newVectorType[actualPosition]->setType(actualType);
+			newVectorType[actualPosition] = newCommunityCards[i];
 			actualPosition += 1;
 		}
 	}
@@ -95,13 +98,19 @@ bool Color::checkColor(string newActualType, int* newCardParameters)
 	return false;
 }
 
-bool Color::isColorHand(Card* newCardColor, string newActualColor)
+bool Color::isColorHand(Card** newCardColor, string newActualColor)
 {
+	string cardColorType;
 
-	if (newCardColor->getType() == newActualColor)
+	for (int i = 0; i < NUMBER_OF_VECTORS; i++)
 	{
-		return true;
+		cardColorType = newCardColor[i]->getType();
+
+		if (cardColorType != newActualColor)
+		{
+			return false;
+		}
 	}
 
-	return false;
+	return true;
 }
