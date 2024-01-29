@@ -66,6 +66,9 @@
     <ClCompile Include="couple.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="straight.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -114,7 +117,10 @@
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="couple.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="straight.h">
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
