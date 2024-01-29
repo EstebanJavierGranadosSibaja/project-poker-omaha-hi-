@@ -138,6 +138,7 @@
     <ClCompile Include="poker.cpp" />
     <ClCompile Include="poker_omaha_hi.cpp" />
     <ClCompile Include="royal_flush.cpp" />
+    <ClCompile Include="trio.cpp" />
     <ClCompile Include="winning_play.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +155,7 @@
     <ClInclude Include="high_card.h" />
     <ClInclude Include="poker.h" />
     <ClInclude Include="royal_flush.h" />
+    <ClInclude Include="trio.h" />
     <ClInclude Include="winning_play.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

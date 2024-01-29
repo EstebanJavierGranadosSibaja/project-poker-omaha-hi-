@@ -1,6 +1,6 @@
-#include"full_house.h"
+#include"trio.h"
 
-int FullHouse::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
+int Trio::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 {
 	int firstCardUser = 0;
 	int secondCardUser = 1;
@@ -14,7 +14,7 @@ int FullHouse::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 		combinationOfCards[1] = newHand[secondCardUser];
 
 		if (communityCardCombinations(combinationOfCards, newCommunityCards)) {
-			return FULL_HOUSE_VALUE;
+			return TRIO_VALUE;
 		}
 
 		secondCardUser++;
@@ -27,7 +27,7 @@ int FullHouse::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 	return -1;
 }
 
-bool FullHouse::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
+bool Trio::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
 {
 	int firstCardCommunity = 0;
 	int secondCardCommunity = 1;
@@ -43,7 +43,7 @@ bool FullHouse::communityCardCombinations(Card** combinationOfCards, Card** newC
 			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
 			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
 
-			if (isAFullHouse(combinationOfCards)) {
+			if (isATrio(combinationOfCards)) {
 				return true;
 			}
 
@@ -58,7 +58,7 @@ bool FullHouse::communityCardCombinations(Card** combinationOfCards, Card** newC
 	return false;
 }
 
-void FullHouse::sortTheCards(Card**& vectorOfCombinations)
+void Trio::sortTheCards(Card**& vectorOfCombinations)
 {
 	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
 	{
@@ -74,22 +74,17 @@ void FullHouse::sortTheCards(Card**& vectorOfCombinations)
 	}
 }
 
-bool FullHouse::isAFullHouse(Card** vectorOfCombinations)
+bool Trio::isATrio(Card** vectorOfCombinations)
 {
 	sortTheCards(vectorOfCombinations);
 
-	bool isThreeAndTwo = (vectorOfCombinations[0] == vectorOfCombinations[1]  && vectorOfCombinations[1] == vectorOfCombinations[2])
-		&& vectorOfCombinations[3] == vectorOfCombinations[4];
-	bool isTwoAndThree = vectorOfCombinations[0] == vectorOfCombinations[1] &&
-		(vectorOfCombinations[2] == vectorOfCombinations[3] && vectorOfCombinations[3] == vectorOfCombinations[4]);
+	bool threeCardsToTheLeft = vectorOfCombinations[0] == vectorOfCombinations[1] && vectorOfCombinations[1] == vectorOfCombinations[2]; 
+	bool threeCardsToTheRight = vectorOfCombinations[2] == vectorOfCombinations[3] && vectorOfCombinations[3] == vectorOfCombinations[4];
 
-	if (isThreeAndTwo || isTwoAndThree) {
-		return true;
+	if (threeCardsToTheLeft || threeCardsToTheRight) 
+	{
+		return true; 
 	}
 
 	return false;
 }
-
-
-
-

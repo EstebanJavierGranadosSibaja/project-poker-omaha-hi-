@@ -54,6 +54,9 @@
     <ClCompile Include="full_house.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="trio.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -90,7 +93,10 @@
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="full_house.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="trio.h">
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
