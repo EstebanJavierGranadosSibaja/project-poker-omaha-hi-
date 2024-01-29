@@ -63,6 +63,9 @@
     <ClCompile Include="color.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="couple.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="color.h">
       <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="couple.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
