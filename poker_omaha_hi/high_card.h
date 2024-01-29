@@ -9,7 +9,7 @@ private:
 	int HandHighCardNumber[SIZE_OF_HAND_HIGH_CARD];
 
 public:
-	HighCard() {};
+	HighCard();
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 

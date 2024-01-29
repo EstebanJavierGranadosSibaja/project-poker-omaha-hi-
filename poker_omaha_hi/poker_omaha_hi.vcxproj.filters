@@ -66,6 +66,9 @@
     <ClCompile Include="couple.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="straight_flush.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -113,8 +116,11 @@
     <ClInclude Include="color.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
+    <ClInclude Include="straight_flush.h">
+      <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
     <ClInclude Include="couple.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

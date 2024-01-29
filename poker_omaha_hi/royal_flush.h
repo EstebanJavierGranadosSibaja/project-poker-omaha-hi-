@@ -6,7 +6,6 @@ const char ROYAL_FLUSH_VALUES[NUMBER_OF_VALUES] = { 'A','J','Q','K','10' };
 class RoyalFlush : public WinningPlay
 {
 private:
-	int parameterOfRoyalFlush[2];
 
 public:
 	RoyalFlush();
@@ -18,7 +17,7 @@ public:
 	void getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards);
 	void getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards);
 
-	bool checkRoyalFlush(Card* newCard, Card** newRoyalFlushVector, int* newParameters);
+	bool checkRoyalFlush(Card* newCard, Card** newRoyalFlushVector);
 	bool checkRankingRoyalFlush(Card* newRoyalFlushValue);
 
 };
