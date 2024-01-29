@@ -6,11 +6,10 @@ const int SIZE_OF_HAND_HIGH_CARD = 5;
 class HighCard : public WinningPlay
 {
 private:
-	Card* highCard;
 	int HandHighCardNumber[SIZE_OF_HAND_HIGH_CARD];
 
 public:
-	HighCard();
+	HighCard() {};
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 

@@ -2,13 +2,6 @@
 
 RoyalFlush::RoyalFlush()
 {
-	for (int i = 0; i < NUMBER_OF_ROYAL_FLUSH_VALUES; i++)
-	{
-		clubsRoyalFlush[i] = ' ';
-		pikesRoyalFlush[i] = ' ';
-		heartskRoyalFlush[i] = ' ';
-		diamondsRoyalFlush[i] = ' ';
-	}
 	for (int i = 0; i < 2; i++)
 	{
 		parameterOfRoyalFlush[i] = 0;
@@ -25,21 +18,21 @@ int RoyalFlush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 	getHeartsRoyalFlush(newHand, newCommunityCards);
 	getDiamondsRoyalFlush(newHand, newCommunityCards);
 
-	for (int i = 0; i < NUMBER_OF_ROYAL_FLUSH_VALUES; i++)
+	for (int i = 0; i < NUMBER_OF_VALUES; i++)
 	{
-		if (checkRankingRoyalFlush(clubsRoyalFlush[i]))
+		if (checkRankingRoyalFlush(clubsTypes[i]))
 		{
 			clubsCounter += 1;
 		}
-		if (checkRankingRoyalFlush(pikesRoyalFlush[i]))
+		if (checkRankingRoyalFlush(pikesTypes[i]))
 		{
 			pikesCounter += 1;
 		}
-		if (checkRankingRoyalFlush(heartskRoyalFlush[i]))
+		if (checkRankingRoyalFlush(heartsTypes[i]))
 		{
 			heartsCounter += 1;
 		}
-		if (checkRankingRoyalFlush(heartskRoyalFlush[i]))
+		if (checkRankingRoyalFlush(heartsTypes[i]))
 		{
 			diamondsCounter += 1;
 		}
@@ -64,10 +57,9 @@ void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		parameterOfRoyalFlush[1] = clubsPosition;
 
-		if (checkRoyalFlush(newCommunityCards[i], clubsRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newCommunityCards[i], clubsTypes, parameterOfRoyalFlush))
 		{
 			clubsPosition += 1;
-			break;
 		}
 	}
 
@@ -75,10 +67,9 @@ void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		parameterOfRoyalFlush[1] = clubsPosition;
 
-		if (checkRoyalFlush(newHand[i], clubsRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], clubsTypes, parameterOfRoyalFlush))
 		{
 			clubsPosition += 1;
-			break;
 		}
 	}
 }
@@ -94,10 +85,9 @@ void RoyalFlush::getPikesRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		parameterOfRoyalFlush[1] = pikesPosition;
 
-		if (checkRoyalFlush(newCommunityCards[i], pikesRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newCommunityCards[i], pikesTypes, parameterOfRoyalFlush))
 		{
 			pikesPosition += 1;
-			break;
 		}
 	}
 
@@ -105,10 +95,9 @@ void RoyalFlush::getPikesRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		parameterOfRoyalFlush[1] = pikesPosition;
 
-		if (checkRoyalFlush(newHand[i], pikesRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], pikesTypes, parameterOfRoyalFlush))
 		{
 			pikesPosition += 1;
-			break;
 		}
 	}
 }
@@ -124,10 +113,9 @@ void RoyalFlush::getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		parameterOfRoyalFlush[1] = heartsPosition;
 
-		if (checkRoyalFlush(newCommunityCards[i], heartskRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newCommunityCards[i], heartsTypes, parameterOfRoyalFlush))
 		{
 			heartsPosition += 1;
-			break;
 		}
 	}
 
@@ -135,10 +123,9 @@ void RoyalFlush::getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		parameterOfRoyalFlush[1] = heartsPosition;
 
-		if (checkRoyalFlush(newHand[i], heartskRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], heartsTypes, parameterOfRoyalFlush))
 		{
 			heartsPosition += 1;
-			break;
 		}
 	}
 }
@@ -154,10 +141,9 @@ void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		parameterOfRoyalFlush[1] = diamondsPosition;
 
-		if (checkRoyalFlush(newCommunityCards[i], diamondsRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newCommunityCards[i], diamondsTypes, parameterOfRoyalFlush))
 		{
 			diamondsPosition += 1;
-			break;
 		}
 	}
 
@@ -165,25 +151,24 @@ void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		parameterOfRoyalFlush[1] = diamondsPosition;
 
-		if (checkRoyalFlush(newHand[i], heartskRoyalFlush, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], heartsTypes, parameterOfRoyalFlush))
 		{
 			diamondsPosition += 1;
-			break;
 		}
 	}
 }
 
-bool RoyalFlush::checkRoyalFlush(Card* newCard, char* newRoyalFlushVector, int* newParameters)
+bool RoyalFlush::checkRoyalFlush(Card* newCard, Card** newRoyalFlushVector, int* newParameters)
 {
 	bool isCorrectValue = newCard->getType() == ARRAY_OF_TYPES[newParameters[0]];
 
-	for (int i = 0; i < NUMBER_OF_ROYAL_FLUSH_VALUES; i++)
+	for (int i = 0; i < NUMBER_OF_VALUES; i++)
 	{
 		bool isSameValue = newCard->getValue() == ROYAL_FLUSH_VALUES[i];
 
 		if (isSameValue && isCorrectValue)
 		{
-			newRoyalFlushVector[newParameters[1]] = ROYAL_FLUSH_VALUES[i];
+			newRoyalFlushVector[newParameters[1]]->setValue(ROYAL_FLUSH_VALUES[i]);
 			return true;
 		}
 	}
@@ -191,11 +176,11 @@ bool RoyalFlush::checkRoyalFlush(Card* newCard, char* newRoyalFlushVector, int* 
 	return false;
 }
 
-bool RoyalFlush::checkRankingRoyalFlush(char newRoyalFlushValue)
+bool RoyalFlush::checkRankingRoyalFlush(Card* newRoyalFlushValue)
 {
-	for (int i = 0; i < NUMBER_OF_ROYAL_FLUSH_VALUES; i++)
+	for (int i = 0; i < NUMBER_OF_VALUES; i++)
 	{
-		if (newRoyalFlushValue == ROYAL_FLUSH_VALUES[i])
+		if (newRoyalFlushValue->getValue() == ROYAL_FLUSH_VALUES[i])
 		{
 			return true;
 		}
@@ -203,6 +188,5 @@ bool RoyalFlush::checkRankingRoyalFlush(char newRoyalFlushValue)
 
 	return false;
 }
-
 
 

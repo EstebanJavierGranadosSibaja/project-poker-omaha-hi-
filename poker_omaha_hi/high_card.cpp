@@ -1,10 +1,5 @@
 #include "high_card.h"
 
-HighCard::HighCard()
-{
-	highCard = new Card();
-}
-
 int HighCard::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
 	int highCardNumber = 0;
@@ -18,7 +13,7 @@ int HighCard::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 
 	highCardNumber = 0;
 
-	for (int i = 3; i < NUMBER_OF_VALID_PLAYER_HAND+3; i++)
+	for (int i = 3; i < NUMBER_OF_VALID_PLAYER_HAND + 3; i++)
 	{
 		HandHighCardNumber[i] = getHighNumbers(newHand, highCardNumber);
 
@@ -73,4 +68,3 @@ int HighCard::getTheMostHigherNumber()
 
 	return mostHigherNumber;
 }
-
