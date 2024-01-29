@@ -76,8 +76,9 @@ void Straight::sortTheCards(Card**& vectorOfCombinations)
 
 bool Straight::isAStraigt(Card** vectorOfCombinations)
 {
-	ARRAY_OF_VALUES[0];
 	int index = 0;
+
+	sortTheCards(vectorOfCombinations); 
 
 	while (vectorOfCombinations[0]->getValue() != ARRAY_OF_VALUES[index])
 	{
@@ -105,11 +106,12 @@ bool Straight::isACheckStraight(Card** vectorOfCombinations, int startOfTheStair
 		startOfTheStaircase++; 
 	}
 
-	if (straightCounter == COMMUNITY_CARD_SIZE)
+	if (straightCounter == COMMUNITY_CARD_SIZE ||
+		(straightCounter == COMMUNITY_CARD_SIZE - 1 && ARRAY_OF_VALUES[0] == 'A'))
 	{
 		return true;
 	}  
-	// Terminar lo de la condicion de la A, por que puede ser 1 o 14, por si sale una escalera de 10.
+	
 
 	return false; 
 }
