@@ -104,10 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\sfml\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\sfml\SFML-2.5.1\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,6 +133,7 @@
     <ClCompile Include="..\Classes\card.cpp" />
     <ClCompile Include="..\Classes\dealer.cpp" />
     <ClCompile Include="..\Classes\deck.cpp" />
+    <ClCompile Include="..\Classes\menu.cpp" />
     <ClCompile Include="..\Classes\player.cpp" />
     <ClCompile Include="..\Classes\player_hand.cpp" />
     <ClCompile Include="..\Classes\poker_table.cpp" />
@@ -142,6 +146,7 @@
     <ClCompile Include="poker_omaha_hi.cpp" />
     <ClCompile Include="royal_flush.cpp" />
     <ClCompile Include="straight_flush.cpp" />
+    <ClCompile Include="straight.cpp" />
     <ClCompile Include="trio.cpp" />
     <ClCompile Include="winning_play.cpp" />
   </ItemGroup>
@@ -152,6 +157,7 @@
     <ClInclude Include="..\Classes\card.h" />
     <ClInclude Include="..\Classes\dealer.h" />
     <ClInclude Include="..\Classes\deck.h" />
+    <ClInclude Include="..\Classes\menu.h" />
     <ClInclude Include="..\Classes\player.h" />
     <ClInclude Include="..\Classes\player_hand.h" />
     <ClInclude Include="..\Classes\poker_table.h" />
@@ -163,6 +169,7 @@
     <ClInclude Include="poker.h" />
     <ClInclude Include="royal_flush.h" />
     <ClInclude Include="straight_flush.h" />
+    <ClInclude Include="straight.h" />
     <ClInclude Include="trio.h" />
     <ClInclude Include="winning_play.h" />
   </ItemGroup>

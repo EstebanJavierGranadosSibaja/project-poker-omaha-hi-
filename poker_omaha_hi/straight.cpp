@@ -1,6 +1,6 @@
-#include"couple.h"
+#include"straight.h"
 
-int Couple::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
+int Straight::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 {
 	int firstCardUser = 0;
 	int secondCardUser = 1;
@@ -14,7 +14,7 @@ int Couple::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 		combinationOfCards[1] = newHand[secondCardUser];
 
 		if (communityCardCombinations(combinationOfCards, newCommunityCards)) {
-			return COUPLE_VALUE;
+			return STRAIGHT_VALUE;
 		}
 
 		secondCardUser++;
@@ -27,7 +27,7 @@ int Couple::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 	return -1;
 }
 
-bool Couple::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
+bool Straight::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
 {
 	int firstCardCommunity = 0;
 	int secondCardCommunity = 1;
@@ -43,7 +43,7 @@ bool Couple::communityCardCombinations(Card** combinationOfCards, Card** newComm
 			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
 			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
 
-			if (isACouple(combinationOfCards)) {
+			if (isAStraigt(combinationOfCards)) {
 				return true;
 			}
 
@@ -58,7 +58,7 @@ bool Couple::communityCardCombinations(Card** combinationOfCards, Card** newComm
 	return false;
 }
 
-void Couple::sortTheCards(Card**& vectorOfCombinations)
+void Straight::sortTheCards(Card**& vectorOfCombinations)
 {
 	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
 	{
@@ -74,19 +74,45 @@ void Couple::sortTheCards(Card**& vectorOfCombinations)
 	}
 }
 
-bool Couple::isACouple(Card** vectorOfCombinations)
+bool Straight::isAStraigt(Card** vectorOfCombinations)
 {
-	sortTheCards(vectorOfCombinations);
-	bool firstCouple = vectorOfCombinations[0] == vectorOfCombinations[1];
-	bool secondCouple = vectorOfCombinations[1] == vectorOfCombinations[2]; 
-	bool thirdCouple = vectorOfCombinations[2] == vectorOfCombinations[3]; 
-	bool fourthCouple = vectorOfCombinations[3] == vectorOfCombinations[4]; 
+	int index = 0;
 
-	if (firstCouple || secondCouple || thirdCouple || fourthCouple)
+	sortTheCards(vectorOfCombinations); 
+
+	while (vectorOfCombinations[0]->getValue() != ARRAY_OF_VALUES[index])
 	{
-		return true; 
+		index++;
+	}
+
+	if (isACheckStraight(vectorOfCombinations, index))
+	{
+		return true;
 	}
 
 
 	return false;
 }
+
+bool Straight::isACheckStraight(Card** vectorOfCombinations, int startOfTheStaircase)
+{
+	int straightCounter = 0; 
+	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
+	{
+		if (vectorOfCombinations[i]->getValue() == ARRAY_OF_VALUES[startOfTheStaircase])
+		{
+			straightCounter++; 
+		}
+		startOfTheStaircase++; 
+	}
+
+	if (straightCounter == COMMUNITY_CARD_SIZE ||
+		(straightCounter == COMMUNITY_CARD_SIZE - 1 && ARRAY_OF_VALUES[0] == 'A'))
+	{
+		return true;
+	}  
+	
+
+	return false; 
+}
+
