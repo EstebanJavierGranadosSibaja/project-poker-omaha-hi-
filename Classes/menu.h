@@ -5,8 +5,8 @@ using namespace sf;
 class Menu
 {
 private: 
-	Texture texture; 
-	Sprite sprite; 
+	Texture background;
+	
 	int numPlayers;
 	int blindPrice;
 
