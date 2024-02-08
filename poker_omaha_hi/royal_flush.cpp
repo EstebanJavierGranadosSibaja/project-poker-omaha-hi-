@@ -1,6 +1,5 @@
 #include "royal_flush.h"
 
-
 RoyalFlush::RoyalFlush()
 {
 	for (int i = 0; i < NUMBER_OF_VALUES; i++)
@@ -66,7 +65,7 @@ void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		cardParameters[1] = clubsPosition;
 
-		if (checkRoyalFlush(newCommunityCards[i], clubsTypes, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newCommunityCards[i], clubsTypes))
 		{
 			clubsPosition += 1;
 		}
@@ -76,7 +75,7 @@ void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		cardParameters[1] = clubsPosition;
 
-		if (checkRoyalFlush(newHand[i], clubsTypes, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], clubsTypes))
 		{
 			clubsPosition += 1;
 		}
@@ -94,7 +93,7 @@ void RoyalFlush::getPikesRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		cardParameters[1] = pikesPosition;
 
-		if (checkRoyalFlush(newCommunityCards[i], pikesTypes, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newCommunityCards[i], pikesTypes))
 		{
 			pikesPosition += 1;
 		}
@@ -104,7 +103,7 @@ void RoyalFlush::getPikesRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		cardParameters[1] = pikesPosition;
 
-		if (checkRoyalFlush(newHand[i], pikesTypes, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], pikesTypes))
 		{
 			pikesPosition += 1;
 		}
@@ -150,7 +149,7 @@ void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		cardParameters[1] = diamondsPosition;
 
-		if (checkRoyalFlush(newCommunityCards[i], diamondsTypes, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newCommunityCards[i], diamondsTypes))
 		{
 			diamondsPosition += 1;
 		}
@@ -160,7 +159,7 @@ void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
 	{
 		cardParameters[1] = diamondsPosition;
 
-		if (checkRoyalFlush(newHand[i], heartsTypes, parameterOfRoyalFlush))
+		if (checkRoyalFlush(newHand[i], heartsTypes))
 		{
 			diamondsPosition += 1;
 		}
