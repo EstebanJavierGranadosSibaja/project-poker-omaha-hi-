@@ -72,6 +72,9 @@
     <ClCompile Include="straight.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\menu.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -126,6 +129,9 @@
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="straight.h">
+      <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\menu.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
   </ItemGroup>
