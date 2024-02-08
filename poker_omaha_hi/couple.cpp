@@ -77,6 +77,7 @@ void Couple::sortTheCards(Card**& vectorOfCombinations)
 bool Couple::isACouple(Card** vectorOfCombinations)
 {
 
+
 	bool firstCouple = vectorOfCombinations[0] == vectorOfCombinations[1];
 	bool secondCouple = vectorOfCombinations[1] == vectorOfCombinations[2]; 
 	bool thirdCouple = vectorOfCombinations[2] == vectorOfCombinations[3]; 

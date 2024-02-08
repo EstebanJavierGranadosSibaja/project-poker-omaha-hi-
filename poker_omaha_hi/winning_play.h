@@ -24,6 +24,6 @@ public:
 	WinningPlay() {};
 
 	virtual int getPlayerHandRankin(Card** newHand, Card** newCommunityCards) = 0;
-
+	virtual void sortTheCards(Card** vectorOfCombinations);
 };
 
