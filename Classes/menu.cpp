@@ -33,18 +33,9 @@ void Menu::loadMenuImage(RenderWindow& window)
 
 	Sprite sprite(background);
 
-	while (window.isOpen()) {
+	sprite.setPosition(4.f, 4.f);
+	sprite.setScale(static_cast<float>(window.getSize().x) / background.getSize().x,
+		static_cast<float>(window.getSize().y) / background.getSize().y);
 
-		Event event;
-		while (window.pollEvent(event)) 
-		{
-			if (event.type == Event::Closed)
-			{
-				window.close();
-			}
-		}
-
-		window.clear();
-		window.draw(sprite);
-	}
+	window.draw(sprite);
 }
