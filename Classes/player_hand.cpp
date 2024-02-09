@@ -8,12 +8,12 @@ PlayerHand::PlayerHand()
 	}
 }
 
-void PlayerHand::createSprites()
+void PlayerHand::createPlayerSprites()
 {
 	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
 	{
-		vectorOfTextures[i].loadFromFile(hand[i]->getUrl()) ;
-		vectorOfSprites[i] = Sprite(vectorOfTextures[i]);
+		vectorOfPlayerTextures[i].loadFromFile(hand[i]->getUrl()) ;
+		vectorOfPlayerSprites[i] = Sprite(vectorOfPlayerTextures[i]);
 	}
 }
 
@@ -27,12 +27,12 @@ Card** PlayerHand::getHand()
 	return hand;
 }
 
-Texture* PlayerHand::getTexture()
+Texture* PlayerHand::getPlayerTexture()
 {
-	return vectorOfTextures;
+	return vectorOfPlayerTextures;
 }
 
-Sprite* PlayerHand::getSprite()
+Sprite* PlayerHand::getPlayerSprite()
 {
-	return vectorOfSprites;
+	return vectorOfPlayerSprites;
 }

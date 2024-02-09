@@ -10,18 +10,18 @@ class PlayerHand
 {
 private:
 	Card** hand;
-	Texture vectorOfTextures[SIZE_OF_PLAYER_DECK];
-	Sprite vectorOfSprites[SIZE_OF_PLAYER_DECK];
+	Texture vectorOfPlayerTextures[SIZE_OF_PLAYER_DECK];
+	Sprite vectorOfPlayerSprites[SIZE_OF_PLAYER_DECK];
 	
 public:
 	PlayerHand();
 	PlayerHand(Card** newHand) = delete;
 
-	void createSprites();
+	void createPlayerSprites();
 
 	void setHand(Card** newHand);
 
 	Card** getHand();
-	Texture* getTexture();
-	Sprite* getSprite();
+	Texture* getPlayerTexture();
+	Sprite* getPlayerSprite();
 };
