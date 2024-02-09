@@ -1,11 +1,15 @@
 #include "poker_table.h"
 
 
-PokerTable::PokerTable(int aNumberOfPlayers)
+PokerTable::PokerTable()
+{
+}
+
+PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 {
 	pot = 0;
-	bigBlind = 0;
-	smallBlind = 0;
+	bigBlind = aBigBlind;
+	smallBlind =aBigBlind / 2;
 	numberOfPlayers = aNumberOfPlayers;
 	dealer = new Dealer();
 	deck = new Deck;
@@ -17,17 +21,6 @@ PokerTable::PokerTable(int aNumberOfPlayers)
 	}
 
 	dealer->shuffleDeck(deck); 
-}
-
-PokerTable::PokerTable(int aPot, int aBigBlind, int aSmallBlind, int aNumberOfPlayers, Dealer* newDealer, Deck* newDeck, Player** newPlayers)
-{
-	pot = aPot;
-	bigBlind = aBigBlind;
-	smallBlind = aSmallBlind;
-	numberOfPlayers = aNumberOfPlayers;
-	dealer = newDealer;
-	deck = newDeck;
-	players = newPlayers;
 }
 
 PokerTable::~PokerTable()
