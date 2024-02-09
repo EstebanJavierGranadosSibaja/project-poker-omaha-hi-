@@ -108,7 +108,7 @@ void Menu::addText()
 
 void Menu::blindInput(RenderWindow& window)
 {
-	bool isLeftButtonPresed = userEvent.type == Event::MouseButtonPressed && userEvent.mouseButton.button == Mouse::Right;
+	bool isLeftButtonPresed = userEvent.type == Event::MouseButtonPressed && userEvent.mouseButton.button == Mouse::Left;
 
 	if (isLeftButtonPresed)
 	{
@@ -177,7 +177,7 @@ void Menu::checkWhenUserPressEnter()
 void Menu::nextUserRequest()
 {
 	text.setString("Digite el numero de jugadores de 2 a 6");
-	text.setPosition(680, 290);
+	text.setPosition(650, 500);
 	userText.setString("");
 	rangeOfTheUserInput = Vector2i(2, 6);
 	amountOfNumbersThatUserCanPress = 1;
