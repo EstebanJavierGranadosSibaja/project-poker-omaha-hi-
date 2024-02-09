@@ -1,6 +1,9 @@
 #pragma once
 #include"winning_play.h"
+#include "flush.h"
+
 const int STRAIGHT_VALUE = 3;
+
 class Straight : public WinningPlay 
 {
 private: 

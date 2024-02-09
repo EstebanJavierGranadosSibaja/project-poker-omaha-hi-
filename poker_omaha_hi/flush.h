@@ -4,13 +4,12 @@
 
 const int COLOR_VALUE = 50;
 
-class Color : public WinningPlay
+class Flush : public WinningPlay
 {
 private:
 
 public:
-
-	Color() : WinningPlay() {}
+	Flush() {}
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 	bool communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards);

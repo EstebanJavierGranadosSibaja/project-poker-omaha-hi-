@@ -15,6 +15,15 @@ Dealer::Dealer(Card** newCommunityCads)
 	communityCards = newCommunityCads; 
 }
 
+void Dealer::createDealerSprites()
+{
+	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
+	{
+		vectorOfDealerTextures[i].loadFromFile(communityCards[i]->getUrl());
+		vectorOfDealerSprites[i] = Sprite(vectorOfDealerTextures[i]);
+	}
+}
+
 void Dealer::setCommunityCards(Deck*& deck)
 {
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
@@ -62,6 +71,7 @@ Card** Dealer::getCommunityCards()
 
 Card** Dealer::getFloat()
 {
+	int starPosition = 0;
 	int threePositions = 3; 
 	Card** firstThreePositions = new Card * [threePositions]; 
 
@@ -78,7 +88,7 @@ Card** Dealer::getTurn()
 	int fourthPosition = 1;
 	Card** fourthPositions = new Card* [fourthPosition];
 
-	fourthPositions[0] = communityCards[3]; 
+	fourthPositions[0] = communityCards[3];
 
 	return fourthPositions;
 }
@@ -96,4 +106,14 @@ Card** Dealer::getRiver()
 Card** Dealer::getShowedCards()
 {
 	return communityCards;
+}
+
+Texture* Dealer::getDealerTexture()
+{
+	return vectorOfDealerTextures;
+}
+
+Sprite* Dealer::getDealerSprite()
+{
+	return vectorOfDealerSprites;
 }

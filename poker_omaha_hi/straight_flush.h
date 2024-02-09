@@ -1,6 +1,6 @@
 #pragma once
 #include "winning_play.h"
-#include "color.h"
+#include "flush.h"
 
 const int STRIGHT_FLUSH_VALUE = 150;
 
