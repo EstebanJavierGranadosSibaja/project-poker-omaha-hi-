@@ -2,14 +2,20 @@
 
 PokerDisplay::PokerDisplay()
 {
-	rows = 6;
+	menu = new Menu();
+	menu->loadMenuWindow();
+	rows = menu->getNumPlayer();
 	columns = maxOfUserCard;
-	menu = new Menu(); 
-	menu->loadMenuWindow(); 
+	pokerTable = new PokerTable(menu->getBlindPrice(), menu->getNumPlayer());
 
-	pokerTable = new PokerTable(); 
+	backGround = Texture();
+	spriteBackGround = Sprite();
 
-
+	spacesInUserCard = new RectangleShape* [rows];
+	for (int i = 0; i < rows; i++)
+	{
+		spacesInUserCard[i] = new RectangleShape[columns]; 
+	}
 }
 
 void PokerDisplay::loadGameWindow()
@@ -30,7 +36,7 @@ void PokerDisplay::loadGameWindow()
 		
 		//se pueden llamar metodos aqui 
 
-		gameWindow.draw(sprite);
+		gameWindow.draw(spriteBackGround);
 		gameWindow.display();
 	}
 }
@@ -41,9 +47,9 @@ void PokerDisplay::loadGameImage()
 	{
 		return;
 	}
-	sprite = Sprite(backGround);
-	sprite.setPosition(0, 0);
-	sprite.setScale(1.5f, 1.5f);
+	spriteBackGround = Sprite(backGround);
+	spriteBackGround.setPosition(0, 0);
+	spriteBackGround.setScale(1.5f, 1.5f);
 }
 
 void PokerDisplay::drawRectangleShape()

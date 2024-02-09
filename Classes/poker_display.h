@@ -9,7 +9,7 @@ private:
 	PokerTable* pokerTable;
 	Menu* menu;
 	Texture backGround;
-	Sprite sprite;
+	Sprite spriteBackGround;
 	RectangleShape** spacesInUserCard; 
 
 	int rows;
