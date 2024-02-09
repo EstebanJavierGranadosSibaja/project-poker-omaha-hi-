@@ -1,8 +1,7 @@
 #include <iostream>
 #include"../Classes/menu.h"
-
-using namespace std;
-
+#include"../Classes/poker_display.h"
+#include"../Classes/poker_table.h"
 
 int main()
 {
@@ -24,9 +23,13 @@ int main()
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
 		newPlayers[i] = new Player(i+1, isPlayerActive, 0, newPlayers[i]->getUserHand());
+	}
+
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		cout << newPlayers[i]->getUserHand()->getHand()[0]->getNumber() << endl;
 	}*/
 
-
-
+	return 0;
 }
 
