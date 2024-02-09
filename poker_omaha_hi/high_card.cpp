@@ -2,71 +2,81 @@
 
 int HighCard::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
-	int highCardNumber = 0;
+	int firstCardUser = 0;
+	int secondCardUser = 1;
 
-	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
+	Card** combinationOfCards = new Card * [SIZE_OF_COMMUNITY_CARDS];
+
+	while (firstCardUser != NUMBER_OF_VALID_COMMUNITY_HAND)
 	{
-		HandHighCardNumber[i] = getHighNumbers(newCommunityCards, highCardNumber);
+		combinationOfCards[0] = newHand[firstCardUser];
+		combinationOfCards[1] = newHand[secondCardUser];
 
-		highCardNumber = HandHighCardNumber[i];
+		if (communityCardCombinations(combinationOfCards, newCommunityCards))
+		{
+			return highNumber;
+		}
+
+		secondCardUser++;
+		if (secondCardUser == SIZE_OF_PLAYER_DECK)
+		{
+			firstCardUser++;
+			secondCardUser = firstCardUser + 1;
+		}
 	}
-
-	highCardNumber = 0;
-
-	for (int i = 3; i < NUMBER_OF_VALID_PLAYER_HAND + 3; i++)
-	{
-		HandHighCardNumber[i] = getHighNumbers(newHand, highCardNumber);
-
-		highCardNumber = HandHighCardNumber[i];
-	}
-
-	return getTheMostHigherNumber();
+	return -1;
 }
 
-int HighCard::getHighNumbers(Card** newCards, int newHighCardNumber)
+bool HighCard::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
 {
-	int numberCompare = 0;
-	int compareCard = 0;
-	bool isHigherCard = (compareCard > numberCompare) && (compareCard != newHighCardNumber);
-	bool isAsCard = compareCard == 1;
+	int firstCardCommunity = 0;
+	int secondCardCommunity = 1;
+	int thirdCardCommunity = secondCardCommunity + 1;
 
-	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
+	for (firstCardCommunity = 0; firstCardCommunity < NUMBER_OF_VALID_COMMUNITY_HAND; firstCardCommunity++)
 	{
-		compareCard = newCards[i]->getNumber();
+		secondCardCommunity = firstCardCommunity + 1;
 
-		if (isHigherCard && !isAsCard)
+		while (secondCardCommunity != SIZE_OF_PLAYER_DECK)
 		{
-			numberCompare = compareCard;
-			continue;
-		}
-		if (isAsCard)
-		{
-			numberCompare = compareCard;
+			combinationOfCards[2] = newCommunityCards[firstCardCommunity];
+			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
+			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
+
+			if (getTheMostHigherCard(combinationOfCards) <= highNumber)
+			{
+				return true;
+			}
+
+			highNumber = getTheMostHigherCard(combinationOfCards);
+
+			thirdCardCommunity++;
+			if (thirdCardCommunity == SIZE_OF_COMMUNITY_CARDS)
+			{
+				secondCardCommunity++;
+				thirdCardCommunity = secondCardCommunity + 1;
+			}
 		}
 	}
-
-	return numberCompare;
 }
 
-int HighCard::getTheMostHigherNumber()
+int HighCard::getTheMostHigherCard(Card** vectorOfCombinations)
 {
-	int mostHigherNumber = 0;
-	int asValue = 14;
-	bool isAsCard = mostHigherNumber == 1;
+	sortTheCards(vectorOfCombinations);
 
-	for (int i = 0; i < SIZE_OF_HAND_HIGH_CARD; i++)
+	bool isAHigherCard = vectorOfCombinations[4]->getNumber() > highNumber;
+	bool isAOneAS = vectorOfCombinations[0]->getNumber() == 1;
+	int valueOfAsCard = 14;
+
+	if (isAHigherCard && !isAOneAS)
 	{
-		if ((mostHigherNumber < HandHighCardNumber[i]) && !isAsCard)
-		{
-			mostHigherNumber = HandHighCardNumber[i];
-		}
-		if (isAsCard)
-		{
-			return asValue;
-		}
+		return vectorOfCombinations[4]->getNumber();
 	}
-
-	return mostHigherNumber;
+	if (isAOneAS)
+	{
+		return 14;
+	}
+	return 0;
 }
 
 void HighCard::sortTheCards(Card**& vectorOfCombinations)

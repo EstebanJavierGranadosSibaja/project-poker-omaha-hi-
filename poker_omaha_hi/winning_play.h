@@ -13,14 +13,9 @@ const int SIZE_OF_COMMUNITY_CARDS = 5;
 class WinningPlay
 {
 protected:
-	Card* clubsTypes[NUMBER_OF_USER_VALUES];
-	Card* pikesTypes[NUMBER_OF_USER_VALUES];
-	Card* heartsTypes[NUMBER_OF_USER_VALUES];
-	Card* diamondsTypes[NUMBER_OF_USER_VALUES];
-	int cardParameters[NUMBER_OF_CARD_PARAMETERS];
 
 public:
-	WinningPlay();
+	WinningPlay() {};
 
 	virtual int getPlayerHandRankin(Card** newHand, Card** newCommunityCards) = 0;
 	virtual void sortTheCards(Card** vectorOfCombinations);

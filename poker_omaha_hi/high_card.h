@@ -6,14 +6,14 @@ const int SIZE_OF_HAND_HIGH_CARD = 5;
 class HighCard : public WinningPlay
 {
 private:
-	int HandHighCardNumber[SIZE_OF_HAND_HIGH_CARD];
+	int highNumber;
 
 public:
-	HighCard() : WinningPlay() {}
+	HighCard() : highNumber(0) {}
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
-	int getHighNumbers(Card** newCommunityCards, int newHighCardIndex);
-	int getTheMostHigherNumber();
+	bool communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards);
+	int getTheMostHigherCard(Card** vectorOfCombinations);
 	void sortTheCards(Card**& vectorOfCombinations);
 
 };

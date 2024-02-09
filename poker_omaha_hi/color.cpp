@@ -2,99 +2,77 @@
 
 int Color::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
-	int heartsTypesPosition = 0, diamondsTypePosition = 1, clubsTypePosition = 2, pikesTypePosition = 3;
+	int firstCardUser = 0;
+	int secondCardUser = 1;
 
-	cardParameters[0] = heartsTypesPosition;
-	getTypesColor(heartsTypes, newHand, newCommunityCards);
+	Card** combinationOfCards = new Card * [SIZE_OF_COMMUNITY_CARDS];
 
-	cardParameters[0] = diamondsTypePosition;
-	getTypesColor(diamondsTypes, newHand, newCommunityCards);
-
-	cardParameters[0] = clubsTypePosition;
-	getTypesColor(clubsTypes, newHand, newCommunityCards);
-
-	cardParameters[0] = pikesTypePosition;
-	getTypesColor(pikesTypes, newHand, newCommunityCards);
-
-	if (isColorHand(clubsTypes, "Clubs"))
+	while (firstCardUser != NUMBER_OF_VALID_COMMUNITY_HAND)
 	{
-		return 50;
-	}
-	if (isColorHand(pikesTypes, "Pikes"))
-	{
-		return 50;
-	}
-	if (isColorHand(heartsTypes, "Hearts"))
-	{
-		return 50;
-	}
-	if (isColorHand(diamondsTypes, "Diamonds"))
-	{
-		return 50;
-	}
 
+		combinationOfCards[0] = newHand[firstCardUser];
+		combinationOfCards[1] = newHand[secondCardUser];
+
+		if (communityCardCombinations(combinationOfCards, newCommunityCards)) {
+			return COLOR_VALUE;
+		}
+
+		secondCardUser++;
+		if (secondCardUser == SIZE_OF_PLAYER_DECK)
+		{
+			firstCardUser++;
+			secondCardUser = firstCardUser + 1;
+		}
+	}
 	return -1;
 }
 
-void Color::getTypesColor(Card** newVectorType, Card** newHand, Card** newCommunityCards)
+bool Color::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
 {
-	int actualPosition = 0;
-	string actualType;
+	int firstCardCommunity = 0;
+	int secondCardCommunity = 1;
+	int thirdCardCommunity = secondCardCommunity + 1;
 
-	cardType = ARRAY_OF_TYPES[cardParameters[0]];
-
-	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
+	for (firstCardCommunity = 0; firstCardCommunity < NUMBER_OF_VALID_COMMUNITY_HAND; firstCardCommunity++)
 	{
-		actualType = newCommunityCards[i]->getType();
-		cardParameters[1] = actualPosition;
+		secondCardCommunity = firstCardCommunity + 1;
 
-		if (checkColor(actualType, cardParameters))
+		while (secondCardCommunity != SIZE_OF_PLAYER_DECK)
 		{
-			newVectorType[actualPosition] = newCommunityCards[i];
-			actualPosition += 1;
+			combinationOfCards[2] = newCommunityCards[firstCardCommunity];
+			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
+			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
+
+			if (isSameColor(combinationOfCards)) {
+				return true;
+			}
+
+			thirdCardCommunity++;
+			if (thirdCardCommunity == SIZE_OF_COMMUNITY_CARDS)
+			{
+				secondCardCommunity++;
+				thirdCardCommunity = secondCardCommunity + 1;
+			}
 		}
 	}
-
-	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
-	{
-		actualType = newHand[i]->getType();
-		cardParameters[1] = actualPosition;
-
-		if (checkColor(actualType, cardParameters))
-		{
-			newVectorType[actualPosition] = newCommunityCards[i];
-			actualPosition += 1;
-		}
-	}
+	return false;
 }
 
-
-
-bool Color::checkColor(string newActualType, int* newCardParameters)
+bool Color::isSameColor(Card** vectorOfCombinations)
 {
-	if (newActualType == cardType)
+	sortTheCards(vectorOfCombinations);
+
+	bool isColor = (vectorOfCombinations[0]->getType() == vectorOfCombinations[1]->getType()) &&
+		(vectorOfCombinations[1]->getType() == vectorOfCombinations[2]->getType()) &&
+		(vectorOfCombinations[2]->getType() == vectorOfCombinations[3]->getType()) &&
+		(vectorOfCombinations[3]->getType() == vectorOfCombinations[4]->getType());
+
+	if (isColor)
 	{
 		return true;
 	}
 
 	return false;
-}
-
-bool Color::isColorHand(Card** newCardColor, string newActualColor)
-{
-	string cardColorType;
-
-	for (int i = 0; i < NUMBER_OF_VECTORS; i++)
-	{
-		cardColorType = newCardColor[i]->getType();
-
-		if (cardColorType != newActualColor)
-		{
-			return false;
-		}
-	}
-
-	return true;
 }
 
 void Color::sortTheCards(Card**& vectorOfCombinations)

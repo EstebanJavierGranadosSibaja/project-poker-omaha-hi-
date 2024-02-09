@@ -43,7 +43,8 @@ bool Straight::communityCardCombinations(Card** combinationOfCards, Card** newCo
 			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
 			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
 
-			if (isAStraigt(combinationOfCards)) {
+			if (isAStraigt(combinationOfCards))
+			{
 				return true;
 			}
 

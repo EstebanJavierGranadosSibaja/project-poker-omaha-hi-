@@ -2,91 +2,73 @@
 
 int StraightFlush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
-	int heartsTypesPosition = 0, diamondsTypePosition = 1, clubsTypePosition = 2, pikesTypePosition = 3;
+	int firstCardUser = 0;
+	int secondCardUser = 1;
 
-	cardParameters[0] = heartsTypesPosition;
-	cardColor->getTypesColor(heartsTypes, newHand, newCommunityCards);
+	Card** combinationOfCards = new Card * [SIZE_OF_COMMUNITY_CARDS];
 
-	cardParameters[0] = diamondsTypePosition;
-	cardColor->getTypesColor(diamondsTypes, newHand, newCommunityCards);
-
-	cardParameters[0] = clubsTypePosition;
-	cardColor->getTypesColor(clubsTypes, newHand, newCommunityCards);
-
-	cardParameters[0] = pikesTypePosition;
-	cardColor->getTypesColor(pikesTypes, newHand, newCommunityCards);
-
-
-	if ((cardColor->isColorHand(clubsTypes, "Clubs")) && (isConsecutiveNumber(clubsTypes)))
+	while (firstCardUser != NUMBER_OF_VALID_COMMUNITY_HAND)
 	{
-		return 200 + getMosthigherNumber(clubsTypes);
-	}
-	if ((cardColor->isColorHand(pikesTypes, "Pikes")) && (isConsecutiveNumber(pikesTypes)))
-	{
-		return 200 + getMosthigherNumber(pikesTypes);
-	}
-	if ((cardColor->isColorHand(heartsTypes, "Hearts")) && (isConsecutiveNumber(heartsTypes)))
-	{
-		return 200 + getMosthigherNumber(heartsTypes);
-	}
-	if ((cardColor->isColorHand(diamondsTypes, "Diamonds")) && (isConsecutiveNumber(heartsTypes)))
-	{
-		return 200 + getMosthigherNumber(diamondsTypes);
-	}
+		combinationOfCards[0] = newHand[firstCardUser];
+		combinationOfCards[1] = newHand[secondCardUser];
 
+		if (communityCardCombinations(combinationOfCards, newCommunityCards))
+		{
+			return STRIGHT_FLUSH_VALUE;
+		}
+
+		secondCardUser++;
+		if (secondCardUser == SIZE_OF_PLAYER_DECK)
+		{
+			firstCardUser++;
+			secondCardUser = firstCardUser + 1;
+		}
+	}
 	return -1;
 }
 
-int StraightFlush::getMostMinorNumber(Card** newCardColor)
+bool StraightFlush::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
 {
-	int minorNumber = INT_MAX;
-	int compareNumber;
+	int firstCardCommunity = 0;
+	int secondCardCommunity = 1;
+	int thirdCardCommunity = secondCardCommunity + 1;
 
-	for (int i = 0; i < NUMBER_OF_VECTORS; i++)
+	for (firstCardCommunity = 0; firstCardCommunity < NUMBER_OF_VALID_COMMUNITY_HAND; firstCardCommunity++)
 	{
-		compareNumber = newCardColor[i]->getNumber();
+		secondCardCommunity = firstCardCommunity + 1;
 
-		if (compareNumber < minorNumber)
+		while (secondCardCommunity != SIZE_OF_PLAYER_DECK)
 		{
-			minorNumber = compareNumber;
+			combinationOfCards[2] = newCommunityCards[firstCardCommunity];
+			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
+			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
+
+			if (isSameColor(combinationOfCards) && isConsecutiveNumber(combinationOfCards))
+			{
+				return true;
+			}
+
+			thirdCardCommunity++;
+			if (thirdCardCommunity == SIZE_OF_COMMUNITY_CARDS)
+			{
+				secondCardCommunity++;
+				thirdCardCommunity = secondCardCommunity + 1;
+			}
 		}
 	}
-
-	return minorNumber;
+	return false;
 }
 
-int StraightFlush::getMosthigherNumber(Card** newCardColor)
+bool StraightFlush::isSameColor(Card** vectorOfCombinations)
 {
-	int higherNumber = 0;
-	int compareNumber;
+	sortTheCards(vectorOfCombinations);
 
-	for (int i = 0; i < NUMBER_OF_VECTORS; i++)
-	{
-		compareNumber = newCardColor[i]->getNumber();
+	bool isColor = (vectorOfCombinations[0]->getType() == vectorOfCombinations[1]->getType()) &&
+		(vectorOfCombinations[1]->getType() == vectorOfCombinations[2]->getType()) &&
+		(vectorOfCombinations[2]->getType() == vectorOfCombinations[3]->getType()) &&
+		(vectorOfCombinations[3]->getType() == vectorOfCombinations[4]->getType());
 
-		if (compareNumber > higherNumber)
-		{
-			higherNumber = compareNumber;
-		}
-	}
-
-	return higherNumber;
-}
-
-bool StraightFlush::isConsecutiveNumber(Card** newCardColor)
-{
-	int compareNumber = getMostMinorNumber(newCardColor);
-	int consecutiveCounter = 0;
-
-	for (int i = 0; i < NUMBER_OF_VECTORS - 1; i++)
-	{
-		if (checkConsecutiveNumber(newCardColor, compareNumber))
-		{
-			consecutiveCounter += 1;
-		}
-	}
-
-	if (consecutiveCounter == 4)
+	if (isColor)
 	{
 		return true;
 	}
@@ -94,23 +76,21 @@ bool StraightFlush::isConsecutiveNumber(Card** newCardColor)
 	return false;
 }
 
-bool StraightFlush::checkConsecutiveNumber(Card** newCardColor, int& newCompareNumber)
+bool StraightFlush::isConsecutiveNumber(Card** vectorOfCombinations)
 {
-	int actualNumber;
+	bool isConsecutiveNumber = (vectorOfCombinations[1]->getNumber() == vectorOfCombinations[0]->getNumber() + 1) &&
+		(vectorOfCombinations[2]->getNumber() == vectorOfCombinations[1]->getNumber() + 1) &&
+		(vectorOfCombinations[3]->getNumber() == vectorOfCombinations[2]->getNumber() + 1) &&
+		(vectorOfCombinations[4]->getNumber() == vectorOfCombinations[3]->getNumber() + 1);
 
-	for (int i = 0; i < NUMBER_OF_VECTORS; i++)
+	if (isConsecutiveNumber)
 	{
-		actualNumber = newCardColor[i]->getNumber();
-
-		if (actualNumber == newCompareNumber + 1)
-		{
-			newCompareNumber = actualNumber;
-			return true;
-		}
+		return true;
 	}
 
 	return false;
 }
+
 
 void StraightFlush::sortTheCards(Card**& vectorOfCombinations)
 {

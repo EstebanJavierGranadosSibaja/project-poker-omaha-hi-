@@ -2,180 +2,91 @@
 
 int RoyalFlush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
-	int clubsCounter = 0, pikesCounter = 0, heartsCounter = 0, diamondsCounter = 0;
-	bool isRoyalFLush = clubsCounter == 5 || pikesCounter == 5 || heartsCounter == 5 || diamondsCounter == 5;
+	int firstCardUser = 0;
+	int secondCardUser = 1;
 
-	getClubsRoyalFlush(newHand, newCommunityCards);
-	getPikesRoyalFlush(newHand, newCommunityCards);
-	getHeartsRoyalFlush(newHand, newCommunityCards);
-	getDiamondsRoyalFlush(newHand, newCommunityCards);
+	Card** combinationOfCards = new Card * [SIZE_OF_COMMUNITY_CARDS];
 
-	for (int i = 0; i < NUMBER_OF_VALUES; i++)
+	while (firstCardUser != NUMBER_OF_VALID_COMMUNITY_HAND)
 	{
-		if (checkRankingRoyalFlush(clubsTypes[i]))
-		{
-			clubsCounter += 1;
+
+		combinationOfCards[0] = newHand[firstCardUser];
+		combinationOfCards[1] = newHand[secondCardUser];
+
+		if (communityCardCombinations(combinationOfCards, newCommunityCards)) {
+			return ROYAL_FLUSH_VALUE;
 		}
-		if (checkRankingRoyalFlush(pikesTypes[i]))
+
+		secondCardUser++;
+		if (secondCardUser == SIZE_OF_PLAYER_DECK)
 		{
-			pikesCounter += 1;
-		}
-		if (checkRankingRoyalFlush(heartsTypes[i]))
-		{
-			heartsCounter += 1;
-		}
-		if (checkRankingRoyalFlush(heartsTypes[i]))
-		{
-			diamondsCounter += 1;
+			firstCardUser++;
+			secondCardUser = firstCardUser + 1;
 		}
 	}
-
-	if (isRoyalFLush)
-	{
-		return 300;
-	}
-
 	return -1;
 }
 
-void RoyalFlush::getClubsRoyalFlush(Card** newHand, Card** newCommunityCards)
+bool RoyalFlush::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
 {
-	int clubsPosition = 0;
-	int numberOfType = 2;
+	int firstCardCommunity = 0;
+	int secondCardCommunity = 1;
+	int thirdCardCommunity = secondCardCommunity + 1;
 
-	cardParameters[0] = numberOfType;
-
-	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
+	for (firstCardCommunity = 0; firstCardCommunity < NUMBER_OF_VALID_COMMUNITY_HAND; firstCardCommunity++)
 	{
-		cardParameters[1] = clubsPosition;
+		secondCardCommunity = firstCardCommunity + 1;
 
-		if (checkRoyalFlush(newCommunityCards[i], clubsTypes))
+		while (secondCardCommunity != SIZE_OF_PLAYER_DECK)
 		{
-			clubsPosition += 1;
+			combinationOfCards[2] = newCommunityCards[firstCardCommunity];
+			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
+			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
+
+			if (isSameColor(combinationOfCards) && isRoyalFlush(combinationOfCards))
+			{
+				return true;
+			}
+
+			thirdCardCommunity++;
+			if (thirdCardCommunity == SIZE_OF_COMMUNITY_CARDS)
+			{
+				secondCardCommunity++;
+				thirdCardCommunity = secondCardCommunity + 1;
+			}
 		}
 	}
-
-	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
-	{
-		cardParameters[1] = clubsPosition;
-
-		if (checkRoyalFlush(newHand[i], clubsTypes))
-		{
-			clubsPosition += 1;
-		}
-	}
+	return false;
 }
 
-void RoyalFlush::getPikesRoyalFlush(Card** newHand, Card** newCommunityCards)
+bool RoyalFlush::isSameColor(Card** vectorOfCombinations)
 {
-	int pikesPosition = 0;
-	int numberOfType = 3;
+	sortTheCards(vectorOfCombinations);
 
-	cardParameters[0] = numberOfType;
+	bool isColor = (vectorOfCombinations[0]->getType() == vectorOfCombinations[1]->getType()) &&
+		(vectorOfCombinations[1]->getType() == vectorOfCombinations[2]->getType()) &&
+		(vectorOfCombinations[2]->getType() == vectorOfCombinations[3]->getType()) &&
+		(vectorOfCombinations[3]->getType() == vectorOfCombinations[4]->getType());
 
-	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
+	if (isColor)
 	{
-		cardParameters[1] = pikesPosition;
-
-		if (checkRoyalFlush(newCommunityCards[i], pikesTypes))
-		{
-			pikesPosition += 1;
-		}
-	}
-
-	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
-	{
-		cardParameters[1] = pikesPosition;
-
-		if (checkRoyalFlush(newHand[i], pikesTypes))
-		{
-			pikesPosition += 1;
-		}
-	}
-}
-
-void RoyalFlush::getHeartsRoyalFlush(Card** newHand, Card** newCommunityCards)
-{
-	int heartsPosition = 0;
-	int numberOfType = 0;
-
-	cardParameters[0] = numberOfType;
-
-	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
-	{
-		cardParameters[1] = heartsPosition;
-
-		if (checkRoyalFlush(newCommunityCards[i], heartsTypes))
-		{
-			heartsPosition += 1;
-		}
-	}
-
-	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
-	{
-		cardParameters[1] = heartsPosition;
-
-		if (checkRoyalFlush(newHand[i], heartsTypes))
-		{
-			heartsPosition += 1;
-		}
-	}
-}
-
-void RoyalFlush::getDiamondsRoyalFlush(Card** newHand, Card** newCommunityCards)
-{
-	int diamondsPosition = 0;
-	int numberOfType = 1;
-
-	cardParameters[0] = numberOfType;
-
-	for (int i = 0; i < NUMBER_OF_VALID_COMMUNITY_HAND; i++)
-	{
-		cardParameters[1] = diamondsPosition;
-
-		if (checkRoyalFlush(newCommunityCards[i], diamondsTypes))
-		{
-			diamondsPosition += 1;
-		}
-	}
-
-	for (int i = 0; i < NUMBER_OF_VALID_PLAYER_HAND; i++)
-	{
-		cardParameters[1] = diamondsPosition;
-
-		if (checkRoyalFlush(newHand[i], heartsTypes))
-		{
-			diamondsPosition += 1;
-		}
-	}
-}
-
-bool RoyalFlush::checkRoyalFlush(Card* newCard, Card** newRoyalFlushVector)
-{
-	bool isCorrectValue = newCard->getType() == ARRAY_OF_TYPES[cardParameters[0]];
-
-	for (int i = 0; i < NUMBER_OF_VALUES; i++)
-	{
-		bool isSameValue = newCard->getValue() == ROYAL_FLUSH_VALUES[i];
-
-		if (isSameValue && isCorrectValue)
-		{
-			newRoyalFlushVector[cardParameters[1]]->setValue(ROYAL_FLUSH_VALUES[i]);
-			return true;
-		}
+		return true;
 	}
 
 	return false;
 }
 
-bool RoyalFlush::checkRankingRoyalFlush(Card* newRoyalFlushValue)
+bool RoyalFlush::isRoyalFlush(Card** vectorOfCombinations)
 {
-	for (int i = 0; i < NUMBER_OF_VALUES; i++)
+	sortTheCards(vectorOfCombinations);
+
+	bool isRoyalFlush = (vectorOfCombinations[0]->getValue() == ROYAL_FLUSH_VALUES[0]) && (vectorOfCombinations[1]->getValue() == ROYAL_FLUSH_VALUES[1]) &&
+		(vectorOfCombinations[2]->getValue() == ROYAL_FLUSH_VALUES[2]) && (vectorOfCombinations[3]->getValue() == ROYAL_FLUSH_VALUES[3]) &&
+		(vectorOfCombinations[4]->getValue() == ROYAL_FLUSH_VALUES[4]);
+
+	if (isRoyalFlush)
 	{
-		if (newRoyalFlushValue->getValue() == ROYAL_FLUSH_VALUES[i])
-		{
-			return true;
-		}
+		return true;
 	}
 
 	return false;
