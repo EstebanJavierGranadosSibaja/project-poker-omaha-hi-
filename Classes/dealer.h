@@ -2,7 +2,7 @@
 #include "deck.h"
 #include"player.h"
 
-const int COMMUNITY_CARD_SIZE = 5;
+
 
 class Dealer
 {

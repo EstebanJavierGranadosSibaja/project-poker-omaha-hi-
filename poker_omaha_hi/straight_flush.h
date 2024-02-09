@@ -16,4 +16,5 @@ public:
 	int getMosthigherNumber(Card** newCardColor);
 	bool isConsecutiveNumber(Card** newCardColor);
 	bool checkConsecutiveNumber(Card** newCardColor, int &newCompareNumber);
+	void sortTheCards(Card**& vectorOfCombinations);
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include"poker_table.h"
 using namespace sf;
 
 class Menu
@@ -15,6 +16,7 @@ public:
 
 	void loadMenuWindow(); 
 	void loadMenuImage(RenderWindow& window);
+	
 
 
 

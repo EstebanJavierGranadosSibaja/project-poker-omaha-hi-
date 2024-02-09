@@ -58,6 +58,10 @@ bool FullHouse::communityCardCombinations(Card** combinationOfCards, Card** newC
 	return false;
 }
 
+void FullHouse::sortTheCards(Card**& vectorOfCombinations)
+{
+}
+
 //void FullHouse::sortTheCards(Card**& vectorOfCombinations)
 //{
 //	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)

@@ -90,3 +90,7 @@ bool Poker::isAPoker(Card** vectorOfCombinations)
 
 	return false; 
 }
+
+void Poker::sortTheCards(Card**& vectorOfCombinations)
+{
+}

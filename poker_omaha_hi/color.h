@@ -14,4 +14,5 @@ public:
 	void getTypesColor(Card** newVectorType, Card** newHand, Card** newCommunityCards);
 	bool checkColor(string newType, int* newCardParameters);
 	bool isColorHand(Card** newCardColor, string newActualColor);
+	void sortTheCards(Card**& vectorOfCombinations);
 };

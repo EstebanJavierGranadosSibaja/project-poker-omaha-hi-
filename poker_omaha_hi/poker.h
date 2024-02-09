@@ -11,7 +11,7 @@ public:
 	virtual int getPlayerHandRankin(Card** newHand, Card** newCommunityCards);
 	bool  communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards);
 	bool isAPoker(Card** vectorOfCombinations);
-
+	void sortTheCards(Card**& vectorOfCombinations);
 	
 	
 

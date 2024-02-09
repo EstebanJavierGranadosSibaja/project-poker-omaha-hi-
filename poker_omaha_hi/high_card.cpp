@@ -26,7 +26,7 @@ int HighCard::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 int HighCard::getHighNumbers(Card** newCards, int newHighCardNumber)
 {
 	int numberCompare = 0;
-	int compareCard;
+	int compareCard = 0;
 	bool isHigherCard = (compareCard > numberCompare) && (compareCard != newHighCardNumber);
 	bool isAsCard = compareCard == 1;
 
@@ -67,4 +67,8 @@ int HighCard::getTheMostHigherNumber()
 	}
 
 	return mostHigherNumber;
+}
+
+void HighCard::sortTheCards(Card**& vectorOfCombinations)
+{
 }

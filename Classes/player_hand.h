@@ -1,5 +1,5 @@
 #pragma once
-#include "dealer.h"
+#include "card.h"
 
 const int SIZE_OF_PLAYER_DECK = 4;
 

@@ -96,3 +96,7 @@ bool Color::isColorHand(Card** newCardColor, string newActualColor)
 
 	return true;
 }
+
+void Color::sortTheCards(Card**& vectorOfCombinations)
+{
+}

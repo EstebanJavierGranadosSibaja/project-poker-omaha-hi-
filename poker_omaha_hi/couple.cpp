@@ -58,6 +58,10 @@ bool Couple::communityCardCombinations(Card** combinationOfCards, Card** newComm
 	return false;
 }
 
+void Couple::sortTheCards(Card**& vectorOfCombinations)
+{
+}
+
 //void Couple::sortTheCards(Card**& vectorOfCombinations)
 //{
 //	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)

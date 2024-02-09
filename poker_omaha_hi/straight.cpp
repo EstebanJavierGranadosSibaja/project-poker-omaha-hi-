@@ -58,6 +58,10 @@ bool Straight::communityCardCombinations(Card** combinationOfCards, Card** newCo
 	return false;
 }
 
+void Straight::sortTheCards(Card**& vectorOfCombinations)
+{
+}
+
 //void Straight::sortTheCards(Card**& vectorOfCombinations)
 //{
 //	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)

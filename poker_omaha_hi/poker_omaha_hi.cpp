@@ -1,7 +1,6 @@
 #include <iostream>
 #include"../Classes/menu.h"
-#include"winning_play.h"
-#include"file_manager.h"
+
 using namespace std;
 
 
@@ -10,7 +9,7 @@ int main()
 	Menu menu;
 	menu.loadMenuWindow();
 
-	Dealer newDealer;
+	/*Dealer newDealer;
 	Deck* newDeck = new Deck();
 
 	bool isPlayerActive = true;
@@ -25,7 +24,7 @@ int main()
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
 		newPlayers[i] = new Player(i+1, isPlayerActive, 0, newPlayers[i]->getUserHand());
-	}
+	}*/
 
 
 

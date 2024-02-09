@@ -14,6 +14,7 @@ public:
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 	int getHighNumbers(Card** newCommunityCards, int newHighCardIndex);
 	int getTheMostHigherNumber();
+	void sortTheCards(Card**& vectorOfCombinations);
 
 };
 

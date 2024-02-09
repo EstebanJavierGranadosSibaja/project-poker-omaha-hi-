@@ -1,6 +1,8 @@
 #pragma once
 #include"dealer.h"
 #include"player.h"
+#include"../poker_omaha_hi/winning_play.h"
+#include"../poker_omaha_hi/file_manager.h"
 
 class PokerTable
 {

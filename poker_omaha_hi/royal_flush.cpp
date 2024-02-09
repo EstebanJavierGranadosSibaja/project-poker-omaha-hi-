@@ -181,4 +181,8 @@ bool RoyalFlush::checkRankingRoyalFlush(Card* newRoyalFlushValue)
 	return false;
 }
 
+void RoyalFlush::sortTheCards(Card**& vectorOfCombinations)
+{
+}
+
 

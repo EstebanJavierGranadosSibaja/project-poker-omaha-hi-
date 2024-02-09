@@ -58,6 +58,10 @@ bool Trio::communityCardCombinations(Card** combinationOfCards, Card** newCommun
 	return false;
 }
 
+void Trio::sortTheCards(Card**& vectorOfCombinations)
+{
+}
+
 //void Trio::sortTheCards(Card**& vectorOfCombinations)
 //{
 //	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)

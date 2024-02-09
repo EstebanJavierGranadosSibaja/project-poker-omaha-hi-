@@ -19,6 +19,7 @@ public:
 
 	bool checkRoyalFlush(Card* newCard, Card** newRoyalFlushVector);
 	bool checkRankingRoyalFlush(Card* newRoyalFlushValue);
+	void sortTheCards(Card**& vectorOfCombinations);
 
 };
 

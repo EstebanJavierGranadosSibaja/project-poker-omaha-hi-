@@ -58,6 +58,10 @@ bool DoubleCouple::communityCardCombinations(Card** combinationOfCards, Card** n
 	return false;
 }
 
+void DoubleCouple::sortTheCards(Card**& vectorOfCombinations)
+{
+}
+
 //void DoubleCouple::sortTheCards(Card**& vectorOfCombinations)
 //{
 //	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)

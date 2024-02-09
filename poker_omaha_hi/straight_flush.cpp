@@ -111,3 +111,7 @@ bool StraightFlush::checkConsecutiveNumber(Card** newCardColor, int& newCompareN
 
 	return false;
 }
+
+void StraightFlush::sortTheCards(Card**& vectorOfCombinations)
+{
+}
