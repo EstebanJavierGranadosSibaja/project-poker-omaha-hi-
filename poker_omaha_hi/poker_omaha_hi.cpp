@@ -1,12 +1,16 @@
 #include <iostream>
-#include"../Classes/menu.h"
 #include"../Classes/poker_display.h"
-#include"../Classes/poker_table.h"
+
+
 
 int main()
 {
-	Menu menu;
-	menu.loadMenuWindow();
+	PokerDisplay menuTwo;
+	menuTwo.loadGameWindow();
+
+
+	/*Menu menu;
+	menu.loadMenuWindow();*/
 
 	/*Dealer newDealer;
 	Deck* newDeck = new Deck();

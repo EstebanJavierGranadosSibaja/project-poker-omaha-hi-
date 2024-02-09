@@ -1,15 +1,26 @@
 #pragma once
 #include"menu.h";
+#include"poker_table.h"
+const int maxOfUserCard = 4; 
 
 class PokerDisplay
 {
 private:
+	PokerTable* pokerTable;
+	Menu* menu;
 	Texture backGround;
-	Texture cardImage;
+	Sprite sprite;
+	RectangleShape** spacesInUserCard; 
+
+	int rows;
+	int columns; 
+
+	
 
 public:
-	PokerDisplay() {}
 
+	PokerDisplay();
 	void loadGameWindow();
-	void loadGameImage(RenderWindow& newWindow);
+	void loadGameImage();
+	void drawRectangleShape(); 
 };
