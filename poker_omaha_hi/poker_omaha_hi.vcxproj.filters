@@ -60,7 +60,7 @@
     <ClCompile Include="double _couple.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="color.cpp">
+    <ClCompile Include="flush.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="couple.cpp">
@@ -125,7 +125,7 @@
     <ClInclude Include="double _couple.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
-    <ClInclude Include="color.h">
+    <ClInclude Include="flush.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="straight_flush.h">

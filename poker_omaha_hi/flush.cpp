@@ -1,6 +1,6 @@
-#include "color.h"
+#include "flush.h"
 
-int Color::getPlayerRanking(Card** newHand, Card** newCommunityCards)
+int Flush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
 	int firstCardUser = 0;
 	int secondCardUser = 1;
@@ -27,7 +27,7 @@ int Color::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 	return -1;
 }
 
-bool Color::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
+bool Flush::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
 {
 	int firstCardCommunity = 0;
 	int secondCardCommunity = 1;
@@ -58,7 +58,7 @@ bool Color::communityCardCombinations(Card** combinationOfCards, Card** newCommu
 	return false;
 }
 
-bool Color::isSameColor(Card** vectorOfCombinations)
+bool Flush::isSameColor(Card** vectorOfCombinations)
 {
 	sortTheCards(vectorOfCombinations);
 
@@ -75,6 +75,6 @@ bool Color::isSameColor(Card** vectorOfCombinations)
 	return false;
 }
 
-void Color::sortTheCards(Card**& vectorOfCombinations)
+void Flush::sortTheCards(Card**& vectorOfCombinations)
 {
 }

@@ -14,7 +14,7 @@ Deck::Deck()
 	{
 		for (int j = 0; j < NUMBER_OF_VALUES; j++)
 		{
-			deck[position] = new Card(ARRAY_OF_VALUES[j], ARRAY_OF_TYPES[i], j + 1, ARRAY_OF_TYPES[i] + "_" + to_string(j + 1) + ".png");
+			deck[position] = new Card(ARRAY_OF_VALUES[j], ARRAY_OF_TYPES[i], j + 1, "Images" + ARRAY_OF_TYPES[i] + "/" + to_string(j + 1) + ".png");
 			position++;
 		}
 	}
