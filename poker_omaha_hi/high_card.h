@@ -9,12 +9,10 @@ private:
 	int HandHighCardNumber[SIZE_OF_HAND_HIGH_CARD];
 
 public:
-	HighCard();
+	HighCard() : WinningPlay() {}
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
-
 	int getHighNumbers(Card** newCommunityCards, int newHighCardIndex);
-
 	int getTheMostHigherNumber();
 
 };

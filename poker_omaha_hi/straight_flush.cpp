@@ -1,23 +1,5 @@
 #include "straight_flush.h"
 
-StraightFlush::StraightFlush()
-{
-	cardType = "";
-
-	for (int i = 0; i < NUMBER_OF_VALUES; i++)
-	{
-		clubsTypes[i] = new Card(' ', "ANYONE", -1, " ");
-		pikesTypes[i] = new Card(' ', "ANYONE", -1, " ");
-		heartsTypes[i] = new Card(' ', "ANYONE", -1, " ");
-		diamondsTypes[i] = new Card(' ', "ANYONE", -1, " ");
-	}
-
-	for (int i = 0; i < NUMBER_OF_CARD_PARAMETERS; i++)
-	{
-		cardParameters[i] = -1;
-	}
-}
-
 int StraightFlush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
 	int heartsTypesPosition = 0, diamondsTypePosition = 1, clubsTypePosition = 2, pikesTypePosition = 3;

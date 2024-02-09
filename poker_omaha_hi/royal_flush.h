@@ -8,7 +8,7 @@ class RoyalFlush : public WinningPlay
 private:
 
 public:
-	RoyalFlush();
+	RoyalFlush() : WinningPlay() {}
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 

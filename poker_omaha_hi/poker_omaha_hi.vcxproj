@@ -140,6 +140,7 @@
     <ClCompile Include="color.cpp" />
     <ClCompile Include="couple.cpp" />
     <ClCompile Include="double _couple.cpp" />
+    <ClCompile Include="file_manager.cpp" />
     <ClCompile Include="full_house.cpp" />
     <ClCompile Include="high_card.cpp" />
     <ClCompile Include="poker.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="color.h" />
     <ClInclude Include="couple.h" />
     <ClInclude Include="double _couple.h" />
+    <ClInclude Include="file_manager.h" />
     <ClInclude Include="full_house.h" />
     <ClInclude Include="high_card.h" />
     <ClInclude Include="poker.h" />

@@ -9,7 +9,7 @@ private:
 	Color* cardColor;
 
 public:
-	StraightFlush();
+	StraightFlush() : WinningPlay() {}
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 	int getMostMinorNumber(Card** newCardColor);

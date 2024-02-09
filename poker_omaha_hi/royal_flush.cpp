@@ -1,21 +1,5 @@
 #include "royal_flush.h"
 
-RoyalFlush::RoyalFlush()
-{
-	for (int i = 0; i < NUMBER_OF_VALUES; i++)
-	{
-		clubsTypes[i] = new Card(' ', "ANYONE", -1, " ");
-		pikesTypes[i] = new Card(' ', "ANYONE", -1, " ");
-		heartsTypes[i] = new Card(' ', "ANYONE", -1, " ");
-		diamondsTypes[i] = new Card(' ', "ANYONE", -1, " ");
-	}
-
-	for (int i = 0; i < NUMBER_OF_CARD_PARAMETERS; i++)
-	{
-		cardParameters[i] = -1;
-	}
-}
-
 int RoyalFlush::getPlayerRanking(Card** newHand, Card** newCommunityCards)
 {
 	int clubsCounter = 0, pikesCounter = 0, heartsCounter = 0, diamondsCounter = 0;

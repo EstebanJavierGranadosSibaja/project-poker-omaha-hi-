@@ -8,7 +8,7 @@ private:
 
 public:
 
-	Color();
+	Color() : WinningPlay() {}
 
 	int getPlayerRanking(Card** newHand, Card** newCommunityCards);
 	void getTypesColor(Card** newVectorType, Card** newHand, Card** newCommunityCards);
