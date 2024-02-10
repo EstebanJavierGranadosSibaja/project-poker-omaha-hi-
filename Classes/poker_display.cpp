@@ -35,6 +35,7 @@ PokerDisplay::PokerDisplay()
 void PokerDisplay::loadGameWindow()
 {
 	button->button3BB();
+	
 	loadGameImage();
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 	while (gameWindow.isOpen())

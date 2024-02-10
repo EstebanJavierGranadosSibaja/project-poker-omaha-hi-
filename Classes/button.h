@@ -15,6 +15,12 @@ public:
 	RectangleShape getButtonShape(); 
 	Text getButtonText(); 
 	void button3BB();
+	void buttonHalfPot();
+	void buttonOnePot(); 
+	void threeQuartersOfPot();
+	void buttonAllIn();
+	void buttonGoOut();
+	void buttonShowCards();
 	void drawButton(RenderWindow& window); 
 
 
