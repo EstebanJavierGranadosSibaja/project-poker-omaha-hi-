@@ -73,13 +73,13 @@ void PokerDisplay::drawRectangleShape(RenderWindow& gameWindow)
 			if (i < 3)
 			{
 				
-				cardRectangle = RectangleShape(Vector2f(40, 80));
-				cardRectangle.setFillColor(Color::Red);
-				cardRectangle.setOutlineColor(Color::Red);
-				cardRectangle.setOutlineThickness(0);
-				cardRectangle.setPosition(xRight, y);
+				spacesInUserCard[i][j] = RectangleShape(Vector2f(40, 80));
+				spacesInUserCard[i][j].setFillColor(Color::Red);
+				spacesInUserCard[i][j].setOutlineColor(Color::Red);
+				spacesInUserCard[i][j].setOutlineThickness(0);
+				spacesInUserCard[i][j].setPosition(xRight, y);
 				xRight += 45; 
-				gameWindow.draw(cardRectangle);
+				gameWindow.draw(spacesInUserCard[i][j]);
 				continue; 
 			}
 			if (i == 3)
@@ -88,13 +88,13 @@ void PokerDisplay::drawRectangleShape(RenderWindow& gameWindow)
 			}
 			
 				
-				cardRectangle = RectangleShape(Vector2f(40, 80));
-				cardRectangle.setFillColor(Color::Red);
-				cardRectangle.setOutlineColor(Color::Red);
-				cardRectangle.setOutlineThickness(0);
-				cardRectangle.setPosition(xLeft + 400, y);
+			spacesInUserCard[i][j] = RectangleShape(Vector2f(40, 80));
+			spacesInUserCard[i][j].setFillColor(Color::Red);
+			spacesInUserCard[i][j].setOutlineColor(Color::Red);
+			spacesInUserCard[i][j].setOutlineThickness(0);
+			spacesInUserCard[i][j].setPosition(xLeft + 400, y);
 				xLeft += 45; 
-				gameWindow.draw(cardRectangle);
+				gameWindow.draw(spacesInUserCard[i][j]);
 			
 		}
 		
