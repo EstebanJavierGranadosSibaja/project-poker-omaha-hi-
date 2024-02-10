@@ -8,13 +8,13 @@ class Dealer
 {
 private:
 	Card** communityCards;
-	Texture vectorOfDealerTextures[COMMUNITY_CARD_SIZE];
-	Sprite vectorOfDealerSprites[COMMUNITY_CARD_SIZE];
+	Texture** vectorOfDealerTextures;
+	Sprite* vectorOfDealerSprites;
 
 public:
 	Dealer();
 	Dealer(Card** newCommunityCads); 
-	void createDealerSprites();
+	void createDealerTexture();
 	void setCommunityCards(Deck*& deck); 
 	void shuffleDeck(Deck*& newDeck);
 	Player** getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck);
@@ -23,6 +23,6 @@ public:
 	Card** getTurn();
 	Card** getRiver();
 	Card** getShowedCards();
-	Texture* getDealerTexture();
+	Texture** getDealerTexture();
 	Sprite* getDealerSprite();
 }; 

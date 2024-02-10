@@ -11,8 +11,8 @@ PokerDisplay::PokerDisplay()
 	backGround = Texture();
 	spriteBackGround = Sprite();
 	numberOfPlayer = Text("1", menu->getFont(), 10);
-	numberOfPlayer.setFillColor(Color::White); 
-	numberOfPlayer.setOutlineThickness(5); 
+	numberOfPlayer.setFillColor(Color::White);
+	numberOfPlayer.setOutlineThickness(5);
 	numberOfPlayer.setOutlineColor(Color::Black);
 
 	spacesInUserCard = new RectangleShape * [rows];
@@ -50,7 +50,7 @@ void PokerDisplay::loadGameWindow()
 
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-		
+
 		gameWindow.display();
 	}
 }
@@ -135,7 +135,6 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
-
 		if (i < midCard)
 		{
 			yCenter += 10.f;
@@ -147,8 +146,8 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		}
 
 		startX += 10.f;
+
 		gameWindow.draw(spacesForDealerCard[i]);
-		
 	}
 }
 

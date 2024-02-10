@@ -15,12 +15,12 @@ Dealer::Dealer(Card** newCommunityCads)
 	communityCards = newCommunityCads; 
 }
 
-void Dealer::createDealerSprites()
+void Dealer::createDealerTexture()
 {
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
-		vectorOfDealerTextures[i].loadFromFile(communityCards[i]->getUrl());
-		vectorOfDealerSprites[i] = Sprite(vectorOfDealerTextures[i]);
+		vectorOfDealerTextures[i]->loadFromFile(communityCards[i]->getUrl());
+		//vectorOfDealerSprites[i].setTexture(vectorOfDealerTextures[i]);
 	}
 }
 
@@ -108,7 +108,7 @@ Card** Dealer::getShowedCards()
 	return communityCards;
 }
 
-Texture* Dealer::getDealerTexture()
+Texture** Dealer::getDealerTexture()
 {
 	return vectorOfDealerTextures;
 }
