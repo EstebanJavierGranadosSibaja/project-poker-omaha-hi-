@@ -8,8 +8,8 @@ class Dealer
 {
 private:
 	Card** communityCards;
-	Texture** vectorOfDealerTextures;
-	Sprite* vectorOfDealerSprites;
+	Texture vectorOfDealerTextures[COMMUNITY_CARD_SIZE];
+	Sprite vectorOfDealerSprites[COMMUNITY_CARD_SIZE];
 
 public:
 	Dealer();
@@ -23,6 +23,6 @@ public:
 	Card** getTurn();
 	Card** getRiver();
 	Card** getShowedCards();
-	Texture** getDealerTexture();
+	Texture* getDealerTexture();
 	Sprite* getDealerSprite();
 }; 
