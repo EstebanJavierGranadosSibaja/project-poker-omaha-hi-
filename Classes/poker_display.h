@@ -8,8 +8,10 @@ class PokerDisplay
 {
 private:
 	Text numberOfPlayer; 
+	Font arial; 
 	PokerTable* pokerTable;
 	Menu* menu;
+	Button* button; 
 	Texture backGround;
 	Sprite spriteBackGround;
 	RectangleShape** spacesInUserCard; 

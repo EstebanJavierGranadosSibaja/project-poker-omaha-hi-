@@ -10,12 +10,14 @@ PokerDisplay::PokerDisplay()
 
 	backGround = Texture();
 	spriteBackGround = Sprite();
-	numberOfPlayer = Text("1", menu->getFont(), 10);
-	numberOfPlayer.setFillColor(Color::White);
-	numberOfPlayer.setOutlineThickness(5);
+	arial.loadFromFile("ARIAL.ttf"); 
+	numberOfPlayer = Text("1", arial, 10);
+	numberOfPlayer.setFillColor(Color::White); 
+	numberOfPlayer.setOutlineThickness(5); 
 	numberOfPlayer.setOutlineColor(Color::Black);
 
 	spacesInUserCard = new RectangleShape * [rows];
+
 	for (int i = 0; i < rows; i++)
 	{
 		spacesInUserCard[i] = new RectangleShape[columns];
@@ -26,6 +28,7 @@ PokerDisplay::PokerDisplay()
 
 void PokerDisplay::loadGameWindow()
 {
+	//button->button3BB();
 	loadGameImage();
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 	while (gameWindow.isOpen())
@@ -50,7 +53,8 @@ void PokerDisplay::loadGameWindow()
 
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-
+	
+		
 		gameWindow.display();
 	}
 }
