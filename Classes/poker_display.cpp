@@ -10,6 +10,10 @@ PokerDisplay::PokerDisplay()
 
 	backGround = Texture();
 	spriteBackGround = Sprite();
+	numberOfPlayer = Text("1", menu->getFont(), 10);
+	numberOfPlayer.setFillColor(Color::White); 
+	numberOfPlayer.setOutlineThickness(5); 
+	numberOfPlayer.setOutlineColor(Color::Black);
 
 	spacesInUserCard = new RectangleShape* [rows];
 	for (int i = 0; i < rows; i++)

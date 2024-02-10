@@ -27,6 +27,7 @@ private:
 
 public:
 	Menu();
+	Font getFont();
 	int getNumPlayer(); 
 	int getBlindPrice(); 
 	void loadMenuWindow();
