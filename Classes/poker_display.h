@@ -1,6 +1,7 @@
 #pragma once
 #include"button.h"
 #include"poker_table.h"
+
 const int maxOfUserCard = 4; 
 
 class PokerDisplay
@@ -27,5 +28,5 @@ public:
 	void loadGameWindow();
 	void loadGameImage();
 	void checkThePlayersBoxes(RenderWindow& gameWindow);
-	void checkTheDealerBoxes(RenderWindow& gameWindow); 
+	void checkTheDealerBoxes(RenderWindow& gameWindow);
 };

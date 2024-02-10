@@ -4,7 +4,7 @@ PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 {
 	pot = 0;
 	bigBlind = aBigBlind;
-	smallBlind =aBigBlind / 2;
+	smallBlind = aBigBlind / 2;
 	numberOfPlayers = aNumberOfPlayers;
 	dealer = new Dealer();
 	deck = new Deck();
@@ -15,7 +15,7 @@ PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 		players[i] = new Player();
 	}
 
-	dealer->shuffleDeck(deck); 
+	dealer->shuffleDeck(deck);
 }
 
 PokerTable::~PokerTable()
@@ -91,3 +91,25 @@ Player** PokerTable::getPlayers()
 {
 	return players;
 }
+
+void PokerTable::startPreFloatRound()
+{
+	/*deck = new Deck();
+	dealer = new Dealer();
+	dealer->shuffleDeck(deck);
+	dealer->setCommunityCards(deck);
+
+	for (int i = 0; i < 52; i++)
+	{
+		cout << dealer->getCommunityCards()[i]->getType() << " - ";
+	}
+	for (int i = 0; i < 52; i++)
+	{
+		cout << dealer->getCommunityCards()[i]->getNumber() << " - ";
+	}
+	for (int i = 0; i < 52; i++)
+	{
+		cout << dealer->getCommunityCards()[i]->getValue() << " - ";
+	}*/
+}
+

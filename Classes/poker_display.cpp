@@ -157,7 +157,6 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
-
 		if (i < midCard)
 		{
 			yCenter += 10.f;
@@ -169,8 +168,8 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		}
 
 		startX += 10.f;
+
 		gameWindow.draw(spacesForDealerCard[i]);
-		
 	}
 }
 

@@ -2,25 +2,25 @@
 
 Dealer::Dealer()
 {
-	communityCards = new Card* [COMMUNITY_CARD_SIZE]; 
+	communityCards = new Card * [COMMUNITY_CARD_SIZE];
 
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
-		communityCards[i] = new Card(); 
+		communityCards[i] = new Card();
 	}
 }
 
 Dealer::Dealer(Card** newCommunityCads)
 {
-	communityCards = newCommunityCads; 
+	communityCards = newCommunityCads;
 }
 
-void Dealer::createDealerSprites()
+void Dealer::createDealerTexture()
 {
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
 		vectorOfDealerTextures[i].loadFromFile(communityCards[i]->getUrl());
-		vectorOfDealerSprites[i] = Sprite(vectorOfDealerTextures[i]);
+		vectorOfDealerSprites[i].setTexture(vectorOfDealerTextures[i]);
 	}
 }
 
@@ -28,8 +28,8 @@ void Dealer::setCommunityCards(Deck*& deck)
 {
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
-		communityCards[i] = deck-> getDeck()[i];
-	  deck =  deck->eraseAPosition(i); 
+		communityCards[i] = deck->getDeck()[i];
+		deck = deck->eraseAPosition(i);
 	}
 }
 
@@ -51,12 +51,12 @@ void Dealer::shuffleDeck(Deck*& deck)
 
 Player** Dealer::getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck)
 {
-	int firtsPosition = 0; 
+	int firtsPosition = 0;
 	for (int i = 0; i < amountOfPlayers; i++)
 	{
 		for (int j = 0; j < SIZE_OF_PLAYER_DECK; j++)
 		{
-			players[i]-> getUserHand()-> getHand()[j] = pokerTableDeck-> getDeck()[firtsPosition];
+			players[i]->getUserHand()->getHand()[j] = pokerTableDeck->getDeck()[firtsPosition];
 			pokerTableDeck = pokerTableDeck->eraseAPosition(firtsPosition);
 		}
 	}
@@ -72,21 +72,21 @@ Card** Dealer::getCommunityCards()
 Card** Dealer::getFloat()
 {
 	int starPosition = 0;
-	int threePositions = 3; 
-	Card** firstThreePositions = new Card * [threePositions]; 
+	int threePositions = 3;
+	Card** firstThreePositions = new Card * [threePositions];
 
 	for (int i = 0; i < threePositions; i++)
 	{
 		firstThreePositions[i] = communityCards[i];
 	}
 
-	return firstThreePositions; 
+	return firstThreePositions;
 }
 
 Card** Dealer::getTurn()
 {
 	int fourthPosition = 1;
-	Card** fourthPositions = new Card* [fourthPosition];
+	Card** fourthPositions = new Card * [fourthPosition];
 
 	fourthPositions[0] = communityCards[3];
 
