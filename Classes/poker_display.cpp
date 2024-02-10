@@ -16,6 +16,8 @@ PokerDisplay::PokerDisplay()
 	{
 		spacesInUserCard[i] = new RectangleShape[columns]; 
 	}
+
+	spacesForDealerCard = new RectangleShape[COMMUNITY_CARD_SIZE];
 }
 
 void PokerDisplay::loadGameWindow()
@@ -42,8 +44,8 @@ void PokerDisplay::loadGameWindow()
 
 		gameWindow.draw(spriteBackGround);
 
-		drawRectangleShape(gameWindow); 
-
+		checkThePlayersBoxes(gameWindow);
+		checkTheDealerBoxes(gameWindow);
 		
 		gameWindow.display();
 	}
@@ -60,7 +62,7 @@ void PokerDisplay::loadGameImage()
 	spriteBackGround.setScale(1.5f, 1.5f);
 }
 
-void PokerDisplay::drawRectangleShape(RenderWindow& gameWindow)
+void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 {
 	int xRight = 1320; 
 	int xLeft = 20;    
@@ -101,6 +103,31 @@ void PokerDisplay::drawRectangleShape(RenderWindow& gameWindow)
 		xRight = 1320; 
 		xLeft = 20;    
 		y += 110;       
+	}
+}
+
+void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
+{
+
+	int rectWidth = 40;
+	int rectHeight = 80;
+
+	int totalWidth = COMMUNITY_CARD_SIZE * rectWidth; 
+	int startX = 780;      
+
+	int yCenter = 307;   
+
+	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
+	{
+		spacesForDealerCard[i] = RectangleShape(Vector2f(rectWidth, rectHeight));
+		spacesForDealerCard[i].setFillColor(Color::Red);
+		spacesForDealerCard[i].setOutlineColor(Color::Red);
+		spacesForDealerCard[i].setOutlineThickness(0);
+		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
+
+		startX += 30; 
+		gameWindow.draw(spacesForDealerCard[i]);
+		
 	}
 }
 
