@@ -68,13 +68,13 @@ void PokerDisplay::loadGameImage()
 
 void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 {
-	int incrementPosition = 40;
-	int xRight = 1210;
-	int xLeft = 20;
-	int y = 347;
+	float incrementPosition = 40.f;
+	float xRight = 1210.f;
+	float xLeft = 20.f;
+	float y = 347.f;
 
-	int rectWidth = 50;
-	int rectHeight = 76;
+	float rectWidth = 50.f;
+	float rectHeight = 76.f;
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -95,37 +95,37 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 			if (i == 3)
 			{
-				y = 347;
+				y = 347.f;
 			}
 
 			spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
 			spacesInUserCard[i][j].setFillColor(Color::Red);
 			spacesInUserCard[i][j].setOutlineColor(Color::Red);
 			spacesInUserCard[i][j].setOutlineThickness(0);
-			spacesInUserCard[i][j].setPosition(xLeft + 640 - incrementPosition, y);
-			xLeft += 55;
+			spacesInUserCard[i][j].setPosition(xLeft + 640.f - incrementPosition, y);
+			xLeft += 55.f;
 			gameWindow.draw(spacesInUserCard[i][j]);
 
 		}
 
-		xRight = 1200 + incrementPosition;
-		xLeft = 20;
-		y += 110;
-		incrementPosition += 40;
+		xRight = 1200.f + incrementPosition;
+		xLeft = 20.f;
+		y += 110.f;
+		incrementPosition += 40.f;
 	}
 }
 
 void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 {
-	int rectWidth = 50;
-	int rectHeight = 76;
+	float rectWidth = 50.f;
+	float rectHeight = 76.f;
 
-	int totalWidth = COMMUNITY_CARD_SIZE * rectWidth; 
-	int startX = 812;      
+	float totalWidth = COMMUNITY_CARD_SIZE * rectWidth;
+	float startX = 812.f;
 
-	int yCenter = 320;   
+	float yCenter = 320.f;
 
-	int midCard = 2;
+	float midCard = 2.f;
 
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
@@ -138,15 +138,15 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 
 		if (i < midCard)
 		{
-			yCenter += 10;
+			yCenter += 10.f;
 
 		}
 		else
 		{
-			yCenter -= 10;
+			yCenter -= 10.f;
 		}
 
-		startX += 10; 
+		startX += 10.f;
 		gameWindow.draw(spacesForDealerCard[i]);
 		
 	}

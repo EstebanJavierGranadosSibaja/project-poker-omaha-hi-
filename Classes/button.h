@@ -10,16 +10,14 @@ class Button
 
 private: 
 
-
-
-
-
-
+	Font buttonFont;
+	CircleShape buttonShape;
+	Text buttonText;
 
 
 public: 
 
-
+	Button(); 
 
 
 
