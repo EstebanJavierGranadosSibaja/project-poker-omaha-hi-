@@ -2,21 +2,26 @@
 
 PokerDisplay::PokerDisplay()
 {
-	button = new Button(); 
+	
 	menu = new Menu();
 	menu->loadMenuWindow();
+
 	rows = menu->getNumPlayer();
 	columns = maxOfUserCard;
+
 	pokerTable = new PokerTable(menu->getBlindPrice(), menu->getNumPlayer());
+
 
 	backGround = Texture();
 	spriteBackGround = Sprite();
 	arial.loadFromFile("ARIAL.ttf"); 
-	numberOfPlayer = Text("1", arial, 10);
-	numberOfPlayer.setFillColor(Color::White); 
-	numberOfPlayer.setOutlineThickness(5); 
+
+	numberOfPlayer = Text("1", arial, 35);
+	numberOfPlayer.setFillColor(Color::White);
+	numberOfPlayer.setOutlineThickness(2.5f);
 	numberOfPlayer.setOutlineColor(Color::Black);
 
+	button = new Button();
 	spacesInUserCard = new RectangleShape * [rows];
 
 	for (int i = 0; i < rows; i++)
@@ -38,8 +43,8 @@ void PokerDisplay::loadGameWindow()
 		Event event;
 		while (gameWindow.pollEvent(event))
 		{
-			/*system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
+			system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;
 			
 			if (event.type == Event::Closed)
 			{
@@ -54,9 +59,8 @@ void PokerDisplay::loadGameWindow()
 
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-		
-	
 		button->drawButton(gameWindow);
+
 		gameWindow.display();
 	}
 }
@@ -84,6 +88,8 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 	for (int i = 0; i < rows; i++)
 	{
+		numberOfPlayer.setString(to_string(i + 1));
+
 		for (int j = 0; j < columns; j++)
 		{
 			if (i < 3)
@@ -96,6 +102,9 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 				spacesInUserCard[i][j].setPosition(xRight, y);
 				xRight += 55;
 				gameWindow.draw(spacesInUserCard[i][j]);
+				if (j == 3) {
+					numberOfPlayer.setPosition(xRight + 40.f, y);
+				}
 				continue;
 			}
 
@@ -112,7 +121,12 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			xLeft += 55.f;
 			gameWindow.draw(spacesInUserCard[i][j]);
 
+			if (j == 0) {
+				numberOfPlayer.setPosition(xLeft + 530.f - incrementPosition, y);
+			}
+
 		}
+		gameWindow.draw(numberOfPlayer);
 
 		xRight = 1200.f + incrementPosition;
 		xLeft = 20.f;
@@ -120,6 +134,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 		incrementPosition += 40.f;
 	}
 }
+
 
 void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 {
