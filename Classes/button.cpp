@@ -1,10 +1,17 @@
 #include"button.h"
 
-Button::Button()
+Button::Button(float newXPosition, float newYposition, string text)
 {
 	buttonFont= Font();
-    buttonShape = RectangleShape();
-	buttonText = Text();
+    buttonFont.loadFromFile("ARIAL.ttf"); 
+
+    buttonShape = RectangleShape(Vector2f(100,50));
+    buttonShape.setFillColor(Color::White);
+    buttonShape.setPosition(Vector2f(newXPosition, newYposition)); //
+
+    buttonText = Text(text, buttonFont, 20);
+    buttonText.setFillColor(Color::Black);
+    buttonText.setPosition(newXPosition, newYposition);
 
 }
 
@@ -20,27 +27,20 @@ Text Button::getButtonText()
 
 void Button::shapeButton(float xPosition, float yPosition, string& text)
 {
-    Vector2f position(xPosition, yPosition); // Posición predeterminada del botón
-    Vector2f size(100.0f, 50.0f); // Tamaño predeterminado del botón
-
    
-    buttonShape.setSize(size);
-    buttonShape.setPosition(position);
-    buttonShape.setFillColor(Color::White);
-
-    buttonText.setString(text); // Texto predeterminado
-    buttonText.setCharacterSize(20);
-    buttonText.setFillColor(Color::Black);
+    
+  
+   
     FloatRect textBounds = buttonText.getLocalBounds();
     buttonText.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
-    buttonText.setPosition(xPosition, yPosition); 
+  
 }
 
 void Button::button3BB()
 {
     string text = "3BB"; 
-    float xPosition = 50;
-    float yPosition = 500;
+    float xPosition = 200.f;
+    float yPosition = 200.f;
 
     shapeButton(xPosition, yPosition, text); 
 }
