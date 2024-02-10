@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\button.cpp" />
     <ClCompile Include="..\Classes\card.cpp" />
     <ClCompile Include="..\Classes\dealer.cpp" />
     <ClCompile Include="..\Classes\deck.cpp" />
@@ -156,6 +157,7 @@
     <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\button.h" />
     <ClInclude Include="..\Classes\card.h" />
     <ClInclude Include="..\Classes\dealer.h" />
     <ClInclude Include="..\Classes\deck.h" />

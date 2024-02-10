@@ -7,7 +7,7 @@ PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 	smallBlind =aBigBlind / 2;
 	numberOfPlayers = aNumberOfPlayers;
 	dealer = new Dealer();
-	deck = new Deck;
+	deck = new Deck();
 	players = new Player * [numberOfPlayers];
 
 	for (int i = 0; i < numberOfPlayers; i++)
