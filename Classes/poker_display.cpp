@@ -2,6 +2,7 @@
 
 PokerDisplay::PokerDisplay()
 {
+	button = new Button(); 
 	menu = new Menu();
 	menu->loadMenuWindow();
 	rows = menu->getNumPlayer();
@@ -28,7 +29,7 @@ PokerDisplay::PokerDisplay()
 
 void PokerDisplay::loadGameWindow()
 {
-	//button->button3BB();
+	button->button3BB();
 	loadGameImage();
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 	while (gameWindow.isOpen())
@@ -39,7 +40,7 @@ void PokerDisplay::loadGameWindow()
 		{
 			/*system("cls");
 			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
-
+			
 			if (event.type == Event::Closed)
 			{
 				gameWindow.close();
@@ -53,8 +54,9 @@ void PokerDisplay::loadGameWindow()
 
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-	
 		
+	
+		button->drawButton(gameWindow);
 		gameWindow.display();
 	}
 }
