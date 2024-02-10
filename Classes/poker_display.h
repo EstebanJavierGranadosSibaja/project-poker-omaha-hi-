@@ -6,6 +6,7 @@ const int maxOfUserCard = 4;
 class PokerDisplay
 {
 private:
+	Text numberOfPlayer; 
 	PokerTable* pokerTable;
 	Menu* menu;
 	Texture backGround;

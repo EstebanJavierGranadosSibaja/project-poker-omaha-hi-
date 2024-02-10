@@ -15,6 +15,11 @@ Menu::Menu()
 	amountOfNumbersThatUserCanPress = 6;
 }
 
+Font Menu::getFont()
+{
+	return font;
+}
+
 int Menu::getNumPlayer()
 {
 	return  numPlayers;
