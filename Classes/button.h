@@ -11,7 +11,10 @@ private:
 
 public: 
 	Button(); 
-
+	RectangleShape getButtonShape(); 
+	Text getButtonText(); 
+	void shapeButton(float xPosition, float yPosition, string& text);
+	void button3BB();
 
 
 

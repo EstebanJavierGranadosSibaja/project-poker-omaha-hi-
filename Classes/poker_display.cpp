@@ -26,6 +26,7 @@ PokerDisplay::PokerDisplay()
 
 void PokerDisplay::loadGameWindow()
 {
+	button->button3BB();
 	loadGameImage();
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 	while (gameWindow.isOpen())
@@ -50,6 +51,8 @@ void PokerDisplay::loadGameWindow()
 
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
+		gameWindow.draw(button->getButtonShape());
+		gameWindow.draw(button->getButtonText());
 		
 		gameWindow.display();
 	}

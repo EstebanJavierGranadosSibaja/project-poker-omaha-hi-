@@ -9,6 +9,7 @@ private:
 	Text numberOfPlayer; 
 	PokerTable* pokerTable;
 	Menu* menu;
+	Button* button; 
 	Texture backGround;
 	Sprite spriteBackGround;
 	RectangleShape** spacesInUserCard; 
