@@ -3,7 +3,7 @@
 Button::Button()
 {
 	buttonFont= Font();
-	buttonShape = RectangleShape(); 
+    buttonShape = RectangleShape();
 	buttonText = Text();
 
 }
@@ -43,4 +43,10 @@ void Button::button3BB()
     float yPosition = 500;
 
     shapeButton(xPosition, yPosition, text); 
+}
+
+void Button::drawButton(RenderWindow& window)
+{
+    window.draw(buttonShape);
+    window.draw(buttonText);
 }

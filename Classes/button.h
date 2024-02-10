@@ -15,6 +15,7 @@ public:
 	Text getButtonText(); 
 	void shapeButton(float xPosition, float yPosition, string& text);
 	void button3BB();
+	void drawButton(RenderWindow& window); 
 
 
 
