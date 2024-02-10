@@ -16,7 +16,7 @@ private:
 	Player** players;
 
 public: 
-	PokerTable(); 
+	PokerTable() {};
 	PokerTable(int aBigBlind,int aNumberOfPlayers);
 	~PokerTable();
 

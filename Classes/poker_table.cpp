@@ -1,10 +1,5 @@
 #include "poker_table.h"
 
-
-PokerTable::PokerTable()
-{
-}
-
 PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 {
 	pot = 0;
