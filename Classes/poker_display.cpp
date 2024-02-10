@@ -34,8 +34,8 @@ void PokerDisplay::loadGameWindow()
 		Event event;
 		while (gameWindow.pollEvent(event))
 		{
-			system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;
+			/*system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
 
 			if (event.type == Event::Closed)
 			{
@@ -75,6 +75,10 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 	for (int i = 0; i < rows; i++)
 	{
+		numberOfPlayer.setString(to_string(i + 1)); 
+		string si = numberOfPlayer.getString(); 
+		cout << si; 
+
 		for (int j = 0; j < columns; j++)
 		{
 			if (i < 3)
@@ -104,6 +108,9 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			gameWindow.draw(spacesInUserCard[i][j]);
 
 		}
+
+	/*	numberOfPlayer.setPosition(xRight + 30,y+38); 
+		gameWindow.draw(numberOfPlayer); */
 
 		xRight = 1200 + incrementPosition;
 		xLeft = 20;
