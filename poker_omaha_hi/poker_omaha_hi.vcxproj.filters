@@ -150,7 +150,7 @@
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\button.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

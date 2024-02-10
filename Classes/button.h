@@ -1,23 +1,18 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include<string>
-using namespace sf;
-using namespace std;
+#include"menu.h";
 
 class Button
 {
-
 private: 
-
 	Font buttonFont;
-	CircleShape buttonShape;
+	RectangleShape buttonShape;
 	Text buttonText;
 
 
 public: 
-
 	Button(); 
+
+
 
 
 

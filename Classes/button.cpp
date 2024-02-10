@@ -3,15 +3,7 @@
 Button::Button()
 {
 	buttonFont= Font();
-	buttonShape = CircleShape(); 
+	buttonShape = RectangleShape(); 
 	buttonText = Text();
-
-
-
-
-
-
-
-
 
 }
