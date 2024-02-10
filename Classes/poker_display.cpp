@@ -3,7 +3,7 @@
 PokerDisplay::PokerDisplay()
 {
 	menu = new Menu();
-    menu->loadMenuWindow();
+	menu->loadMenuWindow();
 	rows = menu->getNumPlayer();
 	columns = maxOfUserCard;
 	pokerTable = new PokerTable(menu->getBlindPrice(), menu->getNumPlayer());
@@ -11,16 +11,16 @@ PokerDisplay::PokerDisplay()
 	backGround = Texture();
 	spriteBackGround = Sprite();
 
-	spacesInUserCard = new RectangleShape* [rows];
+	spacesInUserCard = new RectangleShape * [rows];
 	for (int i = 0; i < rows; i++)
 	{
-		spacesInUserCard[i] = new RectangleShape[columns]; 
+		spacesInUserCard[i] = new RectangleShape[columns];
 	}
 }
 
 void PokerDisplay::loadGameWindow()
 {
-	loadGameImage(); 
+	loadGameImage();
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 	while (gameWindow.isOpen())
 	{
@@ -34,17 +34,17 @@ void PokerDisplay::loadGameWindow()
 			if (event.type == Event::Closed)
 			{
 				gameWindow.close();
-			}	
+			}
 		}
 		gameWindow.clear();
-		
+
 		//se pueden llamar metodos aqui 
 
 		gameWindow.draw(spriteBackGround);
 
-		drawRectangleShape(gameWindow); 
+		drawRectangleShape(gameWindow);
 
-		
+
 		gameWindow.display();
 	}
 }
@@ -62,9 +62,10 @@ void PokerDisplay::loadGameImage()
 
 void PokerDisplay::drawRectangleShape(RenderWindow& gameWindow)
 {
-	int xRight = 1320; 
-	int xLeft = 20;    
-	int y = 340;       
+	int incrementPosition = 40;
+	int xRight = 1210;
+	int xLeft = 20;
+	int y = 347;
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -72,35 +73,36 @@ void PokerDisplay::drawRectangleShape(RenderWindow& gameWindow)
 		{
 			if (i < 3)
 			{
-				
-				spacesInUserCard[i][j] = RectangleShape(Vector2f(40, 80));
+
+				spacesInUserCard[i][j] = RectangleShape(Vector2f(50, 76));
 				spacesInUserCard[i][j].setFillColor(Color::Red);
 				spacesInUserCard[i][j].setOutlineColor(Color::Red);
 				spacesInUserCard[i][j].setOutlineThickness(0);
 				spacesInUserCard[i][j].setPosition(xRight, y);
-				xRight += 45; 
+				xRight += 55;
 				gameWindow.draw(spacesInUserCard[i][j]);
-				continue; 
+				continue;
 			}
+
 			if (i == 3)
 			{
-				y = 340;
+				y = 347;
 			}
-			
-				
-			spacesInUserCard[i][j] = RectangleShape(Vector2f(40, 80));
+
+			spacesInUserCard[i][j] = RectangleShape(Vector2f(50, 76));
 			spacesInUserCard[i][j].setFillColor(Color::Red);
 			spacesInUserCard[i][j].setOutlineColor(Color::Red);
 			spacesInUserCard[i][j].setOutlineThickness(0);
-			spacesInUserCard[i][j].setPosition(xLeft + 400, y);
-				xLeft += 45; 
-				gameWindow.draw(spacesInUserCard[i][j]);
-			
+			spacesInUserCard[i][j].setPosition(xLeft + 640 - incrementPosition, y);
+			xLeft += 55;
+			gameWindow.draw(spacesInUserCard[i][j]);
+
 		}
-		
-		xRight = 1320; 
-		xLeft = 20;    
-		y += 110;       
+
+		xRight = 1200 + incrementPosition;
+		xLeft = 20;
+		y += 110;
+		incrementPosition += 40;
 	}
 }
 
