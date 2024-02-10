@@ -10,6 +10,7 @@ private:
 
 
 public: 
+	Button() {};
 	Button(float newXPosition, float newYposition, string text);
 	RectangleShape getButtonShape(); 
 	Text getButtonText(); 
