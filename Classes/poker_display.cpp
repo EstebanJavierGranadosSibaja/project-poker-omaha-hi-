@@ -73,6 +73,9 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 	int xLeft = 20;
 	int y = 347;
 
+	int rectWidth = 50;
+	int rectHeight = 76;
+
 	for (int i = 0; i < rows; i++)
 	{
 		numberOfPlayer.setString(to_string(i + 1)); 
@@ -84,7 +87,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			if (i < 3)
 			{
 
-				spacesInUserCard[i][j] = RectangleShape(Vector2f(50, 76));
+				spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
 				spacesInUserCard[i][j].setFillColor(Color::Red);
 				spacesInUserCard[i][j].setOutlineColor(Color::Red);
 				spacesInUserCard[i][j].setOutlineThickness(0);
@@ -99,7 +102,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 				y = 347;
 			}
 
-			spacesInUserCard[i][j] = RectangleShape(Vector2f(50, 76));
+			spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
 			spacesInUserCard[i][j].setFillColor(Color::Red);
 			spacesInUserCard[i][j].setOutlineColor(Color::Red);
 			spacesInUserCard[i][j].setOutlineThickness(0);
@@ -121,14 +124,15 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 {
-
-	int rectWidth = 40;
-	int rectHeight = 80;
+	int rectWidth = 50;
+	int rectHeight = 76;
 
 	int totalWidth = COMMUNITY_CARD_SIZE * rectWidth; 
-	int startX = 780;      
+	int startX = 812;      
 
-	int yCenter = 307;   
+	int yCenter = 320;   
+
+	int midCard = 2;
 
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
@@ -138,7 +142,18 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
-		startX += 30; 
+
+		if (i < midCard)
+		{
+			yCenter += 10;
+
+		}
+		else
+		{
+			yCenter -= 10;
+		}
+
+		startX += 10; 
 		gameWindow.draw(spacesForDealerCard[i]);
 		
 	}
