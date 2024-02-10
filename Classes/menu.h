@@ -36,7 +36,7 @@ public:
 	void blindInput(RenderWindow& window);
 
 	void inputText(bool isEnteringText);
-	void checkWhenUserPressEnter();
+	void checkWhenUserPressEnter(RenderWindow& window);
 	void nextUserRequest();
 	bool isLenghtOfUserTextCorrect();
 

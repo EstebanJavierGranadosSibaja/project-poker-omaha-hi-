@@ -38,8 +38,8 @@ void Menu::loadMenuWindow()
 		while (window.pollEvent(userEvent))
 		{
 
-			system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;
+			/*system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
 
 			if (userEvent.type == Event::Closed)
 			{
@@ -126,7 +126,7 @@ void Menu::blindInput(RenderWindow& window)
 	}
 
 	inputText(isEnteringText);
-	checkWhenUserPressEnter();
+	checkWhenUserPressEnter(window);
 }
 
 void Menu::inputText(bool isEnteringText)
@@ -152,7 +152,7 @@ void Menu::inputText(bool isEnteringText)
 	}
 }
 
-void Menu::checkWhenUserPressEnter()
+void Menu::checkWhenUserPressEnter(RenderWindow& window)
 {
 	if (userEvent.text.unicode == '\r')
 	{
@@ -171,6 +171,7 @@ void Menu::checkWhenUserPressEnter()
 		}
 		numPlayers = stoi(textValues);
 		cout << " Jugadores digitados correctamente : " << numPlayers << endl;
+		window.close();
 	}
 }
 

@@ -5,8 +5,9 @@ Deck::Deck()
 	amountCards = 52;
 	int position = 0;
 
-	deck = new Card * [amountCards];
-	for (int i = 0; i < amountCards; i++) {
+	deck = new Card* [amountCards];
+	for (int i = 0; i < amountCards; i++) 
+	{
 		deck[i] = new Card();
 	}
 
@@ -20,13 +21,14 @@ Deck::Deck()
 	}
 }
 
-Deck::~Deck()
-{
-	for (int i = 0; i < amountCards; i++) {
-		delete[] deck[i];
-	}
-	delete[] deck;
-}
+//Deck::~Deck()
+//{
+//	/*for (int i = 0; i < amountCards; i++) 
+//	{
+//		delete deck[i];
+//	}
+//	delete deck;*/
+//}
 
 void Deck::setDeck(Card** newDeck)
 {
@@ -48,6 +50,21 @@ int Deck::getAmountCards()
 	return amountCards;
 }
 
+//void Deck::eraseAPosition(int index)
+//{
+//	// Eliminar la carta en la posición index
+//	delete deck[index];
+//
+//	// Mover todas las cartas después de la posición index una posición hacia adelante
+//	for (int i = index; i < amountCards - 1; ++i)
+//	{
+//		deck[i] = deck[i + 1];
+//	}
+//
+//	// Reducir el tamaño del mazo en una carta
+//	amountCards--;
+//}
+
 Deck* Deck::eraseAPosition(int index)
 {
 	Deck* newDeck = new Deck();
@@ -67,5 +84,5 @@ Deck* Deck::eraseAPosition(int index)
 		increase++;
 	}
 
-	return newDeck;
+	return newDeck; 
 }

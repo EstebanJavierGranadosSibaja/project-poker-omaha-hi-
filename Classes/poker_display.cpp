@@ -3,7 +3,7 @@
 PokerDisplay::PokerDisplay()
 {
 	menu = new Menu();
-	menu->loadMenuWindow();
+    menu->loadMenuWindow();
 	rows = menu->getNumPlayer();
 	columns = maxOfUserCard;
 	pokerTable = new PokerTable(menu->getBlindPrice(), menu->getNumPlayer());

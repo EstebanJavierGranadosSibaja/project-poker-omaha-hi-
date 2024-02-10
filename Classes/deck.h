@@ -8,7 +8,7 @@ private:
 	int amountCards;
 public:
 	Deck();
-	~Deck();
+	//~Deck();
 
 	void setDeck(Card** newDeck);
 	void setAmountCards(int newAmountCards);
@@ -16,4 +16,5 @@ public:
 	Card** getDeck();
 	int getAmountCards();
 	Deck* eraseAPosition(int index); 
+	//void eraseAPosition(int index); 
 };

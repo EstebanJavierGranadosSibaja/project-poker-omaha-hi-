@@ -29,7 +29,7 @@ void Dealer::setCommunityCards(Deck*& deck)
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
 		communityCards[i] = deck-> getDeck()[i];
-		deck = deck->eraseAPosition(i); 
+	  deck =  deck->eraseAPosition(i); 
 	}
 }
 
@@ -43,7 +43,7 @@ void Dealer::shuffleDeck(Deck*& deck)
 	{
 		auxiliary = rand() % sizeDeck; 
 		randomDeck->getDeck()[i] = deck->getDeck()[auxiliary]; 
-		deck = deck->eraseAPosition(auxiliary); 
+	    deck = deck->eraseAPosition(auxiliary); 
 	}
 	delete[] deck; 
 	deck = randomDeck; 
