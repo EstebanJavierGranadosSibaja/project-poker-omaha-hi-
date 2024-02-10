@@ -1,6 +1,6 @@
-#include"couple.h"
+#include"pair.h"
 
-int Couple::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
+int Pair::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 {
 	int firstCardUser = 0;
 	int secondCardUser = 1;
@@ -9,12 +9,11 @@ int Couple::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 
 	while (firstCardUser != NUMBER_OF_VALID_COMMUNITY_HAND)
 	{
-
 		combinationOfCards[0] = newHand[firstCardUser];
 		combinationOfCards[1] = newHand[secondCardUser];
 
 		if (communityCardCombinations(combinationOfCards, newCommunityCards)) {
-			return COUPLE_VALUE;
+			return PAIR_VALUE;
 		}
 
 		secondCardUser++;
@@ -27,7 +26,7 @@ int Couple::getPlayerHandRankin(Card** newHand, Card** newCommunityCards)
 	return -1;
 }
 
-bool Couple::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
+bool Pair::communityCardCombinations(Card** combinationOfCards, Card** newCommunityCards)
 {
 	int firstCardCommunity = 0;
 	int secondCardCommunity = 1;
@@ -43,7 +42,7 @@ bool Couple::communityCardCombinations(Card** combinationOfCards, Card** newComm
 			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
 			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
 
-			if (isACouple(combinationOfCards)) {
+			if (isAPair(combinationOfCards)) {
 				return true;
 			}
 
@@ -58,39 +57,21 @@ bool Couple::communityCardCombinations(Card** combinationOfCards, Card** newComm
 	return false;
 }
 
-void Couple::sortTheCards(Card**& vectorOfCombinations)
+void Pair::sortTheCards(Card**& vectorOfCombinations)
 {
 }
 
-//void Couple::sortTheCards(Card**& vectorOfCombinations)
-//{
-//	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
-//	{
-//		for (int j = 0; j < SIZE_OF_PLAYER_DECK - i - 1; j++)
-//		{
-//			if (vectorOfCombinations[j]->getValue() > vectorOfCombinations[j + 1]->getValue())
-//			{
-//				Card* temp = vectorOfCombinations[j];
-//				vectorOfCombinations[j] = vectorOfCombinations[j + 1];
-//				vectorOfCombinations[j + 1] = temp;
-//			}
-//		}
-//	}
-//}
-
-bool Couple::isACouple(Card** vectorOfCombinations)
+bool Pair::isAPair(Card** vectorOfCombinations)
 {
 	sortTheCards(vectorOfCombinations);
-	bool firstCouple = vectorOfCombinations[0] == vectorOfCombinations[1];
-	bool secondCouple = vectorOfCombinations[1] == vectorOfCombinations[2]; 
-	bool thirdCouple = vectorOfCombinations[2] == vectorOfCombinations[3]; 
-	bool fourthCouple = vectorOfCombinations[3] == vectorOfCombinations[4]; 
+	bool firstPair = vectorOfCombinations[0] == vectorOfCombinations[1];
+	bool secondPair = vectorOfCombinations[1] == vectorOfCombinations[2];
+	bool thirdPair = vectorOfCombinations[2] == vectorOfCombinations[3];
+	bool fourthPair = vectorOfCombinations[3] == vectorOfCombinations[4];
 
-	if (firstCouple || secondCouple || thirdCouple || fourthCouple)
+	if (firstPair || secondPair || thirdPair || fourthPair)
 	{
 		return true; 
 	}
-
-
 	return false;
 }

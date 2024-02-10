@@ -139,7 +139,7 @@
     <ClCompile Include="..\Classes\poker_display.cpp" />
     <ClCompile Include="..\Classes\poker_table.cpp" />
     <ClCompile Include="flush.cpp" />
-    <ClCompile Include="couple.cpp" />
+    <ClCompile Include="pair.cpp" />
     <ClCompile Include="double _couple.cpp" />
     <ClCompile Include="file_manager.cpp" />
     <ClCompile Include="full_house.cpp" />
@@ -165,7 +165,7 @@
     <ClInclude Include="..\Classes\poker_display.h" />
     <ClInclude Include="..\Classes\poker_table.h" />
     <ClInclude Include="flush.h" />
-    <ClInclude Include="couple.h" />
+    <ClInclude Include="pair.h" />
     <ClInclude Include="double _couple.h" />
     <ClInclude Include="file_manager.h" />
     <ClInclude Include="full_house.h" />

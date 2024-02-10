@@ -63,7 +63,7 @@
     <ClCompile Include="flush.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="couple.cpp">
+    <ClCompile Include="pair.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="straight_flush.cpp">
@@ -131,7 +131,7 @@
     <ClInclude Include="straight_flush.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
-    <ClInclude Include="couple.h">
+    <ClInclude Include="pair.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="straight.h">
