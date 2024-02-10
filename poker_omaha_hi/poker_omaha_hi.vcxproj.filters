@@ -81,6 +81,9 @@
     <ClCompile Include="..\Classes\poker_display.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\button.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\poker_display.h">
       <Filter>Archivos de encabezado\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\button.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
