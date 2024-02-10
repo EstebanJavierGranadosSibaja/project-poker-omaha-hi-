@@ -38,8 +38,8 @@ void Menu::loadMenuWindow()
 		while (window.pollEvent(userEvent))
 		{
 
-			/*system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
+			system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;
 
 			if (userEvent.type == Event::Closed)
 			{

@@ -11,6 +11,7 @@ private:
 	Texture backGround;
 	Sprite spriteBackGround;
 	RectangleShape** spacesInUserCard; 
+	RectangleShape cardRectangle;
 
 	int rows;
 	int columns; 
@@ -22,5 +23,5 @@ public:
 	PokerDisplay();
 	void loadGameWindow();
 	void loadGameImage();
-	void drawRectangleShape(); 
+	void drawRectangleShape(RenderWindow& gameWindow);
 };
