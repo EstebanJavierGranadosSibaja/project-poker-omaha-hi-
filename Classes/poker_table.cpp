@@ -138,3 +138,62 @@ void PokerTable::startPreFloatRound()
 	}*/
 }
 
+bool PokerTable::validationOfThreeBigBlindButton(int &actualUserBlind)
+{
+	if (actualUserBlind >= bigBlind * 3)
+	{
+		actualUserBlind -= bigBlind * 3;
+		pot += bigBlind * 3;
+		return true;
+	}
+
+	return false;
+}
+
+bool PokerTable::validationOfThreePartsPotButton(int& actualUserBlind)
+{
+	if (actualUserBlind >= (pot / 2) / 2)
+	{
+		actualUserBlind -= (pot / 2) / 2;
+		pot += (pot / 2) / 2;
+		return true;
+	}
+
+	return false;
+}
+
+bool PokerTable::validationOfTwoPartsPotButton(int& actualUserBlind)
+{
+	if (actualUserBlind >= pot / 2)
+	{
+		actualUserBlind -= pot / 2;
+		pot += pot / 2;
+		return true;
+	}
+
+	return false;
+}
+
+bool PokerTable::validationOfPotButton(int& actualUserBlind)
+{
+	if (actualUserBlind >= pot)
+	{
+		actualUserBlind -= pot;
+		pot += pot;
+		return true;
+	}
+
+	return false;
+}
+
+bool PokerTable::validationOfAllInButton(int& actualUserBlind)
+{
+	if (actualUserBlind != 0)
+	{
+		actualUserBlind -= actualUserBlind;
+		pot += actualUserBlind;
+		return true;
+	}
+
+	return false;
+}

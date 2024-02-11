@@ -141,7 +141,7 @@
     <ClCompile Include="..\Classes\poker_table.cpp" />
     <ClCompile Include="flush.cpp" />
     <ClCompile Include="pair.cpp" />
-    <ClCompile Include="double _couple.cpp" />
+    <ClCompile Include="two_pair.cpp" />
     <ClCompile Include="file_manager.cpp" />
     <ClCompile Include="full_house.cpp" />
     <ClCompile Include="high_card.cpp" />
@@ -150,7 +150,7 @@
     <ClCompile Include="royal_flush.cpp" />
     <ClCompile Include="straight_flush.cpp" />
     <ClCompile Include="straight.cpp" />
-    <ClCompile Include="trio.cpp" />
+    <ClCompile Include="three_of_a_kind.cpp" />
     <ClCompile Include="winning_play.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +168,7 @@
     <ClInclude Include="..\Classes\poker_table.h" />
     <ClInclude Include="flush.h" />
     <ClInclude Include="pair.h" />
-    <ClInclude Include="double _couple.h" />
+    <ClInclude Include="two_pair.h" />
     <ClInclude Include="file_manager.h" />
     <ClInclude Include="full_house.h" />
     <ClInclude Include="high_card.h" />
@@ -176,7 +176,7 @@
     <ClInclude Include="royal_flush.h" />
     <ClInclude Include="straight_flush.h" />
     <ClInclude Include="straight.h" />
-    <ClInclude Include="trio.h" />
+    <ClInclude Include="three_of_a_kind.h" />
     <ClInclude Include="winning_play.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

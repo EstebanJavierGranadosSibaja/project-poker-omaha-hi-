@@ -54,10 +54,10 @@
     <ClCompile Include="full_house.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="trio.cpp">
+    <ClCompile Include="three_of_a_kind.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="double _couple.cpp">
+    <ClCompile Include="two_pair.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="flush.cpp">
@@ -122,10 +122,10 @@
     <ClInclude Include="full_house.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
-    <ClInclude Include="trio.h">
+    <ClInclude Include="three_of_a_kind.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
-    <ClInclude Include="double _couple.h">
+    <ClInclude Include="two_pair.h">
       <Filter>Archivos de encabezado\classes</Filter>
     </ClInclude>
     <ClInclude Include="flush.h">
