@@ -4,6 +4,7 @@
 
 const int MAX_OF_USER_CARD = 4; 
 const int SIZE_PREFLOP_BUTTON = 6; 
+const int SIZE_POSFLOP_BUTTON = 5;
 
 class PokerDisplay
 {
@@ -13,6 +14,7 @@ private:
 	PokerTable* pokerTable;
 	Menu* menu;
 	Button* preFlopButton;
+	/*Button* postFlopButton;*/
 
 	Texture backGround;
 	Sprite spriteBackGround;
@@ -32,6 +34,8 @@ public:
 	void checkThePlayersBoxes(RenderWindow& gameWindow);
 	void checkTheDealerBoxes(RenderWindow& gameWindow);
 	void definePreflopButtons();
+	void definePostflopButtons(); 
 	void drawPreFlopButtons(RenderWindow& gameWindow);
-	void highlightButton(Vector2f mousePositionF);
+	void drawPostFlopButtons(RenderWindow& gameWindow);
+	void highlightButton(Vector2f& mousePosition);
 };

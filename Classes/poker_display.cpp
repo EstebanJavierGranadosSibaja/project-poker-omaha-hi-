@@ -21,6 +21,7 @@ PokerDisplay::PokerDisplay()
 	numberOfPlayer.setOutlineColor(Color::Black);
 
 	preFlopButton = new Button[SIZE_PREFLOP_BUTTON];
+	/*postFlopButton = new Button[SIZE_POSFLOP_BUTTON];*/
 
 	spacesInUserCard = new RectangleShape * [rows];
 
@@ -37,22 +38,23 @@ void PokerDisplay::loadGameWindow()
 
 
 	loadGameImage();
-	definePreflopButtons(); 
+	definePreflopButtons();
 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
-	
+
 	while (gameWindow.isOpen())
 	{
 		Event event;
 
-		Vector2i mousePosition = Mouse::getPosition(gameWindow);
-		Vector2f mousePositionF = gameWindow.mapPixelToCoords(mousePosition);
+		Vector2i mousePosition = sf::Mouse::getPosition(gameWindow);
+		Vector2f mousePositionInWindow = gameWindow.mapPixelToCoords(mousePosition);
+
 
 		while (gameWindow.pollEvent(event))
 		{
-			highlightButton(mousePositionF);
 
+			highlightButton(mousePositionInWindow);
 			/*system("cls");
 			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
 
@@ -189,6 +191,15 @@ void PokerDisplay::definePreflopButtons()
 	preFlopButton[5].buttonShowCards();
 }
 
+//void PokerDisplay::definePostflopButtons()
+//{
+//	postFlopButton[0].buttonHalfPot();
+//	postFlopButton[1].buttonThreeQuartersOfPot();
+//	postFlopButton[2].buttonAllIn();
+//	postFlopButton[3].buttonGoOut();
+//	postFlopButton[4].buttonShowCards();
+//}
+
 void PokerDisplay::drawPreFlopButtons(RenderWindow& gameWindow)
 {
 	for (int i = 0; i < SIZE_PREFLOP_BUTTON; i++)
@@ -197,21 +208,31 @@ void PokerDisplay::drawPreFlopButtons(RenderWindow& gameWindow)
 	}
 }
 
-void PokerDisplay::highlightButton(Vector2f mousePositionF)
+//void PokerDisplay::drawPostFlopButtons(RenderWindow& gameWindow)
+//{
+//	for (int i = 0; i < SIZE_POSFLOP_BUTTON; i++)
+//	{
+//		preFlopButton[i].drawButton(gameWindow);
+//	}
+//}
+
+void PokerDisplay::highlightButton(Vector2f& mousePosition)
 {
 
 	for (int i = 0; i < SIZE_PREFLOP_BUTTON; i++)
 	{
-		//bool isMouseOverButton = preFlopButton[i].getButtonShape().getGlobalBounds().contains(mousePositionF);
-		if (preFlopButton[i].getButtonShape().getGlobalBounds().contains(mousePositionF))
+		bool isMouseOverButton = preFlopButton[i].getButtonShape().getGlobalBounds().contains(mousePosition);
+		if (isMouseOverButton)
 		{
-			preFlopButton[i].getButtonShape().setFillColor(Color::Red);
+			preFlopButton[i].setButtonColor(Color::Red);
+			cout << " Si entro " << endl;
 		}
 		else
 		{
-			preFlopButton[i].getButtonShape().setFillColor(Color(135, 206, 250, 255));
+			preFlopButton[i].setButtonColor(Color(135, 206, 250, 255));
 		}
 	}
+
 }
 
 
