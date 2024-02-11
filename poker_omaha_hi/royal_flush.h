@@ -1,7 +1,7 @@
 #pragma once
 #include "winning_play.h"
 
-const char ROYAL_FLUSH_VALUES[NUMBER_OF_VALUES] = { 'A','10','J','Q','K' };
+const char ROYAL_FLUSH_VALUES[NUMBER_OF_VALUES] = { 'A','X','J','Q','K' };
 const char ROYAL_FLUSH_VALUE = 300;
 
 class RoyalFlush : public WinningPlay

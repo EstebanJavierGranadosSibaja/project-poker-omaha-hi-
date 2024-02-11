@@ -15,7 +15,7 @@ Dealer::Dealer(Card** newCommunityCads)
 	communityCards = newCommunityCads;
 }
 
-void Dealer::createDealerTexture()
+void Dealer::createDealerSprites()
 {
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
@@ -117,4 +117,18 @@ Texture* Dealer::getDealerTexture()
 Sprite* Dealer::getDealerSprite()
 {
 	return vectorOfDealerSprites;
+}
+
+string Dealer::getCommunityCardsToText()
+{
+	string newCommunityCardsText = "";
+
+	newCommunityCardsText = "  ||  CARTAS_COMUNITARIAS_DEL_DEALER  ||  \n\n";
+
+	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
+	{
+		newCommunityCardsText += "  ||  Palo: " + communityCards[i]->getType() + "  ||  Valor: " + communityCards[i]->getValue() + "  ||  Numero: " + to_string(communityCards[i]->getNumber()) + "  ||  " + "\n";
+	}
+
+	return newCommunityCardsText;
 }

@@ -16,6 +16,7 @@ private:
 	Dealer* dealer; 
 	Deck* deck; 
 	Player** players;
+	fileManager file;
 	
 
 public: 
@@ -48,6 +49,10 @@ public:
 	bool validationOfTwoPartsPotButton(int& actualUserBlind);
 	bool validationOfPotButton(int& actualUserBlind);
 	bool validationOfAllInButton(int& actualUserBlind);
+
+	string* convertHandsToText();
+	string* convertCommunityCardsToText();
+	void createAHistoryRanking();
 
 	void preFloatIncreaseThePot(int index, int& actualUserBlind);
 

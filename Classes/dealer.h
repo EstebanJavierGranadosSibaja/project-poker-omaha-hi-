@@ -13,9 +13,9 @@ private:
 
 public:
 	Dealer();
-	Dealer(Card** newCommunityCads); 
-	void createDealerTexture();
-	void setCommunityCards(Deck*& deck); 
+	Dealer(Card** newCommunityCads);
+	void createDealerSprites();
+	void setCommunityCards(Deck*& deck);
 	void shuffleDeck(Deck*& newDeck);
 	void getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck);
 	Card** getCommunityCards();
@@ -25,4 +25,5 @@ public:
 	Card** getShowedCards();
 	Texture* getDealerTexture();
 	Sprite* getDealerSprite();
+	string getCommunityCardsToText();
 }; 

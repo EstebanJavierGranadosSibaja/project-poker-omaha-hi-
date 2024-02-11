@@ -27,6 +27,18 @@ void PlayerHand::setPlayersSprite(Sprite* newSprites)
 	vectorOfPlayerSprites = newSprites;
 }
 
+string PlayerHand::getHandToText(int numberOfPlayer)
+{
+	string newHandText = "  ||  CARTAS_DELJUGADOR_N_" + to_string(numberOfPlayer) + "  ||  " + "\n\n";
+
+	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
+	{
+		newHandText += "  ||  Palo: " + hand[i]->getType() + "  ||  Valor: " + hand[i]->getValue() + "  ||  Numero: " + to_string(hand[i]->getNumber()) + "  ||  " + "\n";
+	}
+
+	return newHandText;
+}
+
 Card** PlayerHand::getHand()
 {
 	return hand;

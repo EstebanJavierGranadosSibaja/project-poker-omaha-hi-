@@ -18,6 +18,8 @@ PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 	}
 
 	dealer->shuffleDeck(deck);
+	dealer->setCommunityCards(deck);
+	dealer->createDealerSprites();
 }
 
 PokerTable::~PokerTable()
@@ -104,6 +106,26 @@ void PokerTable::dealCardsToThePlayers()
 	dealer->getPlayerCards(players, numberOfPlayers, deck);
 }
 
+void PokerTable::startPreFloatRound()
+{
+	dealer->setCommunityCards(deck);
+
+	/*dealer->getPlayerCards(players, numberOfPlayers, deck);
+
+	for (int i = 0; i < 5; i++)
+	{
+		cout << dealer->getCommunityCards()[i]->getType() << " - ";
+	}
+	cout << endl << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << dealer->getCommunityCards()[i]->getNumber() << " - ";
+	}
+	cout << endl << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << dealer->getCommunityCards()[i]->getValue() << " - ";
+	}
 //void PokerTable::startPreFloatRound()
 //{
 //	dealer->setCommunityCards(deck);
@@ -150,6 +172,30 @@ void PokerTable::dealCardsToThePlayers()
 //	}
 //}
 
+	cout << endl << endl << endl << endl;;
+
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			cout << players[i]->getUserHand()->getHand()[j]->getNumber() << " - ";
+
+		}
+		cout << endl << endl;
+	}
+
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			cout << players[i]->getUserHand()->getHand()[j]->getType() << " - ";
+
+		}
+		cout << endl << endl;
+	}*/
+}
+
+bool PokerTable::validationOfThreeBigBlindButton(int& actualUserBlind)
 bool PokerTable::validationOfThreeBigBlindButton(int &actualUserBlind)
 {
 	if (actualUserBlind >= bigBlind * 3)
@@ -208,6 +254,43 @@ bool PokerTable::validationOfAllInButton(int& actualUserBlind)
 	}
 
 	return false;
+}
+
+string* PokerTable::convertHandsToText()
+{
+	string* newText = new string[numberOfPlayers + 60];
+
+	newText[0] = "  ||  RANKING HISTORIAL DE LAS MANOS DE LOS JUGADORES  ||  \n";
+
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		newText[i + 1] = players[i]->getUserHand()->getHandToText(i + 1);
+	}
+
+	return newText;
+}
+
+string* PokerTable::convertCommunityCardsToText()
+{
+	string* newDealerText = new string[COMMUNITY_CARD_SIZE];
+
+	newDealerText[0] = "  ||  RANKING HISTORIAL DE LAS CARTAR COMUNITARIAS DEL DEALER  || \n";
+
+	newDealerText[1] = dealer->getCommunityCardsToText();
+
+	return newDealerText;
+}
+
+void PokerTable::createAHistoryRanking()
+{
+	srand(time(NULL));
+
+	int randNumber = rand() % 1000000;
+	string historyRankingName = "PokerHistory_Code_" + to_string(randNumber) + ".txt";
+
+	file.save(historyRankingName, convertHandsToText(), convertHandsToText()->size());
+	file.addText(historyRankingName, convertCommunityCardsToText(), 6);
+	file.load(historyRankingName);
 }
 
 void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
