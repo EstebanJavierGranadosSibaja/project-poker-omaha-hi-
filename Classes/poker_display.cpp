@@ -54,6 +54,9 @@ PokerDisplay::PokerDisplay()
 			cardDownSprite[i][j] = Sprite(cardDownTexture[i][j]);
 		}
 	}
+
+	pokerTable->createAHistoryRanking();
+	system("PAUSE");
 }
 
 void PokerDisplay::loadGameWindow()
@@ -97,9 +100,6 @@ void PokerDisplay::loadGameWindow()
 		dealPreFlopCards(gameWindow);
 		drawAllCardsDown(gameWindow);
 		//drawPreFlopButtons(gameWindow);
-
-		//Falla al momento de compilar, no se si se tiene que poner en otro luhar :(
-		//setPositionSpritesOfUserCards();
 
 		gameWindow.display();
 	}

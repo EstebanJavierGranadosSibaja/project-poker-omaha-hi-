@@ -21,6 +21,8 @@ public:
 	void setHand(Card** newHand);
 	void setPlayersSprite(Sprite* newSprites);
 
+	string getHandToText(int numberOfPlayer);
+
 	Card** getHand();
 	Texture* getPlayerTexture();
 	Sprite* getPlayerSprite();
