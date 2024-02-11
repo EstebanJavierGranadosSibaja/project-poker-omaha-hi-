@@ -195,7 +195,6 @@ void PokerTable::startPreFloatRound()
 	}*/
 }
 
-bool PokerTable::validationOfThreeBigBlindButton(int& actualUserBlind)
 bool PokerTable::validationOfThreeBigBlindButton(int &actualUserBlind)
 {
 	if (actualUserBlind >= bigBlind * 3)
