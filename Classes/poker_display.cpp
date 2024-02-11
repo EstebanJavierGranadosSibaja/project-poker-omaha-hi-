@@ -15,8 +15,11 @@ PokerDisplay::PokerDisplay()
 	spriteBackGround = Sprite();
 	arial.loadFromFile("ARIAL.ttf");
 
-	timePerCard = seconds(2.0f);
-	soundTime = Clock();
+	clock = Clock();
+	time = seconds(1.f);
+	isDealerThrowingCards = true;
+	limit = 1; 
+	soundCard.openFromFile("Images/card_sound.ogg");
 
 	numberOfPlayer = Text("1", arial, 35);
 	numberOfPlayer.setFillColor(Color::White);
@@ -90,7 +93,8 @@ void PokerDisplay::loadGameWindow()
 		checkTheDealerBoxes(gameWindow);
 		drawPostFlopButtons(gameWindow);
 		drawPotAccumulator(gameWindow);
-		//dealPreFlopCards(gameWindow); 
+		dealPreFlopCards(gameWindow);
+		drawAllCardsDown(gameWindow); 
 		//drawPreFlopButtons(gameWindow);
 
 		gameWindow.display();
@@ -124,13 +128,13 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 		for (int j = 0; j < columns; j++)
 		{
-			
+
 			if (i < 3)
 			{
 
 				spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
-				spacesInUserCard[i][j].setFillColor(Color::Red);
-				spacesInUserCard[i][j].setOutlineColor(Color::Red);
+				spacesInUserCard[i][j].setFillColor(Color::Transparent);
+				spacesInUserCard[i][j].setOutlineColor(Color::Transparent);
 				spacesInUserCard[i][j].setOutlineThickness(0);
 				spacesInUserCard[i][j].setPosition(xRight, y);
 				xRight += 55;
@@ -139,6 +143,8 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 					numberOfPlayer.setPosition(xRight + 40.f, y);
 				}
 
+				cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
+				cardDownSprite[i][j].setScale(spacesInUserCard[i][j].getSize().x / cardDownTexture[i][j].getSize().x, spacesInUserCard[i][j].getSize().y / cardDownTexture[i][j].getSize().y);
 
 				continue;
 			}
@@ -149,8 +155,8 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			}
 
 			spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
-			spacesInUserCard[i][j].setFillColor(Color::Red);
-			spacesInUserCard[i][j].setOutlineColor(Color::Red);
+			spacesInUserCard[i][j].setFillColor(Color::Transparent);
+			spacesInUserCard[i][j].setOutlineColor(Color::Transparent);
 			spacesInUserCard[i][j].setOutlineThickness(0);
 			spacesInUserCard[i][j].setPosition(xLeft + 640.f - incrementPosition, y);
 			xLeft += 55.f;
@@ -173,7 +179,6 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 		incrementPosition += 40.f;
 	}
 }
-
 
 void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 {
@@ -284,45 +289,53 @@ void PokerDisplay::drawPotAccumulator(RenderWindow& gameWindow)
 	potAccumulatorText.setOutlineColor(Color::Black);
 	potAccumulatorText.setOutlineThickness(1.f);
 	potAccumulatorText.setFillColor(Color::Black);
-
-	
 	potAccumulatorText.setPosition(841.0f,25.0f);
 
-	// Dibujar el rectángulo y el texto en la ventana del juego
 	gameWindow.draw(potAccumulator);
 	gameWindow.draw(potAccumulatorText);
 	
 }
 
-//void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
-//{
-//
-//	Music soundCard;
-//	soundCard.openFromFile("Images/card_sound.ogg");
-//	soundCard.setLoop(true);
-//
-//
-//
-//
-//	for (int i = 0; i < rows; i++)
-//	{
-//		for (int j = 0; j < columns; j++)
-//		{
-//			if (soundTime.getElapsedTime() > timePerCard)
-//			{
-//				
-//				soundCard.play();
-//				gameWindow.draw(cardDownSprite[i][j]);
-//
-//				soundTime.restart();
-//			}
-//
-//		}
-//	}
-//
-//
-//	soundCard.setLoop(false);
-//}
+void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
+{
+	int amountOfCardsToDraw = 0;
+	if (isDealerThrowingCards)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+			{
+				if (amountOfCardsToDraw == limit && clock.getElapsedTime() > time) {
+					limit++;
+					clock.restart();
+
+					if (limit == columns * rows) {
+						isDealerThrowingCards = false;
+					}
+
+					soundCard.stop();
+					soundCard.play();
+
+				}
+				if (amountOfCardsToDraw != limit) {
+					gameWindow.draw(cardDownSprite[i][j]);
+					amountOfCardsToDraw++;
+				}
+			}
+		}
+	}
+}
+
+void PokerDisplay::drawAllCardsDown(RenderWindow& gameWindow)
+{
+	if (!isDealerThrowingCards) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				gameWindow.draw(cardDownSprite[i][j]);
+			}
+		}
+	}
+}
 
 
 

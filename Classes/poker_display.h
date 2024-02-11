@@ -24,8 +24,11 @@ private:
 	Texture** cardDownTexture; 
 	Sprite** cardDownSprite;
 
-	Clock soundTime;
-	Time timePerCard;
+	Music soundCard;
+	Clock clock;
+	Time time;
+	int limit;
+	bool isDealerThrowingCards;
 
 	int rows;
 	int columns;
@@ -47,5 +50,6 @@ public:
 	void drawPotAccumulator(RenderWindow& gameWindow);
 	 
 	void dealPreFlopCards(RenderWindow& gameWindow);
+	void drawAllCardsDown(RenderWindow& gameWindow);
 	
 };
