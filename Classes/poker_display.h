@@ -46,10 +46,11 @@ public:
 	void definePostflopButtons(); 
 	void drawPreFlopButtons(RenderWindow& gameWindow);
 	void drawPostFlopButtons(RenderWindow& gameWindow);
+	void highlightButton(Vector2f& mousePosition, int size, Button* preOfPosButton);
 	void highlightButton(Vector2f& mousePosition);
 	void drawPotAccumulator(RenderWindow& gameWindow);
 	 
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void drawAllCardsDown(RenderWindow& gameWindow);
-	
+	void drawBingAndSmallBling(RenderWindow& gameWindow);
 };

@@ -77,7 +77,7 @@ void PokerDisplay::loadGameWindow()
 		while (gameWindow.pollEvent(event))
 		{
 
-			highlightButton(mousePositionInWindow);
+			highlightButton(mousePositionInWindow,SIZE_POSFLOP_BUTTON,postFlopButton);
 			system("cls");
 			cout << " " << mousePosition.x << " , " << mousePosition.y;
 
@@ -93,8 +93,10 @@ void PokerDisplay::loadGameWindow()
 		checkTheDealerBoxes(gameWindow);
 		drawPostFlopButtons(gameWindow);
 		drawPotAccumulator(gameWindow);
+		drawBingAndSmallBling(gameWindow);
 		dealPreFlopCards(gameWindow);
 		drawAllCardsDown(gameWindow); 
+
 		//drawPreFlopButtons(gameWindow);
 
 		gameWindow.display();
@@ -251,20 +253,20 @@ void PokerDisplay::drawPostFlopButtons(RenderWindow& gameWindow)
 	}
 }
 
-void PokerDisplay::highlightButton(Vector2f& mousePosition)
+void PokerDisplay::highlightButton(Vector2f& mousePosition, int size, Button* preOfPosButton)
 {
 
-	for (int i = 0; i < SIZE_PREFLOP_BUTTON; i++)
+	for (int i = 0; i < size; i++)
 	{
-		bool isMouseOverButton = preFlopButton[i].getButtonShape().getGlobalBounds().contains(mousePosition);
+		bool isMouseOverButton = preOfPosButton[i].getButtonShape().getGlobalBounds().contains(mousePosition);
 		if (isMouseOverButton)
 		{
-			preFlopButton[i].setButtonColor(Color(173, 216, 230));
+			preOfPosButton[i].setButtonColor(Color(173, 216, 230));
 			cout << " Si entro " << endl;
 		}
 		else
 		{
-			preFlopButton[i].setButtonColor(Color(135, 206, 250, 255));
+			preOfPosButton[i].setButtonColor(Color(135, 206, 250, 255));
 		}
 	}
 
@@ -336,6 +338,35 @@ void PokerDisplay::drawAllCardsDown(RenderWindow& gameWindow)
 		}
 	}
 }
+
+void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
+{
+	Texture bigBlindTexture;
+	Texture smallBlindTexture;
+
+	if (!bigBlindTexture.loadFromFile("Images/token.jpg") ||
+		!smallBlindTexture.loadFromFile("Images/small_blind.png"))
+	{
+		cerr << "Error al cargar las imágenes de las blinds." << endl;
+		return;
+	}
+
+	Sprite bigBlindSprite(bigBlindTexture);
+	Sprite smallBlindSprite(smallBlindTexture);
+
+	float scale =0.1f; 
+	bigBlindSprite.setScale(scale, scale);
+	smallBlindSprite.setScale(scale, scale);
+
+	
+	bigBlindSprite.setPosition(1155, 494);
+	smallBlindSprite.setPosition(1147, 385);
+
+	
+	gameWindow.draw(bigBlindSprite);
+	gameWindow.draw(smallBlindSprite);
+}
+
 
 
 
