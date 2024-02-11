@@ -21,8 +21,8 @@ private:
 	RectangleShape** spacesInUserCard;
 	RectangleShape* spacesForDealerCard;
 
-	Texture cardDownTexture; 
-	Sprite cardDownSprite;
+	Texture** cardDownTexture; 
+	Sprite** cardDownSprite;
 
 	Clock soundTime;
 	Time timePerCard;
@@ -45,4 +45,5 @@ public:
 	void drawPostFlopButtons(RenderWindow& gameWindow);
 	void highlightButton(Vector2f& mousePosition);
 	void dealPreFlopCards(RenderWindow& gameWindow);
+	
 };
