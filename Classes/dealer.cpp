@@ -51,7 +51,7 @@ void Dealer::shuffleDeck(Deck*& deck)
 	deck = randomDeck;
 }
 
-Player** Dealer::getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck)
+void Dealer::getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck)
 {
 	int firtsPosition = 0;
 	for (int i = 0; i < amountOfPlayers; i++)
@@ -63,7 +63,6 @@ Player** Dealer::getPlayerCards(Player**& players, int amountOfPlayers, Deck*& p
 		}
 	}
 
-	return players;
 }
 
 Card** Dealer::getCommunityCards()

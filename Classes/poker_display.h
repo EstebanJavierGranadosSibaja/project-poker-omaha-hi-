@@ -14,12 +14,21 @@ private:
 	PokerTable* pokerTable;
 	Menu* menu;
 	Button* preFlopButton;
-	/*Button* postFlopButton;*/
+	Button* postFlopButton;
 
 	Texture backGround;
 	Sprite spriteBackGround;
 	RectangleShape** spacesInUserCard;
 	RectangleShape* spacesForDealerCard;
+
+	Texture** cardDownTexture; 
+	Sprite** cardDownSprite;
+
+	Music soundCard;
+	Clock clock;
+	Time time;
+	int limit;
+	bool isDealerThrowingCards;
 
 	int rows;
 	int columns;
@@ -38,5 +47,10 @@ public:
 	void drawPreFlopButtons(RenderWindow& gameWindow);
 	void drawPostFlopButtons(RenderWindow& gameWindow);
 	void highlightButton(Vector2f& mousePosition);
+	void drawPotAccumulator(RenderWindow& gameWindow);
+	 
+	void dealPreFlopCards(RenderWindow& gameWindow);
+	void drawAllCardsDown(RenderWindow& gameWindow);
+	
 	void setPositionSpritesOfUserCards();
 };

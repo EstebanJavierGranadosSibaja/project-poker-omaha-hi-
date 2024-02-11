@@ -2,7 +2,6 @@
 
 PokerDisplay::PokerDisplay()
 {
-
 	menu = new Menu();
 	menu->loadMenuWindow();
 
@@ -10,10 +9,17 @@ PokerDisplay::PokerDisplay()
 	columns = MAX_OF_USER_CARD;
 
 	pokerTable = new PokerTable(menu->getBlindPrice(), menu->getNumPlayer());
+	pokerTable->dealCardsToThePlayers();
 
 	backGround = Texture();
 	spriteBackGround = Sprite();
 	arial.loadFromFile("ARIAL.ttf");
+
+	clock = Clock();
+	time = seconds(1.f);
+	isDealerThrowingCards = true;
+	limit = 1; 
+	soundCard.openFromFile("Images/card_sound.ogg");
 
 	numberOfPlayer = Text("1", arial, 35);
 	numberOfPlayer.setFillColor(Color::White);
@@ -21,7 +27,7 @@ PokerDisplay::PokerDisplay()
 	numberOfPlayer.setOutlineColor(Color::Black);
 
 	preFlopButton = new Button[SIZE_PREFLOP_BUTTON];
-	/*postFlopButton = new Button[SIZE_POSFLOP_BUTTON];*/
+	postFlopButton = new Button[SIZE_POSFLOP_BUTTON];
 
 	spacesInUserCard = new RectangleShape * [rows];
 
@@ -31,6 +37,23 @@ PokerDisplay::PokerDisplay()
 	}
 
 	spacesForDealerCard = new RectangleShape[COMMUNITY_CARD_SIZE];
+
+	cardDownTexture = new Texture* [rows];
+	cardDownSprite = new Sprite * [rows];
+	for (int i = 0; i < rows; i++)
+	{
+		cardDownTexture[i] = new Texture[columns]; 
+		cardDownSprite[i] = new Sprite[columns];
+	}
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			cardDownTexture[i][j].loadFromFile("Images/cardBack.png");
+			cardDownSprite[i][j] = Sprite(cardDownTexture[i][j]); 
+		}
+	}
 }
 
 void PokerDisplay::loadGameWindow()
@@ -38,7 +61,8 @@ void PokerDisplay::loadGameWindow()
 	Player** players = pokerTable->getPlayers();
 
 	loadGameImage();
-	definePreflopButtons();
+	//definePreflopButtons();
+	definePostflopButtons();
 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
@@ -55,8 +79,8 @@ void PokerDisplay::loadGameWindow()
 		{
 
 			highlightButton(mousePositionInWindow);
-			/*system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
+			system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;
 
 			if (event.type == Event::Closed)
 			{
@@ -68,7 +92,11 @@ void PokerDisplay::loadGameWindow()
 		gameWindow.draw(spriteBackGround);
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-		drawPreFlopButtons(gameWindow);
+		drawPostFlopButtons(gameWindow);
+		drawPotAccumulator(gameWindow);
+		dealPreFlopCards(gameWindow);
+		drawAllCardsDown(gameWindow); 
+		//drawPreFlopButtons(gameWindow);
 
 		//Falla al momento de compilar, no se si se tiene que poner en otro luhar :(
 		//setPositionSpritesOfUserCards();
@@ -104,12 +132,13 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 		for (int j = 0; j < columns; j++)
 		{
+
 			if (i < 3)
 			{
 
 				spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
-				spacesInUserCard[i][j].setFillColor(Color::Red);
-				spacesInUserCard[i][j].setOutlineColor(Color::Red);
+				spacesInUserCard[i][j].setFillColor(Color::Transparent);
+				spacesInUserCard[i][j].setOutlineColor(Color::Transparent);
 				spacesInUserCard[i][j].setOutlineThickness(0);
 				spacesInUserCard[i][j].setPosition(xRight, y);
 				xRight += 55;
@@ -117,6 +146,10 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 				if (j == 3) {
 					numberOfPlayer.setPosition(xRight + 40.f, y);
 				}
+
+				cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
+				cardDownSprite[i][j].setScale(spacesInUserCard[i][j].getSize().x / cardDownTexture[i][j].getSize().x, spacesInUserCard[i][j].getSize().y / cardDownTexture[i][j].getSize().y);
+
 				continue;
 			}
 
@@ -126,8 +159,8 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			}
 
 			spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
-			spacesInUserCard[i][j].setFillColor(Color::Red);
-			spacesInUserCard[i][j].setOutlineColor(Color::Red);
+			spacesInUserCard[i][j].setFillColor(Color::Transparent);
+			spacesInUserCard[i][j].setOutlineColor(Color::Transparent);
 			spacesInUserCard[i][j].setOutlineThickness(0);
 			spacesInUserCard[i][j].setPosition(xLeft + 640.f - incrementPosition, y);
 			xLeft += 55.f;
@@ -136,6 +169,10 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			if (j == 0) {
 				numberOfPlayer.setPosition(xLeft + 530.f - incrementPosition, y);
 			}
+
+			cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
+			cardDownSprite[i][j].setScale(spacesInUserCard[i][j].getSize().x / cardDownTexture[i][j].getSize().x, spacesInUserCard[i][j].getSize().y / cardDownTexture[i][j].getSize().y);
+
 
 		}
 		gameWindow.draw(numberOfPlayer);
@@ -147,7 +184,6 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 	}
 
 }
-
 
 void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 {
@@ -195,14 +231,14 @@ void PokerDisplay::definePreflopButtons()
 	preFlopButton[5].buttonShowCards();
 }
 
-//void PokerDisplay::definePostflopButtons()
-//{
-//	postFlopButton[0].buttonHalfPot();
-//	postFlopButton[1].buttonThreeQuartersOfPot();
-//	postFlopButton[2].buttonAllIn();
-//	postFlopButton[3].buttonGoOut();
-//	postFlopButton[4].buttonShowCards();
-//}
+void PokerDisplay::definePostflopButtons()
+{
+	postFlopButton[0].buttonHalfPot();
+	postFlopButton[1].buttonThreeQuartersOfPot();
+	postFlopButton[2].buttonAllIn();
+	postFlopButton[3].buttonGoOut();
+	postFlopButton[4].buttonShowCards();
+}
 
 void PokerDisplay::drawPreFlopButtons(RenderWindow& gameWindow)
 {
@@ -212,13 +248,13 @@ void PokerDisplay::drawPreFlopButtons(RenderWindow& gameWindow)
 	}
 }
 
-//void PokerDisplay::drawPostFlopButtons(RenderWindow& gameWindow)
-//{
-//	for (int i = 0; i < SIZE_POSFLOP_BUTTON; i++)
-//	{
-//		preFlopButton[i].drawButton(gameWindow);
-//	}
-//}
+void PokerDisplay::drawPostFlopButtons(RenderWindow& gameWindow)
+{
+	for (int i = 0; i < SIZE_POSFLOP_BUTTON; i++)
+	{
+		postFlopButton[i].drawButton(gameWindow);
+	}
+}
 
 void PokerDisplay::highlightButton(Vector2f& mousePosition)
 {
@@ -228,7 +264,7 @@ void PokerDisplay::highlightButton(Vector2f& mousePosition)
 		bool isMouseOverButton = preFlopButton[i].getButtonShape().getGlobalBounds().contains(mousePosition);
 		if (isMouseOverButton)
 		{
-			preFlopButton[i].setButtonColor(Color::Red);
+			preFlopButton[i].setButtonColor(Color(173, 216, 230));
 			cout << " Si entro " << endl;
 		}
 		else
@@ -238,6 +274,73 @@ void PokerDisplay::highlightButton(Vector2f& mousePosition)
 	}
 }
 
+}
+
+void PokerDisplay::drawPotAccumulator(RenderWindow& gameWindow)
+{
+	RectangleShape potAccumulator(Vector2f(500, 120));
+	Font potAccumulatorFont;
+	string text = "POT ACCUMULATOR";
+	float xPosition = 705.f;
+	float yPosition = 15.f;
+
+	potAccumulatorFont.loadFromFile("ARIAL.ttf");
+
+	potAccumulator.setFillColor(Color::Transparent);
+	potAccumulator.setPosition(Vector2f(xPosition, yPosition));
+	potAccumulator.setOutlineColor(Color::Black);
+	potAccumulator.setOutlineThickness(5.0f);
+
+	Text potAccumulatorText(text, potAccumulatorFont, 20);
+	potAccumulatorText.setOutlineColor(Color::Black);
+	potAccumulatorText.setOutlineThickness(1.f);
+	potAccumulatorText.setFillColor(Color::Black);
+	potAccumulatorText.setPosition(841.0f,25.0f);
+
+	gameWindow.draw(potAccumulator);
+	gameWindow.draw(potAccumulatorText);
+	
+}
+
+void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
+{
+	int amountOfCardsToDraw = 0;
+	if (isDealerThrowingCards)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+			{
+				if (amountOfCardsToDraw == limit && clock.getElapsedTime() > time) {
+					limit++;
+					clock.restart();
+
+					if (limit == columns * rows) {
+						isDealerThrowingCards = false;
+					}
+
+					soundCard.stop();
+					soundCard.play();
+
+				}
+				if (amountOfCardsToDraw != limit) {
+					gameWindow.draw(cardDownSprite[i][j]);
+					amountOfCardsToDraw++;
+				}
+			}
+		}
+	}
+}
+
+void PokerDisplay::drawAllCardsDown(RenderWindow& gameWindow)
+{
+	if (!isDealerThrowingCards) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				gameWindow.draw(cardDownSprite[i][j]);
+			}
+		}
+	}
 void PokerDisplay::setPositionSpritesOfUserCards()
 {
 	for (int i = 0; i < pokerTable->getNumberOfPlayers(); i++)
