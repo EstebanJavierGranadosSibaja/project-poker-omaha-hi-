@@ -3,8 +3,10 @@
 #include"poker_table.h"
 
 const int MAX_OF_USER_CARD = 4; 
+const int BETS_AMOUNT = 4; 
 const int SIZE_PREFLOP_BUTTON = 6; 
 const int SIZE_POSFLOP_BUTTON = 5;
+
 
 class PokerDisplay
 {
@@ -29,6 +31,7 @@ private:
 	Time time;
 	int limit;
 	bool isDealerThrowingCards;
+	int currentPlayersTurn;
 
 	int rows;
 	int columns;
@@ -52,6 +55,7 @@ public:
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void drawAllCardsDown(RenderWindow& gameWindow);
 	void drawBingAndSmallBling(RenderWindow& gameWindow); 
-	void drawBingAndSmallBling(RenderWindow& gameWindow);
-
+	void firstRoundOfBetting(Vector2f clickPosition);
+	void turnChange();
+	
 };

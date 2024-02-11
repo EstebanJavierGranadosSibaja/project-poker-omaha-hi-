@@ -4,6 +4,8 @@ PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 {
 	pot = 0;
 	bigBlind = aBigBlind;
+	
+	
 	smallBlind = aBigBlind / 2;
 	numberOfPlayers = aNumberOfPlayers;
 	dealer = new Dealer();
@@ -77,6 +79,11 @@ int PokerTable::getNumberOfPlayers()
 	return numberOfPlayers;
 }
 
+int PokerTable::getPlayerBlind(int index)
+{
+	return players[index]->getUserBlind(); 
+}
+
 Dealer* PokerTable::getDealer()
 {
 	return dealer;
@@ -97,51 +104,51 @@ void PokerTable::dealCardsToThePlayers()
 	dealer->getPlayerCards(players, numberOfPlayers, deck);
 }
 
-void PokerTable::startPreFloatRound()
-{
-	dealer->setCommunityCards(deck);
-
-
-
-	/*dealer->getPlayerCards(players, numberOfPlayers, deck);
-
-	for (int i = 0; i < 5; i++)
-	{
-		cout << dealer->getCommunityCards()[i]->getType() << " - ";
-	}
-	cout << endl << endl;
-	for (int i = 0; i < 5; i++)
-	{
-		cout << dealer->getCommunityCards()[i]->getNumber() << " - ";
-	}
-	cout << endl << endl;
-	for (int i = 0; i < 5; i++)
-	{
-		cout << dealer->getCommunityCards()[i]->getValue() << " - ";
-	}
-
-	cout << endl << endl << endl << endl;;
-
-	for (int i = 0; i < numberOfPlayers; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			cout << players[i]->getUserHand()->getHand()[j]->getNumber() << " - ";
-
-		}
-		cout << endl << endl;
-	}
-
-	for (int i = 0; i < numberOfPlayers; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			cout << players[i]->getUserHand()->getHand()[j]->getType() << " - ";
-
-		}
-		cout << endl << endl;
-	}*/
-}
+//void PokerTable::startPreFloatRound()
+//{
+//	dealer->setCommunityCards(deck);
+//
+//
+//
+//	dealer->getPlayerCards(players, numberOfPlayers, deck);
+//
+//	for (int i = 0; i < 5; i++)
+//	{
+//		cout << dealer->getCommunityCards()[i]->getType() << " - ";
+//	}
+//	cout << endl << endl;
+//	for (int i = 0; i < 5; i++)
+//	{
+//		cout << dealer->getCommunityCards()[i]->getNumber() << " - ";
+//	}
+//	cout << endl << endl;
+//	for (int i = 0; i < 5; i++)
+//	{
+//		cout << dealer->getCommunityCards()[i]->getValue() << " - ";
+//	}
+//
+//	cout << endl << endl << endl << endl;;
+//
+//	for (int i = 0; i < numberOfPlayers; i++)
+//	{
+//		for (int j = 0; j < 4; j++)
+//		{
+//			cout << players[i]->getUserHand()->getHand()[j]->getNumber() << " - ";
+//
+//		}
+//		cout << endl << endl;
+//	}
+//
+//	for (int i = 0; i < numberOfPlayers; i++)
+//	{
+//		for (int j = 0; j < 4; j++)
+//		{
+//			cout << players[i]->getUserHand()->getHand()[j]->getType() << " - ";
+//
+//		}
+//		cout << endl << endl;
+//	}
+//}
 
 bool PokerTable::validationOfThreeBigBlindButton(int &actualUserBlind)
 {
@@ -201,4 +208,37 @@ bool PokerTable::validationOfAllInButton(int& actualUserBlind)
 	}
 
 	return false;
+}
+
+void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
+{
+	if (index == 0)
+	{
+		validationOfThreeBigBlindButton(actualUserBlind); 
+		return; 
+	}
+
+	if (index == 1)
+	{
+		validationOfTwoPartsPotButton(actualUserBlind); 
+		return;
+	}
+
+	if (index == 2)
+	{
+		validationOfPotButton(actualUserBlind); 
+		return;
+	}
+
+	if (index ==3)
+	{
+		validationOfAllInButton(actualUserBlind); 
+		return;
+	}
+
+	
+
+
+
+
 }

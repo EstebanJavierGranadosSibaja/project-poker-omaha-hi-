@@ -35,6 +35,7 @@ public:
 	int getBigBlind();
 	int getSmallBlind();
 	int getNumberOfPlayers();
+	int getPlayerBlind(int index); 
 	Dealer* getDealer();
 	Deck* getDeck();
 	Player** getPlayers(); 
@@ -47,4 +48,7 @@ public:
 	bool validationOfTwoPartsPotButton(int& actualUserBlind);
 	bool validationOfPotButton(int& actualUserBlind);
 	bool validationOfAllInButton(int& actualUserBlind);
+
+	void preFloatIncreaseThePot(int index, int& actualUserBlind);
+
 };

@@ -8,6 +8,8 @@ private:
 	RectangleShape buttonShape;
 	Text buttonText;
 
+	bool isAClick; 
+
 
 public: 
 	Button();
@@ -23,6 +25,7 @@ public:
 	void buttonShowCards();
 	void drawButton(RenderWindow& window); 
 	void setButtonColor(Color color);
+	bool theButtonWasClicked(Vector2f clickPosition); 
 	
 
 

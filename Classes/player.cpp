@@ -4,15 +4,15 @@ Player::Player()
 {
 	numberPlayer = 0; 
 	isActive = true; 
-	userBlind = 100; 
+	userBlind = 100;
 	userHand = new PlayerHand(); 
 }
 
-Player::Player(int aNumberPlayer, bool newIsActive, int aUserBlind, int aBlindPrice, PlayerHand* aUserHand)
+Player::Player(int aNumberPlayer, bool newIsActive, PlayerHand* aUserHand)
 {
 	numberPlayer = aNumberPlayer;
 	isActive = newIsActive;
-	userBlind *= aBlindPrice;
+	userBlind= userBlind;
 	userHand = aUserHand; 
 }
 
