@@ -17,7 +17,7 @@ public:
 	void createDealerTexture();
 	void setCommunityCards(Deck*& deck); 
 	void shuffleDeck(Deck*& newDeck);
-	Player** getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck);
+	void getPlayerCards(Player**& players, int amountOfPlayers, Deck*& pokerTableDeck);
 	Card** getCommunityCards();
 	Card** getFloat();
 	Card** getTurn();

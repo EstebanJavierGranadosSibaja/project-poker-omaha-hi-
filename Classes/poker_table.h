@@ -39,6 +39,8 @@ public:
 	Deck* getDeck();
 	Player** getPlayers(); 
 
+	void dealCardsToThePlayers(); 
+
 	void startPreFloatRound();
 	bool validationOfBigBlindButton(int );
 };

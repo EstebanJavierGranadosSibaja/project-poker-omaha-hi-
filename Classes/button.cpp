@@ -7,7 +7,7 @@ Button::Button()
 
 	buttonShape = RectangleShape(Vector2f(190, 100));
 	
-	buttonShape.setFillColor(Color(135, 206, 250, 255));
+buttonShape.setFillColor(Color(150, 185, 250));
 	buttonShape.setPosition(Vector2f(0, 0)); 
 	buttonShape.setOutlineColor(Color::Black); 
 	buttonShape.setOutlineThickness(3.0f); 

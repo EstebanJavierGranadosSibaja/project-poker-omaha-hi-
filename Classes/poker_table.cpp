@@ -92,6 +92,11 @@ Player** PokerTable::getPlayers()
 	return players;
 }
 
+void PokerTable::dealCardsToThePlayers()
+{
+	dealer->getPlayerCards(players, numberOfPlayers, deck);
+}
+
 void PokerTable::startPreFloatRound()
 {
 	dealer->setCommunityCards(deck);
