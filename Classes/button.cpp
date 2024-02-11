@@ -21,12 +21,13 @@ Button::Button(float newXPosition, float newYposition, string text)
 	buttonFont = Font();
 	buttonFont.loadFromFile("ARIAL.ttf");
 
+	buttonShape = RectangleShape(Vector2f(190, 100));
 	buttonShape.setFillColor(Color::White);
 	buttonShape.setPosition(Vector2f(newXPosition, newYposition)); 
 
 	buttonText = Text(text, buttonFont, 40);
 	buttonText.setFillColor(Color::Black);
-	buttonText.setPosition(newXPosition +50, newYposition+25);
+	buttonText.setPosition(newXPosition + 95, newYposition+50);
 }
 
 RectangleShape Button::getButtonShape()
@@ -47,7 +48,7 @@ void Button::button3BB()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition+50, yPosition+25);
+	buttonText.setPosition(xPosition+90, yPosition+50);
 	buttonText.setString(text); 
 }
 
@@ -58,7 +59,7 @@ void Button::buttonHalfPot()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 90, yPosition +50);
+	buttonText.setPosition(xPosition + 95, yPosition +50);
 	buttonText.setString(text);
 }
 
@@ -69,7 +70,7 @@ void Button::buttonOnePot()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 90, yPosition + 50);
+	buttonText.setPosition(xPosition + 95, yPosition + 50);
 	buttonText.setString(text);
 }
 
@@ -80,7 +81,7 @@ void Button::threeQuartersOfPot()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 90, yPosition + 50);
+	buttonText.setPosition(xPosition + 95, yPosition + 50);
 	buttonText.setString(text);
 }
 
@@ -91,7 +92,7 @@ void Button::buttonAllIn()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 90, yPosition + 50);
+	buttonText.setPosition(xPosition + 95, yPosition + 50);
 	buttonText.setString(text);
 }
 
@@ -102,7 +103,7 @@ void Button::buttonGoOut()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 90, yPosition + 50);
+	buttonText.setPosition(xPosition + 95, yPosition + 50);
 	buttonText.setString(text);
 
 }

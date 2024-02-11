@@ -2,26 +2,27 @@
 
 PokerDisplay::PokerDisplay()
 {
-	
+
 	menu = new Menu();
 	menu->loadMenuWindow();
 
 	rows = menu->getNumPlayer();
-	columns = maxOfUserCard;
+	columns = MAX_OF_USER_CARD;
 
 	pokerTable = new PokerTable(menu->getBlindPrice(), menu->getNumPlayer());
 
 
 	backGround = Texture();
 	spriteBackGround = Sprite();
-	arial.loadFromFile("ARIAL.ttf"); 
+	arial.loadFromFile("ARIAL.ttf");
 
 	numberOfPlayer = Text("1", arial, 35);
 	numberOfPlayer.setFillColor(Color::White);
 	numberOfPlayer.setOutlineThickness(2.5f);
 	numberOfPlayer.setOutlineColor(Color::Black);
 
-	button = new Button();
+	preFlopButton = new Button[SIZE_PREFLOP_BUTTON];
+
 	spacesInUserCard = new RectangleShape * [rows];
 
 	for (int i = 0; i < rows; i++)
@@ -34,9 +35,10 @@ PokerDisplay::PokerDisplay()
 
 void PokerDisplay::loadGameWindow()
 {
-	button->button3BB();
-	
+
+
 	loadGameImage();
+	definePreflopButtons(); 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 	while (gameWindow.isOpen())
 	{
@@ -46,7 +48,7 @@ void PokerDisplay::loadGameWindow()
 		{
 			system("cls");
 			cout << " " << mousePosition.x << " , " << mousePosition.y;
-			
+
 			if (event.type == Event::Closed)
 			{
 				gameWindow.close();
@@ -60,7 +62,7 @@ void PokerDisplay::loadGameWindow()
 
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-		button->drawButton(gameWindow);
+		drawPreFlopButtons(gameWindow);
 
 		gameWindow.display();
 	}
@@ -172,6 +174,26 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		gameWindow.draw(spacesForDealerCard[i]);
 	}
 }
+
+void PokerDisplay::definePreflopButtons()
+{
+	preFlopButton[0].button3BB();
+	preFlopButton[1].buttonHalfPot();
+	preFlopButton[2].buttonOnePot();
+	preFlopButton[3].buttonAllIn(); 
+	preFlopButton[4].buttonGoOut();
+	preFlopButton[5].buttonShowCards();
+}
+
+void PokerDisplay::drawPreFlopButtons(RenderWindow& gameWindow)
+{
+	for (int i = 0; i < SIZE_PREFLOP_BUTTON; i++)
+	{
+		preFlopButton[i].drawButton(gameWindow);
+	}
+}
+
+
 
 
 
