@@ -22,6 +22,11 @@ void PlayerHand::setHand(Card** newHand)
 	hand = newHand;
 }
 
+void PlayerHand::setPlayersSprite(Sprite* newSprites)
+{
+	vectorOfPlayerSprites = newSprites;
+}
+
 Card** PlayerHand::getHand()
 {
 	return hand;

@@ -18,7 +18,7 @@ PokerDisplay::PokerDisplay()
 	clock = Clock();
 	time = seconds(1.f);
 	isDealerThrowingCards = true;
-	limit = 1; 
+	limit = 1;
 	soundCard.openFromFile("Images/card_sound.ogg");
 
 	numberOfPlayer = Text("1", arial, 35);
@@ -38,11 +38,11 @@ PokerDisplay::PokerDisplay()
 
 	spacesForDealerCard = new RectangleShape[COMMUNITY_CARD_SIZE];
 
-	cardDownTexture = new Texture* [rows];
+	cardDownTexture = new Texture * [rows];
 	cardDownSprite = new Sprite * [rows];
 	for (int i = 0; i < rows; i++)
 	{
-		cardDownTexture[i] = new Texture[columns]; 
+		cardDownTexture[i] = new Texture[columns];
 		cardDownSprite[i] = new Sprite[columns];
 	}
 
@@ -51,13 +51,14 @@ PokerDisplay::PokerDisplay()
 		for (int j = 0; j < columns; j++)
 		{
 			cardDownTexture[i][j].loadFromFile("Images/cardBack.png");
-			cardDownSprite[i][j] = Sprite(cardDownTexture[i][j]); 
+			cardDownSprite[i][j] = Sprite(cardDownTexture[i][j]);
 		}
 	}
 }
 
 void PokerDisplay::loadGameWindow()
 {
+	Player** players = pokerTable->getPlayers();
 
 	loadGameImage();
 	//definePreflopButtons();
@@ -98,6 +99,9 @@ void PokerDisplay::loadGameWindow()
 		drawAllCardsDown(gameWindow); 
 
 		//drawPreFlopButtons(gameWindow);
+
+		//Falla al momento de compilar, no se si se tiene que poner en otro luhar :(
+		//setPositionSpritesOfUserCards();
 
 		gameWindow.display();
 	}
@@ -171,6 +175,9 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
 			cardDownSprite[i][j].setScale(spacesInUserCard[i][j].getSize().x / cardDownTexture[i][j].getSize().x, spacesInUserCard[i][j].getSize().y / cardDownTexture[i][j].getSize().y);
 
+			/*pokerTable->getPlayers()[i]->getUserHand()->getPlayerSprite()[j].setPosition(spacesInUserCard[i][j].getPosition());
+			pokerTable->getPlayers()[i]->getUserHand()->getPlayerSprite()[j].setScale(spacesInUserCard[i][j].getSize().x / pokerTable->getPlayers()[i]->getUserHand()->getPlayerTexture()[j].getSize().x,
+				spacesInUserCard[i][j].getSize().y / pokerTable->getPlayers()[i]->getUserHand()->getPlayerTexture()[j].getSize().y);*/
 
 		}
 		gameWindow.draw(numberOfPlayer);
@@ -180,6 +187,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 		y += 110.f;
 		incrementPosition += 40.f;
 	}
+
 }
 
 void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
@@ -202,6 +210,10 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
+		/*pokerTable->getDealer()->getDealerSprite()[i].setPosition(spacesForDealerCard[i].getPosition());
+		pokerTable->getDealer()->getDealerSprite()[i].setPosition(spacesForDealerCard[i].getSize().x / pokerTable->getDealer()->getDealerTexture()[i].getSize().x,
+			spacesForDealerCard[i].getSize().y / pokerTable->getDealer()->getDealerTexture()[i].getSize().y);*/
+
 		if (i < midCard)
 		{
 			yCenter += 10.f;
@@ -223,7 +235,7 @@ void PokerDisplay::definePreflopButtons()
 	preFlopButton[0].button3BB();
 	preFlopButton[1].buttonHalfPot();
 	preFlopButton[2].buttonOnePot();
-	preFlopButton[3].buttonAllIn(); 
+	preFlopButton[3].buttonAllIn();
 	preFlopButton[4].buttonGoOut();
 	preFlopButton[5].buttonShowCards();
 }
@@ -269,7 +281,6 @@ void PokerDisplay::highlightButton(Vector2f& mousePosition, int size, Button* pr
 			preOfPosButton[i].setButtonColor(Color(135, 206, 250, 255));
 		}
 	}
-
 }
 
 void PokerDisplay::drawPotAccumulator(RenderWindow& gameWindow)
@@ -291,11 +302,11 @@ void PokerDisplay::drawPotAccumulator(RenderWindow& gameWindow)
 	potAccumulatorText.setOutlineColor(Color::Black);
 	potAccumulatorText.setOutlineThickness(1.f);
 	potAccumulatorText.setFillColor(Color::Black);
-	potAccumulatorText.setPosition(841.0f,25.0f);
+	potAccumulatorText.setPosition(841.0f, 25.0f);
 
 	gameWindow.draw(potAccumulator);
 	gameWindow.draw(potAccumulatorText);
-	
+
 }
 
 void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
@@ -307,11 +318,13 @@ void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
 		{
 			for (int j = 0; j < columns; j++)
 			{
-				if (amountOfCardsToDraw == limit && clock.getElapsedTime() > time) {
+				if (amountOfCardsToDraw == limit && clock.getElapsedTime() > time)
+				{
 					limit++;
 					clock.restart();
 
-					if (limit == columns * rows) {
+					if (limit == columns * rows)
+					{
 						isDealerThrowingCards = false;
 					}
 
@@ -319,7 +332,8 @@ void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
 					soundCard.play();
 
 				}
-				if (amountOfCardsToDraw != limit) {
+				if (amountOfCardsToDraw != limit)
+				{
 					gameWindow.draw(cardDownSprite[i][j]);
 					amountOfCardsToDraw++;
 				}
@@ -366,6 +380,7 @@ void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
 	gameWindow.draw(bigBlindSprite);
 	gameWindow.draw(smallBlindSprite);
 }
+
 
 
 

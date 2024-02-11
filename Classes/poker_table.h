@@ -16,7 +16,7 @@ private:
 	Dealer* dealer; 
 	Deck* deck; 
 	Player** players;
-	//Menu* menu;
+	
 
 public: 
 	PokerTable() {};
@@ -42,5 +42,9 @@ public:
 	void dealCardsToThePlayers(); 
 
 	void startPreFloatRound();
-	bool validationOfBigBlindButton(int );
+	bool validationOfThreeBigBlindButton(int &actualUserBlind);
+	bool validationOfThreePartsPotButton(int& actualUserBlind);
+	bool validationOfTwoPartsPotButton(int& actualUserBlind);
+	bool validationOfPotButton(int& actualUserBlind);
+	bool validationOfAllInButton(int& actualUserBlind);
 };
