@@ -76,7 +76,7 @@ void Button::buttonOnePot()
 	buttonText.setString(text);
 }
 
-void Button::threeQuartersOfPot()
+void Button::buttonThreeQuartersOfPot()
 {
 	string text = "3/4 POT";
 	float xPosition = 700.f;
@@ -125,5 +125,10 @@ void Button::drawButton(RenderWindow& window)
 {
 	window.draw(buttonShape);
 	window.draw(buttonText);
+}
+
+void Button::setButtonColor(Color color)
+{
+	buttonShape.setFillColor(color);
 }
 

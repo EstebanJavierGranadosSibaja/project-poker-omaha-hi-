@@ -17,11 +17,12 @@ public:
 	void button3BB();
 	void buttonHalfPot();
 	void buttonOnePot(); 
-	void threeQuartersOfPot();
+	void buttonThreeQuartersOfPot();
 	void buttonAllIn();
 	void buttonGoOut();
 	void buttonShowCards();
 	void drawButton(RenderWindow& window); 
+	void setButtonColor(Color color);
 	
 
 
