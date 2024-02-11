@@ -2,11 +2,8 @@
 
 PokerDisplay::PokerDisplay()
 {
-
 	menu = new Menu();
 	menu->loadMenuWindow();
-
-
 
 	rows = menu->getNumPlayer();
 	columns = MAX_OF_USER_CARD;
@@ -17,9 +14,6 @@ PokerDisplay::PokerDisplay()
 	backGround = Texture();
 	spriteBackGround = Sprite();
 	arial.loadFromFile("ARIAL.ttf");
-
-
-
 
 	timePerCard = seconds(2.0f);
 	soundTime = Clock();
@@ -41,7 +35,6 @@ PokerDisplay::PokerDisplay()
 
 	spacesForDealerCard = new RectangleShape[COMMUNITY_CARD_SIZE];
 
-
 	cardDownTexture = new Texture* [rows];
 	cardDownSprite = new Sprite * [rows];
 	for (int i = 0; i < rows; i++)
@@ -49,7 +42,6 @@ PokerDisplay::PokerDisplay()
 		cardDownTexture[i] = new Texture[columns]; 
 		cardDownSprite[i] = new Sprite[columns];
 	}
-
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -59,13 +51,10 @@ PokerDisplay::PokerDisplay()
 			cardDownSprite[i][j] = Sprite(cardDownTexture[i][j]); 
 		}
 	}
-		
-	
 }
 
 void PokerDisplay::loadGameWindow()
 {
-
 
 	loadGameImage();
 	//definePreflopButtons();
@@ -86,8 +75,8 @@ void PokerDisplay::loadGameWindow()
 		{
 
 			highlightButton(mousePositionInWindow);
-			/*system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
+			system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;
 
 			if (event.type == Event::Closed)
 			{
@@ -99,8 +88,9 @@ void PokerDisplay::loadGameWindow()
 		gameWindow.draw(spriteBackGround);
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-		drawPostFlopButtons(gameWindow); 
-		dealPreFlopCards(gameWindow); 
+		drawPostFlopButtons(gameWindow);
+		drawPotAccumulator(gameWindow);
+		//dealPreFlopCards(gameWindow); 
 		//drawPreFlopButtons(gameWindow);
 
 		gameWindow.display();
@@ -139,8 +129,8 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			{
 
 				spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
-				spacesInUserCard[i][j].setFillColor(Color::Transparent);
-				spacesInUserCard[i][j].setOutlineColor(Color::Transparent);
+				spacesInUserCard[i][j].setFillColor(Color::Red);
+				spacesInUserCard[i][j].setOutlineColor(Color::Red);
 				spacesInUserCard[i][j].setOutlineThickness(0);
 				spacesInUserCard[i][j].setPosition(xRight, y);
 				xRight += 55;
@@ -149,8 +139,6 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 					numberOfPlayer.setPosition(xRight + 40.f, y);
 				}
 
-				cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
-				cardDownSprite[i][j].setScale(spacesInUserCard[i][j].getSize().x / cardDownTexture[i][j].getSize().x, spacesInUserCard[i][j].getSize().y / cardDownTexture[i][j].getSize().y);
 
 				continue;
 			}
@@ -161,8 +149,8 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			}
 
 			spacesInUserCard[i][j] = RectangleShape(Vector2f(rectWidth, rectHeight));
-			spacesInUserCard[i][j].setFillColor(Color::Transparent);
-			spacesInUserCard[i][j].setOutlineColor(Color::Transparent);
+			spacesInUserCard[i][j].setFillColor(Color::Red);
+			spacesInUserCard[i][j].setOutlineColor(Color::Red);
 			spacesInUserCard[i][j].setOutlineThickness(0);
 			spacesInUserCard[i][j].setPosition(xLeft + 640.f - incrementPosition, y);
 			xLeft += 55.f;
@@ -202,8 +190,8 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
 		spacesForDealerCard[i] = RectangleShape(Vector2f(rectWidth, rectHeight));
-		spacesForDealerCard[i].setFillColor(Color::Transparent);
-		spacesForDealerCard[i].setOutlineColor(Color::Transparent);
+		spacesForDealerCard[i].setFillColor(Color::Red);
+		spacesForDealerCard[i].setOutlineColor(Color::Red);
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
@@ -277,35 +265,64 @@ void PokerDisplay::highlightButton(Vector2f& mousePosition)
 
 }
 
-void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
+void PokerDisplay::drawPotAccumulator(RenderWindow& gameWindow)
 {
+	RectangleShape potAccumulator(Vector2f(500, 120));
+	Font potAccumulatorFont;
+	string text = "POT ACCUMULATOR";
+	float xPosition = 705.f;
+	float yPosition = 15.f;
 
-	Music soundCard;
-	soundCard.openFromFile("Images/card_sound.ogg");
-	soundCard.setLoop(true);
+	potAccumulatorFont.loadFromFile("ARIAL.ttf");
 
+	potAccumulator.setFillColor(Color::Transparent);
+	potAccumulator.setPosition(Vector2f(xPosition, yPosition));
+	potAccumulator.setOutlineColor(Color::Black);
+	potAccumulator.setOutlineThickness(5.0f);
 
+	Text potAccumulatorText(text, potAccumulatorFont, 20);
+	potAccumulatorText.setOutlineColor(Color::Black);
+	potAccumulatorText.setOutlineThickness(1.f);
+	potAccumulatorText.setFillColor(Color::Black);
 
+	
+	potAccumulatorText.setPosition(841.0f,25.0f);
 
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-		{
-			if (soundTime.getElapsedTime() > timePerCard)
-			{
-				
-				soundCard.play();
-				gameWindow.draw(cardDownSprite[i][j]);
-
-				soundTime.restart();
-			}
-
-		}
-	}
-
-
-	soundCard.setLoop(false);
+	// Dibujar el rectángulo y el texto en la ventana del juego
+	gameWindow.draw(potAccumulator);
+	gameWindow.draw(potAccumulatorText);
+	
 }
+
+//void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
+//{
+//
+//	Music soundCard;
+//	soundCard.openFromFile("Images/card_sound.ogg");
+//	soundCard.setLoop(true);
+//
+//
+//
+//
+//	for (int i = 0; i < rows; i++)
+//	{
+//		for (int j = 0; j < columns; j++)
+//		{
+//			if (soundTime.getElapsedTime() > timePerCard)
+//			{
+//				
+//				soundCard.play();
+//				gameWindow.draw(cardDownSprite[i][j]);
+//
+//				soundTime.restart();
+//			}
+//
+//		}
+//	}
+//
+//
+//	soundCard.setLoop(false);
+//}
 
 
 

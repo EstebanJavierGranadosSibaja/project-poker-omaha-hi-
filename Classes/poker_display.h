@@ -44,6 +44,8 @@ public:
 	void drawPreFlopButtons(RenderWindow& gameWindow);
 	void drawPostFlopButtons(RenderWindow& gameWindow);
 	void highlightButton(Vector2f& mousePosition);
+	void drawPotAccumulator(RenderWindow& gameWindow);
+	 
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	
 };
