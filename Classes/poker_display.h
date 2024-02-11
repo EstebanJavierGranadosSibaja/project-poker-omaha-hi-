@@ -51,6 +51,4 @@ public:
 	 
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void drawAllCardsDown(RenderWindow& gameWindow);
-	
-	void setPositionSpritesOfUserCards();
 };
