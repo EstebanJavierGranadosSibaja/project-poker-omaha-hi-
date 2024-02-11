@@ -39,15 +39,23 @@ void PokerDisplay::loadGameWindow()
 
 	loadGameImage();
 	definePreflopButtons(); 
+
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
+
+	
 	while (gameWindow.isOpen())
 	{
-		Vector2i mousePosition = Mouse::getPosition(gameWindow);
 		Event event;
+
+		Vector2i mousePosition = Mouse::getPosition(gameWindow);
+		Vector2f mousePositionF = gameWindow.mapPixelToCoords(mousePosition);
+
 		while (gameWindow.pollEvent(event))
 		{
-			system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;
+			highlightButton(mousePositionF);
+
+			/*system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
 
 			if (event.type == Event::Closed)
 			{
@@ -56,10 +64,7 @@ void PokerDisplay::loadGameWindow()
 		}
 		gameWindow.clear();
 
-		//se pueden llamar metodos aqui 
-
 		gameWindow.draw(spriteBackGround);
-
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
 		drawPreFlopButtons(gameWindow);
@@ -190,6 +195,23 @@ void PokerDisplay::drawPreFlopButtons(RenderWindow& gameWindow)
 	for (int i = 0; i < SIZE_PREFLOP_BUTTON; i++)
 	{
 		preFlopButton[i].drawButton(gameWindow);
+	}
+}
+
+void PokerDisplay::highlightButton(Vector2f mousePositionF)
+{
+
+	for (int i = 0; i < SIZE_PREFLOP_BUTTON; i++)
+	{
+		//bool isMouseOverButton = preFlopButton[i].getButtonShape().getGlobalBounds().contains(mousePositionF);
+		if (preFlopButton[i].getButtonShape().getGlobalBounds().contains(mousePositionF))
+		{
+			preFlopButton[i].getButtonShape().setFillColor(Color::Red);
+		}
+		else
+		{
+			preFlopButton[i].getButtonShape().setFillColor(Color(135, 206, 250, 255));
+		}
 	}
 }
 

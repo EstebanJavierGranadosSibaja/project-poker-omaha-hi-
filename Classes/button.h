@@ -22,6 +22,7 @@ public:
 	void buttonGoOut();
 	void buttonShowCards();
 	void drawButton(RenderWindow& window); 
+	
 
 
 

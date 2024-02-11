@@ -6,9 +6,11 @@ Button::Button()
 	buttonFont.loadFromFile("ARIAL.ttf");
 
 	buttonShape = RectangleShape(Vector2f(190, 100));
+	
 	buttonShape.setFillColor(Color(135, 206, 250, 255));
 	buttonShape.setPosition(Vector2f(0, 0)); 
-
+	buttonShape.setOutlineColor(Color::Black); 
+	buttonShape.setOutlineThickness(3.0f); 
 	buttonText = Text("", buttonFont, 35);
 	buttonText.setOutlineThickness(2.f);
 	buttonText.setFillColor(Color::Black);
@@ -48,7 +50,7 @@ void Button::button3BB()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition+90, yPosition+50);
+	buttonText.setPosition(xPosition+ 30, yPosition+ 30);
 	buttonText.setString(text); 
 }
 
@@ -59,7 +61,7 @@ void Button::buttonHalfPot()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 95, yPosition +50);
+	buttonText.setPosition(xPosition + 30, yPosition +30);
 	buttonText.setString(text);
 }
 
@@ -70,7 +72,7 @@ void Button::buttonOnePot()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 95, yPosition + 50);
+	buttonText.setPosition(xPosition + 30, yPosition + 30);
 	buttonText.setString(text);
 }
 
@@ -81,7 +83,7 @@ void Button::threeQuartersOfPot()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 95, yPosition + 50);
+	buttonText.setPosition(xPosition + 30, yPosition + 30);
 	buttonText.setString(text);
 }
 
@@ -92,7 +94,7 @@ void Button::buttonAllIn()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 95, yPosition + 50);
+	buttonText.setPosition(xPosition + 30, yPosition + 30);
 	buttonText.setString(text);
 }
 
@@ -103,7 +105,7 @@ void Button::buttonGoOut()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 95, yPosition + 50);
+	buttonText.setPosition(xPosition + 30, yPosition + 30);
 	buttonText.setString(text);
 
 }
@@ -115,7 +117,7 @@ void Button::buttonShowCards()
 	float yPosition = 875.f;
 
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
-	buttonText.setPosition(xPosition + 90, yPosition + 50);
+	buttonText.setPosition(xPosition + 30, yPosition + 30);
 	buttonText.setString(text);
 }
 
@@ -124,3 +126,4 @@ void Button::drawButton(RenderWindow& window)
 	window.draw(buttonShape);
 	window.draw(buttonText);
 }
+

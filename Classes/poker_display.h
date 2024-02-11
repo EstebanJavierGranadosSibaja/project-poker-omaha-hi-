@@ -33,4 +33,5 @@ public:
 	void checkTheDealerBoxes(RenderWindow& gameWindow);
 	void definePreflopButtons();
 	void drawPreFlopButtons(RenderWindow& gameWindow);
+	void highlightButton(Vector2f mousePositionF);
 };
