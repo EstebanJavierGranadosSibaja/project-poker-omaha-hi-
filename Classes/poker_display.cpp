@@ -69,7 +69,9 @@ void PokerDisplay::loadGameWindow()
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
 		drawPreFlopButtons(gameWindow);
-		setPositionSpritesOfUserCards();
+
+		//Falla al momento de compilar, no se si se tiene que poner en otro luhar :(
+		//setPositionSpritesOfUserCards();
 
 		gameWindow.display();
 	}
@@ -143,6 +145,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 		y += 110.f;
 		incrementPosition += 40.f;
 	}
+
 }
 
 
