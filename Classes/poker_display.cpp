@@ -173,9 +173,9 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
 			cardDownSprite[i][j].setScale(spacesInUserCard[i][j].getSize().x / cardDownTexture[i][j].getSize().x, spacesInUserCard[i][j].getSize().y / cardDownTexture[i][j].getSize().y);
 
-			pokerTable->getPlayers()[i]->getUserHand()->getPlayerSprite()[j].setPosition(spacesInUserCard[i][j].getPosition());
+			/*pokerTable->getPlayers()[i]->getUserHand()->getPlayerSprite()[j].setPosition(spacesInUserCard[i][j].getPosition());
 			pokerTable->getPlayers()[i]->getUserHand()->getPlayerSprite()[j].setScale(spacesInUserCard[i][j].getSize().x / pokerTable->getPlayers()[i]->getUserHand()->getPlayerTexture()[j].getSize().x,
-				spacesInUserCard[i][j].getSize().y / pokerTable->getPlayers()[i]->getUserHand()->getPlayerTexture()[j].getSize().y);
+				spacesInUserCard[i][j].getSize().y / pokerTable->getPlayers()[i]->getUserHand()->getPlayerTexture()[j].getSize().y);*/
 
 		}
 		gameWindow.draw(numberOfPlayer);
@@ -208,9 +208,9 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
-		pokerTable->getDealer()->getDealerSprite()[i].setPosition(spacesForDealerCard[i].getPosition());
+		/*pokerTable->getDealer()->getDealerSprite()[i].setPosition(spacesForDealerCard[i].getPosition());
 		pokerTable->getDealer()->getDealerSprite()[i].setPosition(spacesForDealerCard[i].getSize().x / pokerTable->getDealer()->getDealerTexture()[i].getSize().x,
-			spacesForDealerCard[i].getSize().y / pokerTable->getDealer()->getDealerTexture()[i].getSize().y);
+			spacesForDealerCard[i].getSize().y / pokerTable->getDealer()->getDealerTexture()[i].getSize().y);*/
 
 		if (i < midCard)
 		{
