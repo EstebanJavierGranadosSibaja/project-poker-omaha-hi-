@@ -16,6 +16,7 @@ private:
 	Dealer* dealer; 
 	Deck* deck; 
 	Player** players;
+	
 
 public: 
 	PokerTable() {};

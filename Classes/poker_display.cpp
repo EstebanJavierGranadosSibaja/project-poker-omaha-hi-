@@ -35,7 +35,7 @@ PokerDisplay::PokerDisplay()
 
 void PokerDisplay::loadGameWindow()
 {
-
+	Player** players = pokerTable->getPlayers();
 
 	loadGameImage();
 	definePreflopButtons();
@@ -69,6 +69,7 @@ void PokerDisplay::loadGameWindow()
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
 		drawPreFlopButtons(gameWindow);
+		setPositionSpritesOfUserCards();
 
 		gameWindow.display();
 	}
@@ -232,8 +233,21 @@ void PokerDisplay::highlightButton(Vector2f& mousePosition)
 			preFlopButton[i].setButtonColor(Color(135, 206, 250, 255));
 		}
 	}
-
 }
+
+void PokerDisplay::setPositionSpritesOfUserCards()
+{
+	for (int i = 0; i < pokerTable->getNumberOfPlayers(); i++)
+	{
+		for (int j = 0; j < SIZE_OF_PLAYER_DECK; j++)
+		{
+			pokerTable->getPlayers()[i]->getUserHand()->getPlayerSprite()[j].setPosition(spacesInUserCard[i][j].getPosition());
+			pokerTable->getPlayers()[i]->getUserHand()->getPlayerSprite()[j].setScale(spacesInUserCard[i][j].getScale());
+
+		}
+	}
+}
+
 
 
 
