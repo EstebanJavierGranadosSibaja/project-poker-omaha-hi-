@@ -1,6 +1,7 @@
 #pragma once
 #include"dealer.h"
 #include"player.h"
+#include"menu.h"
 //#include"poker_display.h"
 #include"../poker_omaha_hi/winning_play.h"
 #include"../poker_omaha_hi/file_manager.h"
@@ -15,7 +16,7 @@ private:
 	Dealer* dealer; 
 	Deck* deck; 
 	Player** players;
-	RectangleShape* newRectangles;
+	//Menu* menu;
 
 public: 
 	PokerTable() {};
@@ -39,4 +40,5 @@ public:
 	Player** getPlayers(); 
 
 	void startPreFloatRound();
+	bool validationOfBigBlindButton(int );
 };

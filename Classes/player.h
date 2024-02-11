@@ -10,8 +10,8 @@ private:
 	PlayerHand* userHand; 
 
 public: 
-	Player(); 
-	Player(int aNumberPlayer, bool newIsActive, int aUserBlind, PlayerHand* aUserHand); 
+	Player();
+	Player(int aNumberPlayer, bool newIsActive, int aUserBlind, int aUserCash, PlayerHand* aUserHand);
 
 	void setNumberPlayer(int aNumberPlayer); 
 	void setUserBlind(int aUserBlind);

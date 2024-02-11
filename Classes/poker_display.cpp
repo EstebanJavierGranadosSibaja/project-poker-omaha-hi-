@@ -2,7 +2,6 @@
 
 PokerDisplay::PokerDisplay()
 {
-	
 	menu = new Menu();
 	menu->loadMenuWindow();
 
@@ -11,10 +10,9 @@ PokerDisplay::PokerDisplay()
 
 	pokerTable = new PokerTable(menu->getBlindPrice(), menu->getNumPlayer());
 
-
 	backGround = Texture();
 	spriteBackGround = Sprite();
-	arial.loadFromFile("ARIAL.ttf"); 
+	arial.loadFromFile("ARIAL.ttf");
 
 	numberOfPlayer = Text("1", arial, 35);
 	numberOfPlayer.setFillColor(Color::White);
@@ -35,7 +33,7 @@ PokerDisplay::PokerDisplay()
 void PokerDisplay::loadGameWindow()
 {
 	button->button3BB();
-	
+
 	loadGameImage();
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 	while (gameWindow.isOpen())
@@ -46,7 +44,7 @@ void PokerDisplay::loadGameWindow()
 		{
 			system("cls");
 			cout << " " << mousePosition.x << " , " << mousePosition.y;
-			
+
 			if (event.type == Event::Closed)
 			{
 				gameWindow.close();
@@ -61,6 +59,7 @@ void PokerDisplay::loadGameWindow()
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
 		button->drawButton(gameWindow);
+		pokerTable->startPreFloatRound();
 
 		gameWindow.display();
 	}

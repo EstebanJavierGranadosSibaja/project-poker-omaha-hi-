@@ -8,9 +8,6 @@ int main()
 	PokerDisplay menuTwo;
 	menuTwo.loadGameWindow();
 
-	/*PokerTable table;
-	table.startPreFloatRound();*/
-
 	/*Menu menu;
 	menu.loadMenuWindow();*/
 

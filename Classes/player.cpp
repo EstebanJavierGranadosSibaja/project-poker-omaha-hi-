@@ -8,11 +8,11 @@ Player::Player()
 	userHand = new PlayerHand(); 
 }
 
-Player::Player(int aNumberPlayer, bool newIsActive, int aUserBlind, PlayerHand* aUserHand)
+Player::Player(int aNumberPlayer, bool newIsActive, int aUserBlind, int aBlindPrice, PlayerHand* aUserHand)
 {
-	numberPlayer = aNumberPlayer; 
-	isActive = newIsActive; 
-	userBlind = aUserBlind; 
+	numberPlayer = aNumberPlayer;
+	isActive = newIsActive;
+	userBlind *= aBlindPrice;
 	userHand = aUserHand; 
 }
 

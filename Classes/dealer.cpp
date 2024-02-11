@@ -35,6 +35,8 @@ void Dealer::setCommunityCards(Deck*& deck)
 
 void Dealer::shuffleDeck(Deck*& deck)
 {
+	srand(time(NULL));
+
 	int sizeDeck = deck->getAmountCards();
 	Deck* randomDeck = new Deck;
 

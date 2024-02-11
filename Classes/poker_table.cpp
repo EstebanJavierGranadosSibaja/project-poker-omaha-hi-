@@ -94,22 +94,47 @@ Player** PokerTable::getPlayers()
 
 void PokerTable::startPreFloatRound()
 {
-	/*deck = new Deck();
-	dealer = new Dealer();
-	dealer->shuffleDeck(deck);
 	dealer->setCommunityCards(deck);
 
-	for (int i = 0; i < 52; i++)
+
+
+	/*dealer->getPlayerCards(players, numberOfPlayers, deck);
+
+	for (int i = 0; i < 5; i++)
 	{
 		cout << dealer->getCommunityCards()[i]->getType() << " - ";
 	}
-	for (int i = 0; i < 52; i++)
+	cout << endl << endl;
+	for (int i = 0; i < 5; i++)
 	{
 		cout << dealer->getCommunityCards()[i]->getNumber() << " - ";
 	}
-	for (int i = 0; i < 52; i++)
+	cout << endl << endl;
+	for (int i = 0; i < 5; i++)
 	{
 		cout << dealer->getCommunityCards()[i]->getValue() << " - ";
+	}
+
+	cout << endl << endl << endl << endl;;
+
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			cout << players[i]->getUserHand()->getHand()[j]->getNumber() << " - ";
+
+		}
+		cout << endl << endl;
+	}
+
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			cout << players[i]->getUserHand()->getHand()[j]->getType() << " - ";
+
+		}
+		cout << endl << endl;
 	}*/
 }
 
