@@ -185,6 +185,7 @@ void PokerTable::validationOfGoOut(int& actualUserBlind, int playerIndex)
 	if (players[playerIndex]->getIsActive())
 	{
 		players[playerIndex]->setActivePlayer(false);
+		cout << "SE SALIO EL JUGADOR NUMERO " + to_string(playerIndex + 1) << endl;
 		return;
 	}
 	else
@@ -193,10 +194,12 @@ void PokerTable::validationOfGoOut(int& actualUserBlind, int playerIndex)
 		{
 			actualUserBlind -= bigBlind;
 			pot += bigBlind;
+			players[playerIndex]->setActivePlayer(true);
+			cout << "SE VOLVIO A UNIR EL JUGADOR NUMERO " + to_string(playerIndex + 1) << endl;
 			return;
 		}
+		cout << "EL JUGADOR " + to_string(playerIndex + 1) + " NO TIENE DINERO PARA INCORPORARSE A LA MESA " << endl;
 	}
-	return;
 }
 
 string* PokerTable::convertHandsToText()
@@ -246,28 +249,41 @@ void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind, int act
 {
 	if (index == 0)
 	{
-		validationOfThreeBigBlindButton(actualUserBlind);
-		return;
+		if (players[actualUser]->getIsActive()) {
+			validationOfThreeBigBlindButton(actualUserBlind);
+			return;
+		}
+		cout << " Jugador no esta activo para usar el boton 3BB " << endl;
+
 	}
 
 	if (index == 1)
 	{
-		validationOfTwoPartsPotButton(actualUserBlind);
-		return;
+		if (players[actualUser]->getIsActive()) {
+			validationOfTwoPartsPotButton(actualUserBlind);
+			return;
+		}
+		cout << " Jugador no esta activo para usar el boton 1/2 Pot " << endl;
 	}
 
 	if (index == 2)
 	{
-		validationOfPotButton(actualUserBlind);
-		return;
+		if (players[actualUser]->getIsActive()) {
+			validationOfPotButton(actualUserBlind);
+			return;
+		}
+		cout << " Jugador no esta activo para usar el boton 1 Pot " << endl;
 	}
 
 	if (index == 3)
 	{
-		validationOfAllInButton(actualUserBlind);
-		return;
+		if (players[actualUser]->getIsActive()) {
+			validationOfAllInButton(actualUserBlind);
+			return;
+		}
+		cout << " Jugador no esta activo para usar el boton All in " << endl;
 	}
-	if (index == 4 /*&& getPlayerBlind(actualUser) > 0*/)
+	if (index == 4)
 	{
 		validationOfGoOut(actualUserBlind, actualUser);
 		return;
@@ -278,22 +294,31 @@ void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind, int act
 {
 	if (index == 0)
 	{
-		validationOfTwoPartsPotButton(actualUserBlind);
-		return;
+		if (players[actualUser]->getIsActive()) {
+			validationOfTwoPartsPotButton(actualUserBlind);
+			return;
+		}
+		cout << " Jugador no esta activo para usar el boton 1/2 Pot " << endl;
 	}
 
 	if (index == 1)
 	{
-		validationOfThreePartsPotButton(actualUserBlind);
-		return;
+		if (players[actualUser]->getIsActive()) {
+			validationOfThreePartsPotButton(actualUserBlind);
+			return;
+		}
+		cout << " Jugador no esta activo para usar el boton 3/4 Pot " << endl;
 	}
 
 	if (index == 2)
 	{
-		validationOfAllInButton(actualUserBlind);
-		return;
+		if (players[actualUser]->getIsActive()) {
+			validationOfAllInButton(actualUserBlind);
+			return;
+		}
+		cout << " Jugador no esta activo para usar el boton All in " << endl;
 	}
-	if (index == 3 /*&& getPlayerBlind(actualUser) > 0*/)
+	if (index == 3)
 	{
 		validationOfGoOut(actualUserBlind, actualUser);
 		return;
@@ -307,4 +332,3 @@ void PokerTable::drawActualPlayerHand(int index, RenderWindow& window)
 		window.draw(players[index]->getUserHand()->getPlayerSprite()[i]);
 	}
 }
-

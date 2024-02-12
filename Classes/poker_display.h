@@ -69,35 +69,24 @@ public:
 	void loadGameImage();
 	void tryAndCatchOfLoadGame();
 	void checkThePlayersBoxes(RenderWindow& gameWindow);
-	void setUpPlayerCard(int i, float& xRight, float& xLeft, float& y, float incrementPosition);
-	RectangleShape createPlayerCard(float x, float y);
-	void drawPlayerCards(int i);
-	void updatePlayerPositions(int i, RenderWindow& gameWindow);
-	void resetPlayerPositions(int i, float& xRight, float& xLeft, float& y, float& incrementPosition);
 	void checkTheDealerBoxes(RenderWindow& gameWindow);
-
 	void createDealerCardShapes(const float rectWidth, const float rectHeight, const float startX, float yCenter, const float midCard);
-
 	void updateDealerPositions(RenderWindow& gameWindow);
-
 	void definePreflopButtons();
 	void definePostflopButtons();
-
 	void drawPreFlopButtons(RenderWindow& gameWindow);
 	void drawPostFlopButtons(RenderWindow& gameWindow);
-
 	void highlightButton(Vector2f& mousePosition, int size, Button* preOfPosButton);
 	void drawPotAccumulator(RenderWindow& gameWindow);
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void dealCardsInRow(int& amountOfCardsToDraw, sf::RenderWindow& gameWindow, int row);
 	void drawAllCardsDown(RenderWindow& gameWindow);
 	void blinkingActualPlayerHand(RenderWindow& gameWindow);
-	void drawBingAndSmallBling(RenderWindow& gameWindow);
+	void defineBingAndSmallBling();
 	void preFlopActionButtons(Vector2f clickPosition);
 	void postFlopActionButtons(Vector2f clickPosition);
 	void turnChange();
 	void drawPot(RenderWindow& gameWindow);
 	void showButtonPlayerHand(Vector2f clickPosition, Event userEvent);
-	void playerGoOutButton(Vector2f clickPosition);
 	void drawCommunityCards(RenderWindow& gameWindow);
 };

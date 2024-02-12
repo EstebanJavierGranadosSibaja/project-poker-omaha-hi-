@@ -50,9 +50,7 @@ PokerDisplay::PokerDisplay()
 			cardDownSprite[i][j] = Sprite(cardDownTexture[i][j]);
 		}
 	}
-
-	bigBlindSprite = Sprite(bigBlindTexture);
-	smallBlindSprite = Sprite(smallBlindTexture);
+	defineBingAndSmallBling();
 
 	//pokerTable->createAHistoryRanking();
 }
@@ -125,13 +123,14 @@ void PokerDisplay::drawTheMethodsOnTheScreen(RenderWindow& gameWindow)
 	checkTheDealerBoxes(gameWindow);
 	drawingPostAndPreFlopButtons(gameWindow);
 	drawPotAccumulator(gameWindow);
-	drawBingAndSmallBling(gameWindow);
 	dealPreFlopCards(gameWindow);
 	drawAllCardsDown(gameWindow);
 	drawPot(gameWindow);
 	blinkingActualPlayerHand(gameWindow);
 	drawUserCards(gameWindow);
 	drawCommunityCards(gameWindow);
+	gameWindow.draw(bigBlindSprite);
+	gameWindow.draw(smallBlindSprite);
 }
 
 void PokerDisplay::drawUserCards(RenderWindow& gameWindow)
@@ -459,7 +458,7 @@ void PokerDisplay::blinkingActualPlayerHand(RenderWindow& gameWindow)
 
 }
 
-void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
+void PokerDisplay::defineBingAndSmallBling()
 {
 	if (!bigBlindTexture.loadFromFile("Images/token.jpg") ||
 		!smallBlindTexture.loadFromFile("Images/small_blind.png"))
@@ -468,27 +467,26 @@ void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
 		return;
 	}
 
+	bigBlindSprite = Sprite(bigBlindTexture);
+	smallBlindSprite = Sprite(smallBlindTexture);
+
 	float scale = 0.1f;
 	bigBlindSprite.setScale(scale, scale);
 	smallBlindSprite.setScale(scale, scale);
 	bigBlindSprite.setPosition(1155, 494);
 	smallBlindSprite.setPosition(1147, 385);
 
-	gameWindow.draw(bigBlindSprite);
-	gameWindow.draw(smallBlindSprite);
 }
 
 void PokerDisplay::preFlopActionButtons(Vector2f clickPosition)
 {
-	for (int i = 0; i < BETS_AMOUNT; i++)
+	for (int i = 0; i < BETS_AMOUNT + 1; i++)
 	{
 		if (preFlopButton[i].isTheMouseOverButton(clickPosition))
 		{
 			int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
-
 			pokerTable->preFloatIncreaseThePot(i, userBB, currentPlayersTurn);
 			pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
-
 			currentPlayersTurn++;
 		}
 	}
@@ -498,7 +496,7 @@ void PokerDisplay::postFlopActionButtons(Vector2f clickPosition)
 {
 	if (gameRound < 4 && gameRound != 0)
 	{
-		for (int i = 0; i < BETS_AMOUNT - 1; i++)
+		for (int i = 0; i < BETS_AMOUNT; i++)
 		{
 			if (postFlopButton[i].isTheMouseOverButton(clickPosition))
 			{
@@ -548,17 +546,6 @@ void PokerDisplay::showButtonPlayerHand(Vector2f clickPosition, Event userEvent)
 	{
 		showButtonIsBeingPressed = false;
 	}
-}
-
-void PokerDisplay::playerGoOutButton(Vector2f clickPosition)
-{
-	int actualBlinc = pokerTable->getPlayerBlind(currentPlayersTurn);
-
-	pokerTable->validationOfGoOut(actualBlinc, currentPlayersTurn);
-
-	pokerTable->setPlayerBlind(currentPlayersTurn, actualBlinc);
-
-	currentPlayersTurn++;
 }
 
 void PokerDisplay::drawCommunityCards(RenderWindow& gameWindow)
