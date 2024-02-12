@@ -3,6 +3,8 @@
 PokerDisplay::PokerDisplay()
 {
 	currentPlayersTurn = 0;
+	gameRound = 0; 
+	posFloatStarts = false; 
 
 	menu = new Menu();
 	menu->loadMenuWindow();
@@ -15,7 +17,7 @@ PokerDisplay::PokerDisplay()
 
 	backGround = Texture();
 	spriteBackGround = Sprite();
-	arial.loadFromFile("ARIAL.ttf");
+
 
 	clock = Clock();
 	time = seconds(1.f);
@@ -23,10 +25,7 @@ PokerDisplay::PokerDisplay()
 	limit = 1;
 	soundCard.openFromFile("Images/card_sound.ogg");
 
-	numberOfPlayer = Text("1", arial, 35);
-	numberOfPlayer.setFillColor(Color::White);
-	numberOfPlayer.setOutlineThickness(2.5f);
-	numberOfPlayer.setOutlineColor(Color::Black);
+	definingTextVariables();
 
 	preFlopButton = new Button[SIZE_PREFLOP_BUTTON];
 	postFlopButton = new Button[SIZE_POSFLOP_BUTTON];
@@ -56,10 +55,22 @@ PokerDisplay::PokerDisplay()
 	pokerTable->createAHistoryRanking();
 }
 
+void PokerDisplay::definingTextVariables()
+{
+	arial.loadFromFile("ARIAL.ttf");
+
+	numberOfPlayer = Text("1", arial, 35);
+	numberOfPlayer.setFillColor(Color::White);
+	numberOfPlayer.setOutlineThickness(2.5f);
+	numberOfPlayer.setOutlineColor(Color::Black);
+
+	potNumber = Text("", arial, 40);
+	potNumber.setFillColor(Color::Black);
+	potNumber.setPosition(850.0f, 68.0f);
+}
+
 void PokerDisplay::loadGameWindow()
 {
-	Player** players = pokerTable->getPlayers();
-
 	loadGameImage();
 	definePreflopButtons();
 	//definePostflopButtons();
@@ -84,14 +95,16 @@ void PokerDisplay::loadGameWindow()
 				firstRoundOfBetting(mousePositionInWindow);
 			}
 
-			/*system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
+			system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;
 
 			if (event.type == Event::Closed)
 			{
 				gameWindow.close();
 			}
 		}
+
+		turnChange();
 		gameWindow.clear();
 
 		gameWindow.draw(spriteBackGround);
@@ -103,7 +116,8 @@ void PokerDisplay::loadGameWindow()
 		drawBingAndSmallBling(gameWindow);
 		dealPreFlopCards(gameWindow);
 		drawAllCardsDown(gameWindow);
-
+		drawPot(gameWindow);
+		blinkingActualPlayerHand(gameWindow); 
 
 
 		gameWindow.display();
@@ -288,19 +302,17 @@ void PokerDisplay::highlightButton(Vector2f& mousePosition, int size, Button* pr
 void PokerDisplay::drawPotAccumulator(RenderWindow& gameWindow)
 {
 	RectangleShape potAccumulator(Vector2f(500, 120));
-	Font potAccumulatorFont;
+
 	string text = "POT ACCUMULATOR";
 	float xPosition = 705.f;
 	float yPosition = 15.f;
-
-	potAccumulatorFont.loadFromFile("ARIAL.ttf");
 
 	potAccumulator.setFillColor(Color::Transparent);
 	potAccumulator.setPosition(Vector2f(xPosition, yPosition));
 	potAccumulator.setOutlineColor(Color::Black);
 	potAccumulator.setOutlineThickness(5.0f);
 
-	Text potAccumulatorText(text, potAccumulatorFont, 20);
+	Text potAccumulatorText(text, arial, 20);
 	potAccumulatorText.setOutlineColor(Color::Black);
 	potAccumulatorText.setOutlineThickness(1.f);
 	potAccumulatorText.setFillColor(Color::Black);
@@ -349,10 +361,31 @@ void PokerDisplay::drawAllCardsDown(RenderWindow& gameWindow)
 	if (!isDealerThrowingCards) {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
+				if (currentPlayersTurn == i) {
+					continue;
+				}
 				gameWindow.draw(cardDownSprite[i][j]);
 			}
 		}
 	}
+}
+
+void PokerDisplay::blinkingActualPlayerHand(RenderWindow& gameWindow)
+{
+
+	if (!isDealerThrowingCards) {
+		bool isWhite = true;
+		if (clock.getElapsedTime() > seconds(1.0f)) {
+			isWhite = !isWhite;
+			clock.restart();
+		}
+		Color color = isWhite ? Color::White : Color::Transparent;
+		for (int j = 0; j < columns; j++) {
+			spacesInUserCard[currentPlayersTurn][j].setFillColor(color);
+			gameWindow.draw(spacesInUserCard[currentPlayersTurn][j]);
+		}
+	}
+
 }
 
 void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
@@ -388,7 +421,7 @@ void PokerDisplay::firstRoundOfBetting(Vector2f clickPosition)
 
 	for (int i = 0; i < BETS_AMOUNT; i++)
 	{
-		turnChange();
+		switchToSecondTurn(clickPosition); 
 
 		if (preFlopButton[i].theButtonWasClicked(clickPosition))
 		{
@@ -399,26 +432,52 @@ void PokerDisplay::firstRoundOfBetting(Vector2f clickPosition)
 			pokerTable->preFloatIncreaseThePot(i, userBB);
 			pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
 
-			cout << cambioPot;
-
 			currentPlayersTurn++;
 		}
 	}
 }
 
-void PokerDisplay::turnChange()
+void PokerDisplay::nextBettingRounds(Vector2f clickPosition)
 {
-	if (currentPlayersTurn + 1 == menu->getNumPlayer())
+	if (gameRound < 5 && gameRound != 0)
 	{
-		currentPlayersTurn = 0;
+		for (int i = 0; i < BETS_AMOUNT - 1; i++)
+		{
+			if (postFlopButton[i].theButtonWasClicked(clickPosition))
+			{
+				int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
+				pokerTable->posFloatIncreaseThePot(i, userBB);
+
+				currentPlayersTurn++;
+			}
+		}
+
 	}
 }
 
+void PokerDisplay::switchToSecondTurn(Vector2f clickPosition)
+{
+	if (currentPlayersTurn  == menu->getNumPlayer())
+	{
+		currentPlayersTurn = 0;
+		gameRound++; 
+		nextBettingRounds(clickPosition); 
+	}
+}
 
+void PokerDisplay::turnChange()
+{
+	if (currentPlayersTurn  == menu->getNumPlayer())
+	{
+		currentPlayersTurn = 0;
+		gameRound++;
+	}
+}
 
+void PokerDisplay::drawPot(RenderWindow& gameWindow)
+{
+	string stringPot = to_string(pokerTable->getPot());
+	potNumber.setString("POT: " + stringPot);
+	gameWindow.draw(potNumber);
 
-
-
-
-
-
+}

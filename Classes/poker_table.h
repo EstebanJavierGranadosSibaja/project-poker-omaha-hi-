@@ -55,5 +55,6 @@ public:
 	void createAHistoryRanking();
 
 	void preFloatIncreaseThePot(int index, int& actualUserBlind);
+	void posFloatIncreaseThePot(int index, int& actualUserBlind); 
 
 };

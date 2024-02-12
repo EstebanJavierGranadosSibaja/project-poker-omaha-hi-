@@ -1,0 +1,55 @@
+    RANKING HISTORIAL DE LAS MANOS DE LOS JUGADORES    
+
+  ||  CARTAS_DELJUGADOR_N_1  ||  
+
+  ||  Palo: Clubs  ||  Valor: A  ||  Numero: 1  ||  
+  ||  Palo: Hearts  ||  Valor: Q  ||  Numero: 12  ||  
+  ||  Palo: Diamonds  ||  Valor: A  ||  Numero: 1  ||  
+  ||  Palo: Diamonds  ||  Valor: 9  ||  Numero: 9  ||  
+
+  ||  CARTAS_DELJUGADOR_N_2  ||  
+
+  ||  Palo: Pikes  ||  Valor: 8  ||  Numero: 8  ||  
+  ||  Palo: Hearts  ||  Valor: 8  ||  Numero: 8  ||  
+  ||  Palo: Hearts  ||  Valor: X  ||  Numero: 10  ||  
+  ||  Palo: Pikes  ||  Valor: 6  ||  Numero: 6  ||  
+
+  ||  CARTAS_DELJUGADOR_N_3  ||  
+
+  ||  Palo: Clubs  ||  Valor: 3  ||  Numero: 3  ||  
+  ||  Palo: Clubs  ||  Valor: K  ||  Numero: 13  ||  
+  ||  Palo: Diamonds  ||  Valor: 5  ||  Numero: 5  ||  
+  ||  Palo: Hearts  ||  Valor: 4  ||  Numero: 4  ||  
+
+  ||  CARTAS_DELJUGADOR_N_4  ||  
+
+  ||  Palo: Hearts  ||  Valor: K  ||  Numero: 13  ||  
+  ||  Palo: Diamonds  ||  Valor: J  ||  Numero: 11  ||  
+  ||  Palo: Clubs  ||  Valor: J  ||  Numero: 11  ||  
+  ||  Palo: Diamonds  ||  Valor: K  ||  Numero: 13  ||  
+
+  ||  CARTAS_DELJUGADOR_N_5  ||  
+
+  ||  Palo: Hearts  ||  Valor: 6  ||  Numero: 6  ||  
+  ||  Palo: Clubs  ||  Valor: 8  ||  Numero: 8  ||  
+  ||  Palo: Diamonds  ||  Valor: 2  ||  Numero: 2  ||  
+  ||  Palo: Hearts  ||  Valor: 7  ||  Numero: 7  ||  
+
+  ||  CARTAS_DELJUGADOR_N_6  ||  
+
+  ||  Palo: Diamonds  ||  Valor: 8  ||  Numero: 8  ||  
+  ||  Palo: Pikes  ||  Valor: 3  ||  Numero: 3  ||  
+  ||  Palo: Clubs  ||  Valor: 2  ||  Numero: 2  ||  
+  ||  Palo: Pikes  ||  Valor: X  ||  Numero: 10  ||  
+
+
+    RANKING HISTORIAL DE LAS CARTAR COMUNITARIAS DEL DEALER   
+
+  ||  CARTAS_COMUNITARIAS_DEL_DEALER  ||  
+
+  ||  Palo: Diamonds  ||  Valor: X  ||  Numero: 10  ||  
+  ||  Palo: Pikes  ||  Valor: 7  ||  Numero: 7  ||  
+  ||  Palo: Diamonds  ||  Valor: Q  ||  Numero: 12  ||  
+  ||  Palo: Diamonds  ||  Valor: 7  ||  Numero: 7  ||  
+  ||  Palo: Hearts  ||  Valor: A  ||  Numero: 1  ||  
+

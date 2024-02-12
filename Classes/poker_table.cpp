@@ -239,3 +239,25 @@ void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
 		return;
 	}
 }
+
+void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
+{
+	
+	if (index == 0)
+	{
+		validationOfTwoPartsPotButton(actualUserBlind);
+		return;
+	}
+
+	if (index == 2)
+	{
+		validationOfThreePartsPotButton(actualUserBlind); 
+		return;
+	}
+
+	if (index == 3)
+	{
+		validationOfAllInButton(actualUserBlind);
+		return;
+	}
+}
