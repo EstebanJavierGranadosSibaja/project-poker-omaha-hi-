@@ -205,14 +205,18 @@ bool PokerTable::validationOfAllInButton(int& actualUserBlind)
 
 string* PokerTable::convertHandsToText()
 {
-	string* newText = new string[numberOfPlayers + 60];
+	string* newText = new string[numberOfPlayers + 4];
+	int lastPosition = 0;
 
 	newText[0] = "  ||  RANKING HISTORIAL DE LAS MANOS DE LOS JUGADORES  ||  \n";
 
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
 		newText[i + 1] = players[i]->getUserHand()->getHandToText(i + 1);
+		lastPosition = i;
 	}
+
+	newText[lastPosition + 3] = "  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| \n";
 
 	return newText;
 }
@@ -232,10 +236,14 @@ void PokerTable::createAHistoryRanking()
 {
 	srand(time(NULL));
 
-	int randNumber = rand() % 1000000;
+	int dealerCardsTextSize = numberOfPlayers + 4;
+	int playersCardsTextSize = 2;
+
+	int randNumber = rand() % 100000;
 	string historyRankingName = "PokerHistory_Code_" + to_string(randNumber) + ".txt";
 
-	file.save(historyRankingName, convertHandsToText(), convertHandsToText()->size());
-	file.addText(historyRankingName, convertCommunityCardsToText(), 6);
-	file.load(historyRankingName);
+	cout << dealerCardsTextSize;
+
+	file.save(historyRankingName, convertHandsToText(), dealerCardsTextSize);
+	file.addText(historyRankingName, convertCommunityCardsToText(), playersCardsTextSize);
 }

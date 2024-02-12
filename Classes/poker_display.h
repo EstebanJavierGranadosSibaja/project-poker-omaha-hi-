@@ -52,6 +52,5 @@ public:
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void drawAllCardsDown(RenderWindow& gameWindow);
 	void drawBingAndSmallBling(RenderWindow& gameWindow); 
-	void drawBingAndSmallBling(RenderWindow& gameWindow);
 
 };
