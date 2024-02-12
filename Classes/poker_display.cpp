@@ -67,6 +67,10 @@ void PokerDisplay::definingTextVariables()
 	potNumber = Text("", arial, 40);
 	potNumber.setFillColor(Color::Black);
 	potNumber.setPosition(850.0f, 68.0f);
+
+	userBlind = Text("", arial, 40);
+	userBlind.setFillColor(Color::White);
+
 }
 
 void PokerDisplay::loadGameWindow()
@@ -215,9 +219,11 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 				spacesInUserCard[i][j].setOutlineThickness(0);
 				spacesInUserCard[i][j].setPosition(xRight, y);
 				xRight += 55;
+				//
 				gameWindow.draw(spacesInUserCard[i][j]);
 				if (j == 3) {
 					numberOfPlayer.setPosition(xRight + 40.f, y);
+					
 				}
 
 				cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
@@ -240,6 +246,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			xLeft += 55.f;
 			gameWindow.draw(spacesInUserCard[i][j]);
 
+			// 
 			if (j == 0) {
 				numberOfPlayer.setPosition(xLeft + 530.f - incrementPosition, y);
 			}
