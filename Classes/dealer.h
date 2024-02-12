@@ -8,8 +8,8 @@ class Dealer
 {
 private:
 	Card** communityCards;
-	Texture vectorOfDealerTextures[COMMUNITY_CARD_SIZE];
-	Sprite vectorOfDealerSprites[COMMUNITY_CARD_SIZE];
+	Texture* vectorOfDealerTextures;
+	Sprite* vectorOfDealerSprites;
 
 public:
 	Dealer();

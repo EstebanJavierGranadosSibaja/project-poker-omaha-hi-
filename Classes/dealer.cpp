@@ -3,6 +3,8 @@
 Dealer::Dealer()
 {
 	communityCards = new Card * [COMMUNITY_CARD_SIZE];
+	vectorOfDealerSprites = new Sprite[COMMUNITY_CARD_SIZE];
+	vectorOfDealerTextures = new Texture[COMMUNITY_CARD_SIZE];
 
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{

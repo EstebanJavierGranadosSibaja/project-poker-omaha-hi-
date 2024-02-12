@@ -2,6 +2,8 @@
 
 PlayerHand::PlayerHand()
 {
+	vectorOfPlayerSprites = new Sprite[SIZE_OF_PLAYER_DECK];
+	vectorOfPlayerTextures = new Texture[SIZE_OF_PLAYER_DECK];
 	hand = new Card * [SIZE_OF_PLAYER_DECK];
 	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++) {
 		hand[i] = new Card();
