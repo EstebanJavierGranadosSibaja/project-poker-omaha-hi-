@@ -35,6 +35,7 @@ private:
 	int limit;
 	bool isDealerThrowingCards;
 	bool postFloatStarts;
+	bool showButtonIsBeingPressed;
 	int currentPlayersTurn;
 	int gameRound;
 	int rows;
@@ -47,6 +48,7 @@ public:
 	PokerDisplay();
 	void definingTextVariables();
 	void loadGameWindow();
+	void drawUserCards(sf::RenderWindow& gameWindow);
 	void betButtonsIntoAction(Vector2f& mousePositionInWindow);
 	void drawingPostAndPreFlopButtons(sf::RenderWindow& gameWindow);
 	void highLightingButtons(sf::Vector2f& mousePositionInWindow);
@@ -71,5 +73,6 @@ public:
 	void postFlopActionButtons(Vector2f clickPosition);
 	void turnChange();
 	void drawPot(RenderWindow& gameWindow);
+	void showButtonPlayerHand(Vector2f clickPosition, Event userEvent);
 
 };

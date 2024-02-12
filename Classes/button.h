@@ -25,7 +25,7 @@ public:
 	void buttonShowCards();
 	void drawButton(RenderWindow& window); 
 	void setButtonColor(Color color);
-	bool theButtonWasClicked(Vector2f clickPosition); 
+	bool isTheMouseOverButton(Vector2f clickPosition); 
 	
 
 

@@ -12,7 +12,7 @@ private:
 	Card** hand;
 	Texture* vectorOfPlayerTextures;
 	Sprite* vectorOfPlayerSprites;
-	
+
 public:
 	PlayerHand();
 	PlayerHand(Card** newHand) = delete;
@@ -26,4 +26,5 @@ public:
 	Card** getHand();
 	Texture* getPlayerTexture();
 	Sprite* getPlayerSprite();
+	void setPositionAndScalesOfPlayerSprites(RectangleShape& userBox, int index);
 };
