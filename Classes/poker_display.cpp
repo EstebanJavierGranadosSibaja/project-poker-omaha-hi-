@@ -72,8 +72,9 @@ void PokerDisplay::definingTextVariables()
 void PokerDisplay::loadGameWindow()
 {
 	tryAndCatchOfLoadGame();
-	definePreflopButtons();
 	definePostflopButtons();
+	definePreflopButtons();
+	
 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
@@ -145,8 +146,10 @@ void PokerDisplay::betButtonsIntoAction(Vector2f& mousePositionInWindow)
 
 void PokerDisplay::drawingPostAndPreFlopButtons(RenderWindow& gameWindow)
 {
-	if (!postFloatStarts) {
+	if (!postFloatStarts) 
+	{
 		drawPreFlopButtons(gameWindow);
+		return;
 	}
 
 	drawPostFlopButtons(gameWindow);
