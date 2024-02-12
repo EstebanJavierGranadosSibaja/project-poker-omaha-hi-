@@ -284,3 +284,4 @@ void PokerTable::drawActualPlayerHand(int index, RenderWindow& window)
 		window.draw(players[index]->getUserHand()->getPlayerSprite()[i]);
 	}
 }
+

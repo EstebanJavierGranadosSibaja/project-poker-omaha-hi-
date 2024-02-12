@@ -49,9 +49,9 @@ public:
 	PokerDisplay();
 	void definingTextVariables();
 	void loadGameWindow();
-	void drawUserCards(sf::RenderWindow& gameWindow);
+	void drawUserCards(RenderWindow& gameWindow);
 	void betButtonsIntoAction(Vector2f& mousePositionInWindow);
-	void drawingPostAndPreFlopButtons(sf::RenderWindow& gameWindow);
+	void drawingPostAndPreFlopButtons(RenderWindow& gameWindow);
 	void highLightingButtons(sf::Vector2f& mousePositionInWindow);
 	void loadGameImage();
 	void tryAndCatchOfLoadGame();
@@ -75,5 +75,5 @@ public:
 	void turnChange();
 	void drawPot(RenderWindow& gameWindow);
 	void showButtonPlayerHand(Vector2f clickPosition, Event userEvent);
-
+	void drawCommunityCards(RenderWindow& gameWindow);
 };

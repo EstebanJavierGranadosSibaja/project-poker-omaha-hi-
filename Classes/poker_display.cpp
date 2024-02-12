@@ -20,7 +20,7 @@ PokerDisplay::PokerDisplay()
 
 
 	clock = Clock();
-	time = seconds(1.f);
+	time = seconds(0.5f);
 	isDealerThrowingCards = true;
 	limit = 1;
 	soundCard.openFromFile("Images/card_sound.ogg");
@@ -123,7 +123,7 @@ void PokerDisplay::loadGameWindow()
 		drawPot(gameWindow);
 		blinkingActualPlayerHand(gameWindow);
 		drawUserCards(gameWindow);
-
+		drawCommunityCards(gameWindow);
 
 		gameWindow.display();
 	}
@@ -286,9 +286,7 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
-		pokerTable->getDealer()->getDealerSprite()[i].setPosition(spacesForDealerCard[i].getPosition());
-		pokerTable->getDealer()->getDealerSprite()[i].setScale(spacesForDealerCard[i].getSize().x / pokerTable->getDealer()->getDealerTexture()[i].getSize().x,
-			spacesForDealerCard[i].getSize().y / pokerTable->getDealer()->getDealerTexture()[i].getSize().y);
+		pokerTable->getDealer()->setPositionAndScalesOfDealerSprites(spacesForDealerCard[i], i);
 
 		if (i < midCard)
 		{
@@ -545,5 +543,23 @@ void PokerDisplay::showButtonPlayerHand(Vector2f clickPosition, Event userEvent)
 	if (userEvent.type == Event::MouseButtonReleased)
 	{
 		showButtonIsBeingPressed = false;
+	}
+}
+
+void PokerDisplay::drawCommunityCards(RenderWindow& gameWindow)
+{
+	if (gameRound >= 1)
+	{
+		gameWindow.draw(pokerTable->getDealer()->getDealerSprite()[0]);
+		gameWindow.draw(pokerTable->getDealer()->getDealerSprite()[1]);
+		gameWindow.draw(pokerTable->getDealer()->getDealerSprite()[2]);
+	}
+	if (gameRound >= 2)
+	{
+		gameWindow.draw(pokerTable->getDealer()->getDealerSprite()[3]);
+	}
+	if (gameRound >= 3)
+	{
+		gameWindow.draw(pokerTable->getDealer()->getDealerSprite()[4]);
 	}
 }
