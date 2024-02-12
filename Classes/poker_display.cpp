@@ -59,17 +59,21 @@ void PokerDisplay::definingTextVariables()
 {
 	arial.loadFromFile("ARIAL.ttf");
 
-	numberOfPlayer = Text("1", arial, 35);
+	numberOfPlayer = Text("1", arial, 20);
 	numberOfPlayer.setFillColor(Color::White);
 	numberOfPlayer.setOutlineThickness(2.5f);
 	numberOfPlayer.setOutlineColor(Color::Black);
 
 	potNumber = Text("", arial, 40);
-	potNumber.setFillColor(Color::Black);
+	potNumber.setFillColor(Color::White);
 	potNumber.setPosition(850.0f, 68.0f);
+	potNumber.setOutlineThickness(2.5f);
+	potNumber.setOutlineColor(Color::Black);
 
-	userBlind = Text("", arial, 35);
-	userBlind.setFillColor(Color::Black);
+	userBlind = Text("", arial, 20);
+	userBlind.setFillColor(Color::White);
+	userBlind.setOutlineThickness(2.5f);
+	userBlind.setOutlineColor(Color::Black); 
 }
 
 void PokerDisplay::loadGameWindow()
@@ -203,7 +207,10 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 	for (int i = 0; i < rows; i++)
 	{
-		numberOfPlayer.setString(to_string(i + 1));
+		numberOfPlayer.setString("Player: " + to_string(i + 1) + "\n");
+		// seguir esto
+		int playerBlind = pokerTable->getPlayers()[i]->getUserBlind(); 
+        userBlind.setString("\n Blind: " + to_string(playerBlind));
 
 		for (int j = 0; j < columns; j++)
 		{
@@ -219,7 +226,9 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 				xRight += 55;
 				gameWindow.draw(spacesInUserCard[i][j]);
 				if (j == 3) {
-					numberOfPlayer.setPosition(xRight + 40.f, y);
+					numberOfPlayer.setPosition(xRight + 30.f, y);
+					userBlind.setPosition(xRight+ 30.f, y);
+
 				}
 
 				cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
@@ -243,7 +252,8 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			gameWindow.draw(spacesInUserCard[i][j]);
 
 			if (j == 0) {
-				numberOfPlayer.setPosition(xLeft + 530.f - incrementPosition, y);
+				numberOfPlayer.setPosition(xLeft + 450.f - incrementPosition, y);
+				userBlind.setPosition(xLeft + 410.f - incrementPosition, y);
 			}
 
 			cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
@@ -253,6 +263,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 		}
 		gameWindow.draw(numberOfPlayer);
+		gameWindow.draw(userBlind);
 
 		xRight = 1200.f + incrementPosition;
 		xLeft = 20.f;
@@ -343,7 +354,7 @@ void PokerDisplay::highlightButton(Vector2f& mousePosition, int size, Button* pr
 		bool isMouseOverButton = preOfPosButton[i].isTheMouseOverButton(mousePosition);
 		if (isMouseOverButton)
 		{
-			preOfPosButton[i].setButtonColor(Color(173, 216, 230));
+			preOfPosButton[i].setButtonColor(Color(49, 59, 90));
 		}
 		else
 		{
