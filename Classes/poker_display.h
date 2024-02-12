@@ -72,6 +72,6 @@ public:
 	void postFlopActionButtons(Vector2f clickPosition);
 	void turnChange();
 	void drawPot(RenderWindow& gameWindow);
-	void showButtonPlayerHand(Vector2f clickPosition, Event userEvent);
+	void showButtonPlayerHand(Vector2f clickPosition, Event userEvent, RenderWindow& window);
 
 };

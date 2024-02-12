@@ -16,9 +16,12 @@ PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 		players[i] = new Player(aBigBlind);
 	}
 
+	
 	dealer->shuffleDeck(deck);
 	dealer->setCommunityCards(deck);
 	dealer->createDealerSprites();
+
+	
 }
 
 PokerTable::~PokerTable()
@@ -108,6 +111,11 @@ Player** PokerTable::getPlayers()
 void PokerTable::dealCardsToThePlayers()
 {
 	dealer->getPlayerCards(players, numberOfPlayers, deck);
+
+	for (int i = 0; i < numberOfPlayers; i++)
+	{
+		players[i]->getUserHand()->createPlayerSprites(); 
+	}
 }
 
 bool PokerTable::validationOfThreeBigBlindButton(int& actualUserBlind)
@@ -269,7 +277,10 @@ void PokerTable::coutActualPlayerBlind(int index)
 	cout << " El jugador actual tiene: " << players[index]->getUserBlind() << endl;
 }
 
-void PokerTable::drawActualPlayerHand(int index)
+void PokerTable::drawActualPlayerHand(int index, RenderWindow& window)
 {
-	//este metodo dibuja el mazo del jugador actual, los sprites
+	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
+	{
+		window.draw(players[index]->getUserHand()->getPlayerSprite()[i]); 
+	}
 }

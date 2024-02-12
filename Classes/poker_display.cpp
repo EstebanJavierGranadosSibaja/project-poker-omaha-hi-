@@ -85,11 +85,13 @@ void PokerDisplay::loadGameWindow()
 
 		Vector2i mousePosition = sf::Mouse::getPosition(gameWindow);
 		Vector2f mousePositionInWindow = gameWindow.mapPixelToCoords(mousePosition);
-		system("cls");
+		/*system("cls");*/
 
 		if (gameWindow.pollEvent(event))
 		{
 			highLightingButtons(mousePositionInWindow);
+			showButtonPlayerHand(mousePositionInWindow, event, gameWindow);
+
 
 			if (event.type == Event::MouseButtonPressed)
 			{
@@ -515,7 +517,7 @@ void PokerDisplay::drawPot(RenderWindow& gameWindow)
 
 }
 
-void PokerDisplay::showButtonPlayerHand(Vector2f clickPosition, Event userEvent)
+void PokerDisplay::showButtonPlayerHand(Vector2f clickPosition, Event userEvent, RenderWindow& window)
 {
 	bool isMouseOverShowButton = preFlopButton[5].isTheMouseOverButton(clickPosition) ||
 		postFlopButton[4].isTheMouseOverButton(clickPosition);
@@ -525,9 +527,12 @@ void PokerDisplay::showButtonPlayerHand(Vector2f clickPosition, Event userEvent)
 
 	if (isMouseOverShowButton && hasMouseClickedOnButton)
 	{
-		for (int i = 0; i < columns; i++) 
-		{
-			pokerTable-> drawActualPlayerHand(currentPlayersTurn);
-		}
+		showButtonIsBeingPressed = true; 
+		pokerTable-> drawActualPlayerHand(currentPlayersTurn, window);
+	}
+	
+	if (userEvent.type == Event::MouseButtonReleased)
+	{
+		showButtonIsBeingPressed = false;
 	}
 }

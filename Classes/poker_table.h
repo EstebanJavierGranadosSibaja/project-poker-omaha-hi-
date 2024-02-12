@@ -44,6 +44,7 @@ public:
 
 	void dealCardsToThePlayers();
 
+
 	bool validationOfThreeBigBlindButton(int& actualUserBlind);
 	bool validationOfThreePartsPotButton(int& actualUserBlind);
 	bool validationOfTwoPartsPotButton(int& actualUserBlind);
@@ -58,5 +59,5 @@ public:
 	void posFloatIncreaseThePot(int index, int& actualUserBlind);
 
 	void coutActualPlayerBlind(int index);
-	void drawActualPlayerHand(int index);
+	void drawActualPlayerHand(int index, RenderWindow& window);
 };
