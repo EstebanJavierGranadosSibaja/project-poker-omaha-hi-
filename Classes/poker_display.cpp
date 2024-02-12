@@ -74,7 +74,7 @@ void PokerDisplay::loadGameWindow()
 	tryAndCatchOfLoadGame();
 	definePostflopButtons();
 	definePreflopButtons();
-	
+
 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
@@ -95,6 +95,7 @@ void PokerDisplay::loadGameWindow()
 			if (event.type == Event::MouseButtonPressed)
 			{
 				betButtonsIntoAction(mousePositionInWindow);
+				playerGoOutButton(mousePositionInWindow);
 			}
 			//cout << " " << mousePosition.x << " , " << mousePosition.y;
 
@@ -104,10 +105,8 @@ void PokerDisplay::loadGameWindow()
 			}
 		}
 		turnChange();
-		pokerTable->coutActualPlayerBlind(currentPlayersTurn);
 
 		gameWindow.clear();
-
 
 		gameWindow.draw(spriteBackGround);
 		checkThePlayersBoxes(gameWindow);
@@ -478,6 +477,7 @@ void PokerDisplay::preFlopActionButtons(Vector2f clickPosition)
 			pokerTable->preFloatIncreaseThePot(i, userBB);
 			pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
 
+
 			currentPlayersTurn++;
 		}
 	}
@@ -538,6 +538,21 @@ void PokerDisplay::showButtonPlayerHand(Vector2f clickPosition, Event userEvent)
 	{
 		showButtonIsBeingPressed = false;
 	}
+}
+
+void PokerDisplay::playerGoOutButton(Vector2f clickPosition)
+{
+	bool isMouseOverGoOutButton = preFlopButton[4].isTheMouseOverButton(clickPosition) ||
+		postFlopButton[3].isTheMouseOverButton(clickPosition);
+
+	int actualBlinc = pokerTable->getPlayerBlind(currentPlayersTurn);
+
+	if (isMouseOverGoOutButton)
+	{
+		pokerTable->validationOfGoOut(actualBlinc, currentPlayersTurn);
+	}
+
+	pokerTable->setPlayerBlind(currentPlayersTurn, actualBlinc);
 }
 
 void PokerDisplay::drawCommunityCards(RenderWindow& gameWindow)

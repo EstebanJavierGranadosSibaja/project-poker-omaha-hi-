@@ -180,6 +180,30 @@ bool PokerTable::validationOfAllInButton(int& actualUserBlind)
 	return false;
 }
 
+bool PokerTable::validationOfGoOut(int& actualUserBlind, int playerIndex)
+{
+	if (players[playerIndex]->getIsActive())
+	{
+		players[playerIndex]->setActivePlayer(false);
+		cout << "SE SALIO EL USUARIO NUMERO" + to_string(playerIndex + 1);
+		return true;
+	}
+	else
+	{
+		if (actualUserBlind >= bigBlind)
+		{
+			actualUserBlind -= bigBlind;
+			pot += bigBlind;
+			cout << "SE VOLVIO A METER EL USUARIO NUMERO" + to_string(playerIndex + 1);
+			return true;
+		}
+	}
+
+	cout << "EL USUARIO NUMERO" + to_string(playerIndex + 1) + " ESTA POBRE";
+
+	return false;
+}
+
 string* PokerTable::convertHandsToText()
 {
 	string* newText = new string[numberOfPlayers + 4];
@@ -270,11 +294,6 @@ void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
 		validationOfAllInButton(actualUserBlind);
 		return;
 	}
-}
-
-void PokerTable::coutActualPlayerBlind(int index)
-{
-	cout << " El jugador actual tiene: " << players[index]->getUserBlind() << endl;
 }
 
 void PokerTable::drawActualPlayerHand(int index, RenderWindow& window)

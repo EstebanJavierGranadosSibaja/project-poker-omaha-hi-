@@ -50,6 +50,7 @@ public:
 	bool validationOfTwoPartsPotButton(int& actualUserBlind);
 	bool validationOfPotButton(int& actualUserBlind);
 	bool validationOfAllInButton(int& actualUserBlind);
+	bool validationOfGoOut(int& actualUserBlind, int playerIndex);
 
 	string* convertHandsToText();
 	string* convertCommunityCardsToText();
@@ -58,6 +59,5 @@ public:
 	void preFloatIncreaseThePot(int index, int& actualUserBlind);
 	void posFloatIncreaseThePot(int index, int& actualUserBlind);
 
-	void coutActualPlayerBlind(int index);
 	void drawActualPlayerHand(int index, RenderWindow& window);
 };
