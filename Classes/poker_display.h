@@ -12,6 +12,7 @@ const int LOAD_GAME_ERR = 10;
 class PokerDisplay
 {
 private:
+	Text potNumber;
 	Text numberOfPlayer;
 	Font arial;
 	PokerTable* pokerTable;
@@ -32,8 +33,9 @@ private:
 	Time time;
 	int limit;
 	bool isDealerThrowingCards;
+	bool posFloatStarts;
 	int currentPlayersTurn;
-
+	int gameRound;
 	int rows;
 	int columns;
 
@@ -42,6 +44,7 @@ private:
 public:
 
 	PokerDisplay();
+	void definingTextVariables();
 	void loadGameWindow();
 	void loadGameImage();
 	void tryAndCatchOfLoadGame();
@@ -55,8 +58,12 @@ public:
 	void drawPotAccumulator(RenderWindow& gameWindow);
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void drawAllCardsDown(RenderWindow& gameWindow);
+	void blinkingActualPlayerHand(RenderWindow& gameWindow);
 	void drawBingAndSmallBling(RenderWindow& gameWindow);
 	void firstRoundOfBetting(Vector2f clickPosition);
+	void nextBettingRounds(Vector2f clickPosition); 
+	void switchToSecondTurn(Vector2f clickPosition);
 	void turnChange();
+	void drawPot(RenderWindow& gameWindow);
 
 };
