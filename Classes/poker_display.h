@@ -14,6 +14,7 @@ class PokerDisplay
 private:
 	Text potNumber;
 	Text numberOfPlayer;
+	Text userBlind; 
 	Font arial;
 	PokerTable* pokerTable;
 	Player** players;
@@ -36,6 +37,7 @@ private:
 	bool isDealerThrowingCards;
 	bool postFloatStarts;
 	bool showButtonIsBeingPressed;
+	bool checkThatUserPressGoOut;
 	int currentPlayersTurn;
 	int gameRound;
 	int rows;
@@ -48,6 +50,7 @@ public:
 	PokerDisplay();
 	void definingTextVariables();
 	void loadGameWindow();
+	void drawTheMethodsOnTheScreen(sf::RenderWindow& gameWindow);
 	void drawUserCards(RenderWindow& gameWindow);
 	void betButtonsIntoAction(Vector2f& mousePositionInWindow);
 	void drawingPostAndPreFlopButtons(RenderWindow& gameWindow);
@@ -66,6 +69,7 @@ public:
 	void highlightButton(Vector2f& mousePosition, int size, Button* preOfPosButton);
 	void drawPotAccumulator(RenderWindow& gameWindow);
 	void dealPreFlopCards(RenderWindow& gameWindow);
+	void dealCardsInRow(int& amountOfCardsToDraw, sf::RenderWindow& gameWindow, int row);
 	void drawAllCardsDown(RenderWindow& gameWindow);
 	void blinkingActualPlayerHand(RenderWindow& gameWindow);
 	void drawBingAndSmallBling(RenderWindow& gameWindow);

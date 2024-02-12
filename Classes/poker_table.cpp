@@ -180,13 +180,12 @@ bool PokerTable::validationOfAllInButton(int& actualUserBlind)
 	return false;
 }
 
-bool PokerTable::validationOfGoOut(int& actualUserBlind, int playerIndex)
+void PokerTable::validationOfGoOut(int& actualUserBlind, int playerIndex)
 {
 	if (players[playerIndex]->getIsActive())
 	{
 		players[playerIndex]->setActivePlayer(false);
-		cout << "SE SALIO EL USUARIO NUMERO" + to_string(playerIndex + 1);
-		return true;
+		return;
 	}
 	else
 	{
@@ -194,14 +193,10 @@ bool PokerTable::validationOfGoOut(int& actualUserBlind, int playerIndex)
 		{
 			actualUserBlind -= bigBlind;
 			pot += bigBlind;
-			cout << "SE VOLVIO A METER EL USUARIO NUMERO" + to_string(playerIndex + 1);
-			return true;
+			return;
 		}
 	}
-
-	cout << "EL USUARIO NUMERO" + to_string(playerIndex + 1) + " ESTA POBRE";
-
-	return false;
+	return;
 }
 
 string* PokerTable::convertHandsToText()
@@ -247,7 +242,7 @@ void PokerTable::createAHistoryRanking()
 	file.tryAndCatchOfLoadAddText(historyRankingName, convertCommunityCardsToText(), dealerCardsTextSize);
 }
 
-void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
+void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind, int actualUser)
 {
 	if (index == 0)
 	{
@@ -272,11 +267,15 @@ void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
 		validationOfAllInButton(actualUserBlind);
 		return;
 	}
+	if (index == 4 /*&& getPlayerBlind(actualUser) > 0*/)
+	{
+		validationOfGoOut(actualUserBlind, actualUser);
+		return;
+	}
 }
 
-void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
+void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind, int actualUser)
 {
-
 	if (index == 0)
 	{
 		validationOfTwoPartsPotButton(actualUserBlind);
@@ -292,6 +291,11 @@ void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
 	if (index == 2)
 	{
 		validationOfAllInButton(actualUserBlind);
+		return;
+	}
+	if (index == 3 /*&& getPlayerBlind(actualUser) > 0*/)
+	{
+		validationOfGoOut(actualUserBlind, actualUser);
 		return;
 	}
 }

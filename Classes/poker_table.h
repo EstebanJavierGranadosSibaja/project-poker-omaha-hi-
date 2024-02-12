@@ -50,14 +50,14 @@ public:
 	bool validationOfTwoPartsPotButton(int& actualUserBlind);
 	bool validationOfPotButton(int& actualUserBlind);
 	bool validationOfAllInButton(int& actualUserBlind);
-	bool validationOfGoOut(int& actualUserBlind, int playerIndex);
+	void validationOfGoOut(int& actualUserBlind, int playerIndex);
 
 	string* convertHandsToText();
 	string* convertCommunityCardsToText();
 	void createAHistoryRanking();
 
-	void preFloatIncreaseThePot(int index, int& actualUserBlind);
-	void posFloatIncreaseThePot(int index, int& actualUserBlind);
+	void preFloatIncreaseThePot(int index, int& actualUserBlind, int actualUser);
+	void posFloatIncreaseThePot(int index, int& actualUserBlind, int actualUser);
 
 	void drawActualPlayerHand(int index, RenderWindow& window);
 };
