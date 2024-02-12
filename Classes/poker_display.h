@@ -48,6 +48,7 @@ private:
 	bool isDealerThrowingCards;
 	bool postFloatStarts;
 	bool showButtonIsBeingPressed;
+	bool checkThatUserPressGoOut;
 	int currentPlayersTurn;
 	int gameRound;
 	int rows;
@@ -97,5 +98,6 @@ public:
 	void turnChange();
 	void drawPot(RenderWindow& gameWindow);
 	void showButtonPlayerHand(Vector2f clickPosition, Event userEvent);
-	void drawCommunityCards(RenderWindow& gameWindow); 
+	void playerGoOutButton(Vector2f clickPosition);
+	void drawCommunityCards(RenderWindow& gameWindow);
 };

@@ -6,6 +6,7 @@ PokerDisplay::PokerDisplay()
 	gameRound = 0;
 	postFloatStarts = false;
 	showButtonIsBeingPressed = false;
+	checkThatUserPressGoOut = false;
 
 	menu = new Menu();
 	menu->loadMenuWindow();
@@ -100,6 +101,7 @@ void PokerDisplay::loadGameWindow()
 			if (event.type == Event::MouseButtonPressed)
 			{
 				betButtonsIntoAction(mousePositionInWindow);
+				checkThatUserPressGoOut = false;
 			}
 			//cout << " " << mousePosition.x << " , " << mousePosition.y;
 			if (event.type == Event::Closed)
@@ -109,7 +111,6 @@ void PokerDisplay::loadGameWindow()
 		}
 
 		turnChange();
-		pokerTable->coutActualPlayerBlind(currentPlayersTurn);
 
 		gameWindow.clear();
 		drawTheMethodsOnTheScreen(gameWindow);
@@ -485,8 +486,9 @@ void PokerDisplay::preFlopActionButtons(Vector2f clickPosition)
 		{
 			int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
 
-			pokerTable->preFloatIncreaseThePot(i, userBB);
+			pokerTable->preFloatIncreaseThePot(i, userBB, currentPlayersTurn);
 			pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
+
 			currentPlayersTurn++;
 		}
 	}
@@ -501,7 +503,7 @@ void PokerDisplay::postFlopActionButtons(Vector2f clickPosition)
 			if (postFlopButton[i].isTheMouseOverButton(clickPosition))
 			{
 				int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
-				pokerTable->posFloatIncreaseThePot(i, userBB);
+				pokerTable->posFloatIncreaseThePot(i, userBB, currentPlayersTurn);
 				pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
 				currentPlayersTurn++;
 			}
@@ -546,6 +548,17 @@ void PokerDisplay::showButtonPlayerHand(Vector2f clickPosition, Event userEvent)
 	{
 		showButtonIsBeingPressed = false;
 	}
+}
+
+void PokerDisplay::playerGoOutButton(Vector2f clickPosition)
+{
+	int actualBlinc = pokerTable->getPlayerBlind(currentPlayersTurn);
+
+	pokerTable->validationOfGoOut(actualBlinc, currentPlayersTurn);
+
+	pokerTable->setPlayerBlind(currentPlayersTurn, actualBlinc);
+
+	currentPlayersTurn++;
 }
 
 void PokerDisplay::drawCommunityCards(RenderWindow& gameWindow)

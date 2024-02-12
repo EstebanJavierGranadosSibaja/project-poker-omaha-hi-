@@ -180,6 +180,25 @@ bool PokerTable::validationOfAllInButton(int& actualUserBlind)
 	return false;
 }
 
+void PokerTable::validationOfGoOut(int& actualUserBlind, int playerIndex)
+{
+	if (players[playerIndex]->getIsActive())
+	{
+		players[playerIndex]->setActivePlayer(false);
+		return;
+	}
+	else
+	{
+		if (actualUserBlind >= bigBlind)
+		{
+			actualUserBlind -= bigBlind;
+			pot += bigBlind;
+			return;
+		}
+	}
+	return;
+}
+
 string* PokerTable::convertHandsToText()
 {
 	string* newText = new string[numberOfPlayers + 4];
@@ -223,7 +242,7 @@ void PokerTable::createAHistoryRanking()
 	file.tryAndCatchOfLoadAddText(historyRankingName, convertCommunityCardsToText(), dealerCardsTextSize);
 }
 
-void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
+void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind, int actualUser)
 {
 	if (index == 0)
 	{
@@ -248,11 +267,15 @@ void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
 		validationOfAllInButton(actualUserBlind);
 		return;
 	}
+	if (index == 4 /*&& getPlayerBlind(actualUser) > 0*/)
+	{
+		validationOfGoOut(actualUserBlind, actualUser);
+		return;
+	}
 }
 
-void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
+void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind, int actualUser)
 {
-
 	if (index == 0)
 	{
 		validationOfTwoPartsPotButton(actualUserBlind);
@@ -270,11 +293,11 @@ void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
 		validationOfAllInButton(actualUserBlind);
 		return;
 	}
-}
-
-void PokerTable::coutActualPlayerBlind(int index)
-{
-	cout << " El jugador actual tiene: " << players[index]->getUserBlind() << endl;
+	if (index == 3 /*&& getPlayerBlind(actualUser) > 0*/)
+	{
+		validationOfGoOut(actualUserBlind, actualUser);
+		return;
+	}
 }
 
 void PokerTable::drawActualPlayerHand(int index, RenderWindow& window)
