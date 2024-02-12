@@ -492,7 +492,6 @@ void PokerDisplay::postFlopActionButtons(Vector2f clickPosition)
 				currentPlayersTurn++;
 			}
 		}
-
 	}
 }
 
