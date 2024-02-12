@@ -13,7 +13,9 @@ public:
 	Player();
 	Player(int aNumberPlayer, bool newIsActive, int aUserBlind, int aUserCash, PlayerHand* aUserHand);
 
-	void setNumberPlayer(int aNumberPlayer); 
+	Player(int aNumberPlayer, bool newIsActive, PlayerHand* aUserHand);
+
+	void setNumberPlayer(int aNumberPlayer);
 	void setUserBlind(int aUserBlind);
 	void setActivePlayer(bool newIsActive);
 	void setUserHand(PlayerHand* aUserHand); 

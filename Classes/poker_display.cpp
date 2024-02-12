@@ -2,6 +2,8 @@
 
 PokerDisplay::PokerDisplay()
 {
+	currentPlayersTurn = 0;
+ 
 	menu = new Menu();
 	menu->loadMenuWindow();
 
@@ -64,8 +66,8 @@ void PokerDisplay::loadGameWindow()
 	Player** players = pokerTable->getPlayers();
 
 	loadGameImage();
-	//definePreflopButtons();
-	definePostflopButtons();
+	definePreflopButtons();
+	//definePostflopButtons();
 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
@@ -81,9 +83,14 @@ void PokerDisplay::loadGameWindow()
 		while (gameWindow.pollEvent(event))
 		{
 
-			highlightButton(mousePositionInWindow,SIZE_POSFLOP_BUTTON,postFlopButton);
-			system("cls");
-			cout << " " << mousePosition.x << " , " << mousePosition.y;
+			highlightButton(mousePositionInWindow,SIZE_PREFLOP_BUTTON,preFlopButton);
+			if (event.type == Event::MouseButtonPressed)
+			{
+				firstRoundOfBetting(mousePositionInWindow);
+			}
+
+			/*system("cls");
+			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
 
 			if (event.type == Event::Closed)
 			{
@@ -95,13 +102,14 @@ void PokerDisplay::loadGameWindow()
 		gameWindow.draw(spriteBackGround);
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-		drawPostFlopButtons(gameWindow);
+		drawPreFlopButtons(gameWindow);
+		//drawPostFlopButtons(gameWindow);
 		drawPotAccumulator(gameWindow);
 		drawBingAndSmallBling(gameWindow);
 		dealPreFlopCards(gameWindow);
 		drawAllCardsDown(gameWindow); 
 
-		//drawPreFlopButtons(gameWindow);
+		
 
 		gameWindow.display();
 	}
@@ -274,7 +282,6 @@ void PokerDisplay::highlightButton(Vector2f& mousePosition, int size, Button* pr
 		if (isMouseOverButton)
 		{
 			preOfPosButton[i].setButtonColor(Color(173, 216, 230));
-			cout << " Si entro " << endl;
 		}
 		else
 		{
@@ -379,6 +386,33 @@ void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
 	
 	gameWindow.draw(bigBlindSprite);
 	gameWindow.draw(smallBlindSprite);
+}
+
+void PokerDisplay::firstRoundOfBetting(Vector2f clickPosition)
+{
+	
+	for (int i = 0; i < BETS_AMOUNT; i++)
+	{
+		turnChange();
+
+		if (preFlopButton[i].theButtonWasClicked(clickPosition))
+		{
+			
+			int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
+			int cambioPot = pokerTable->getPot(); 
+			cout << cambioPot; 
+			pokerTable->preFloatIncreaseThePot(i, userBB); 
+			currentPlayersTurn++; 
+		}
+	}
+}
+
+void PokerDisplay::turnChange()
+{
+	if (currentPlayersTurn + 1 == menu->getNumPlayer())
+	{
+		currentPlayersTurn = 0; 
+	}
 }
 
 

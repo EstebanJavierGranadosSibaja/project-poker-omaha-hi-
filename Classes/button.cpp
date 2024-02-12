@@ -2,6 +2,8 @@
 
 Button::Button()
 {
+	isAClick = false;
+
 	buttonFont = Font();
 	buttonFont.loadFromFile("ARIAL.ttf");
 
@@ -30,6 +32,8 @@ Button::Button(float newXPosition, float newYposition, string text)
 	buttonText = Text(text, buttonFont, 40);
 	buttonText.setFillColor(Color::Black);
 	buttonText.setPosition(newXPosition + 95, newYposition+50);
+
+	
 }
 
 RectangleShape Button::getButtonShape()
@@ -52,6 +56,8 @@ void Button::button3BB()
 	buttonShape.setPosition(Vector2f(xPosition, yPosition));
 	buttonText.setPosition(xPosition+ 30, yPosition+ 30);
 	buttonText.setString(text); 
+
+
 }
 
 void Button::buttonHalfPot()
@@ -130,5 +136,11 @@ void Button::drawButton(RenderWindow& window)
 void Button::setButtonColor(Color color)
 {
 	buttonShape.setFillColor(color);
+}
+
+bool Button::theButtonWasClicked(Vector2f clickPosition)
+{
+	return buttonShape.getGlobalBounds().contains(clickPosition.x, clickPosition.y); 
+
 }
 

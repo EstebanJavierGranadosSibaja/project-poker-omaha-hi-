@@ -36,6 +36,7 @@ public:
 	int getBigBlind();
 	int getSmallBlind();
 	int getNumberOfPlayers();
+	int getPlayerBlind(int index); 
 	Dealer* getDealer();
 	Deck* getDeck();
 	Player** getPlayers(); 
@@ -52,4 +53,7 @@ public:
 	string* convertHandsToText();
 	string* convertCommunityCardsToText();
 	void createAHistoryRanking();
+
+	void preFloatIncreaseThePot(int index, int& actualUserBlind);
+
 };
