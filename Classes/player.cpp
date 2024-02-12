@@ -1,20 +1,21 @@
 #include"player.h"
 
-Player::Player()
+Player::Player(int blindPrice)
 {
-	numberPlayer = 0; 
-	isActive = true; 
-	userBlind = 100;
-	userHand = new PlayerHand(); 
+	numberPlayer = 0;
+	isActive = true;
+	userBlind = 100 * blindPrice;
+	userHand = new PlayerHand();
 }
 
-Player::Player(int aNumberPlayer, bool newIsActive, PlayerHand* aUserHand)
+Player::Player(int aNumberPlayer, bool newIsActive, int aUserBlind, PlayerHand* aUserHand)
 {
 	numberPlayer = aNumberPlayer;
 	isActive = newIsActive;
-	userBlind= userBlind;
-	userHand = aUserHand; 
+	userBlind = userBlind;
+	userHand = aUserHand;
 }
+
 
 void Player::setNumberPlayer(int aNumberPlayer)
 {
