@@ -26,4 +26,6 @@ public:
 	Texture* getDealerTexture();
 	Sprite* getDealerSprite();
 	string getCommunityCardsToText();
+	void setPositionAndScalesOfDealerSprites(RectangleShape& userBox, int index);
+
 }; 

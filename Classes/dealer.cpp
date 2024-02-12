@@ -134,3 +134,10 @@ string Dealer::getCommunityCardsToText()
 
 	return newCommunityCardsText;
 }
+
+void Dealer::setPositionAndScalesOfDealerSprites(RectangleShape& userBox, int index)
+{
+	vectorOfDealerSprites[index].setPosition(userBox.getPosition());
+	vectorOfDealerSprites[index].setScale(userBox.getSize().x / vectorOfDealerTextures[index].getSize().x,
+		userBox.getSize().y / vectorOfDealerTextures[index].getSize().y);
+}
