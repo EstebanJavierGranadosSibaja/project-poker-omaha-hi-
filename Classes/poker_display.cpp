@@ -58,7 +58,6 @@ PokerDisplay::PokerDisplay()
 	}
 
 	pokerTable->createAHistoryRanking();
-	system("PAUSE");
 }
 
 void PokerDisplay::loadGameWindow()
@@ -117,10 +116,13 @@ void PokerDisplay::loadGameWindow()
 
 void PokerDisplay::loadGameImage()
 {
+	// se puede cambiar a un try and catch
+
 	if (!backGround.loadFromFile("Images/poker_table.png"))
 	{
 		return;
 	}
+
 	spriteBackGround = Sprite(backGround);
 	spriteBackGround.setPosition(0, 0);
 	spriteBackGround.setScale(1.5f, 1.5f);

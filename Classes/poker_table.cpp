@@ -294,8 +294,6 @@ void PokerTable::createAHistoryRanking()
 	int randNumber = rand() % 100000;
 	string historyRankingName = "PokerHistory_Code_" + to_string(randNumber) + ".txt";
 
-	cout << dealerCardsTextSize;
-
 	file.save(historyRankingName, convertHandsToText(), dealerCardsTextSize);
 	file.addText(historyRankingName, convertCommunityCardsToText(), playersCardsTextSize);
 }

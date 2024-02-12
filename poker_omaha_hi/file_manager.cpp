@@ -4,6 +4,7 @@ void fileManager::save(string newFileName, string* newText, int newQuantityOfLin
 {
 	ofstream myFile(newFileName);
 
+	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
 		cerr << "ERROR AL MOMENTO DE ABRIR EL ARCHIVO " << newFileName << ".txt";
@@ -29,6 +30,7 @@ string* fileManager::load(string newFileName)
 
 	myFile.open(newFileName, ios::in);
 
+	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
 		cerr << "ERROR AL MOMENTO DE ABRIR EL ARCHIVO " << newFileName << ".txt";
@@ -52,11 +54,13 @@ void fileManager::addText(string newFileName, string* newText, int newQuantityOf
 
 	myFile.open(newFileName, ios::app);
 
+	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
 		cerr << "ERROR AL MOMENTO DE ABRIR EL ARCHIVO " << newFileName << ".txt";
 		return;
 	}
+
 	for (int i = 0; i < newQuantityOfLines; i++)
 	{
 		myFile << newText[i] << "\n";
@@ -73,6 +77,7 @@ int fileManager::getQuantityOfLines(string newFileName)
 
 	myFile.open(newFileName, ios::in);
 
+	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
 		cerr << "ERROR AL MOMENTO DE ABRIR EL ARCHIVO " << newFileName << ".txt";

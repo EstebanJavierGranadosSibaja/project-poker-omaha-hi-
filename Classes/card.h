@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include"string"
+#include <stdexcept>
 using namespace std;
 
 const int NUMBER_OF_TYPES = 4;
