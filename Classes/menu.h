@@ -33,6 +33,7 @@ public:
 	int getBlindPrice(); 
 	void loadMenuWindow();
 	void loadMenuImage(RenderWindow& window);
+	void tryAndCatchOfTheLoadMenu(RenderWindow& window);
 	void drawRectangle();
 	void addText();
 	void blindInput(RenderWindow& window);
