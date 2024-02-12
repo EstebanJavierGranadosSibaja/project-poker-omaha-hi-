@@ -68,6 +68,7 @@ public:
 	void highlightButton(Vector2f& mousePosition, int size, Button* preOfPosButton);
 	void drawPotAccumulator(RenderWindow& gameWindow);
 	void dealPreFlopCards(RenderWindow& gameWindow);
+	void dealCardsInRow(int& amountOfCardsToDraw, sf::RenderWindow& gameWindow, int row);
 	void drawAllCardsDown(RenderWindow& gameWindow);
 	void blinkingActualPlayerHand(RenderWindow& gameWindow);
 	void drawBingAndSmallBling(RenderWindow& gameWindow);

@@ -274,12 +274,9 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 {
 	float rectWidth = 50.f;
 	float rectHeight = 76.f;
-
 	float totalWidth = COMMUNITY_CARD_SIZE * rectWidth;
 	float startX = 812.f;
-
 	float yCenter = 320.f;
-
 	float midCard = 2.f;
 
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
@@ -295,7 +292,6 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		if (i < midCard)
 		{
 			yCenter += 10.f;
-
 		}
 		else
 		{
@@ -303,7 +299,6 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		}
 
 		startX += 10.f;
-
 		gameWindow.draw(spacesForDealerCard[i]);
 	}
 }
@@ -391,28 +386,33 @@ void PokerDisplay::dealPreFlopCards(RenderWindow& gameWindow)
 	{
 		for (int i = 0; i < rows; i++)
 		{
-			for (int j = 0; j < columns; j++)
+			dealCardsInRow(amountOfCardsToDraw, gameWindow, i);
+		}
+	}
+}
+
+void PokerDisplay::dealCardsInRow(int& amountOfCardsToDraw, RenderWindow& gameWindow, int row)
+{
+	for (int j = 0; j < columns; j++)
+	{
+		if (amountOfCardsToDraw == limit && clock.getElapsedTime() > time)
+		{
+			limit++;
+			clock.restart();
+
+			if (limit == columns * rows)
 			{
-				if (amountOfCardsToDraw == limit && clock.getElapsedTime() > time)
-				{
-					limit++;
-					clock.restart();
-
-					if (limit == columns * rows)
-					{
-						isDealerThrowingCards = false;
-					}
-
-					soundCard.stop();
-					soundCard.play();
-
-				}
-				if (amountOfCardsToDraw != limit)
-				{
-					gameWindow.draw(cardDownSprite[i][j]);
-					amountOfCardsToDraw++;
-				}
+				isDealerThrowingCards = false;
 			}
+
+			soundCard.stop();
+			soundCard.play();
+
+		}
+		if (amountOfCardsToDraw != limit)
+		{
+			gameWindow.draw(cardDownSprite[row][j]);
+			amountOfCardsToDraw++;
 		}
 	}
 }
