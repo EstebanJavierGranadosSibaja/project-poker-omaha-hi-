@@ -85,7 +85,7 @@ void PokerDisplay::loadGameWindow()
 		Vector2i mousePosition = sf::Mouse::getPosition(gameWindow);
 		Vector2f mousePositionInWindow = gameWindow.mapPixelToCoords(mousePosition);
 
-		while (gameWindow.pollEvent(event))
+		if (gameWindow.pollEvent(event))
 		{
 			highLightingButtons(mousePositionInWindow);
 
@@ -127,30 +127,30 @@ void PokerDisplay::betButtonsIntoAction(Vector2f& mousePositionInWindow)
 {
 	if (!postFloatStarts) {
 		preFlopActionButtons(mousePositionInWindow);
+		return; 
 	}
-	else {
+	
 		postFlopActionButtons(mousePositionInWindow);
-	}
+	
 }
 
 void PokerDisplay::drawingPostAndPreFlopButtons(RenderWindow& gameWindow)
 {
 	if (!postFloatStarts) {
 		drawPreFlopButtons(gameWindow);
+		return;
 	}
-	else {
+	
 		drawPostFlopButtons(gameWindow);
-	}
 }
 
 void PokerDisplay::highLightingButtons(Vector2f& mousePositionInWindow)
 {
-	if (postFloatStarts) {
+	if (!postFloatStarts) {
 		highlightButton(mousePositionInWindow, SIZE_PREFLOP_BUTTON, preFlopButton);
+		return; 
 	}
-	else {
 		highlightButton(mousePositionInWindow, SIZE_POSFLOP_BUTTON, postFlopButton);
-	}
 }
 
 void PokerDisplay::loadGameImage()

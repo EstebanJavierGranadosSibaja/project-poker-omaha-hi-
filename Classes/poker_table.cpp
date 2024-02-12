@@ -209,8 +209,10 @@ void PokerTable::createAHistoryRanking()
 	int randNumber = rand() % 100000;
 	string historyRankingName = "PokerHistory_Code_" + to_string(randNumber) + ".txt";
 
-	file.tryAndCatchOfSaveFile(historyRankingName, convertHandsToText(), dealerCardsTextSize);
-	file.tryAndCatchOfLoadAddText(historyRankingName, convertCommunityCardsToText(), dealerCardsTextSize);
+	/*file.tryAndCatchOfSaveFile(historyRankingName, convertHandsToText(), dealerCardsTextSize);
+	file.tryAndCatchOfLoadAddText(historyRankingName, convertCommunityCardsToText(), dealerCardsTextSize);*/
+	file.save(historyRankingName, convertHandsToText(), dealerCardsTextSize);
+	file.addText(historyRankingName, convertHandsToText(), dealerCardsTextSize);
 }
 
 void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
@@ -249,13 +251,13 @@ void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
 		return;
 	}
 
-	if (index == 2)
+	if (index == 1)
 	{
 		validationOfThreePartsPotButton(actualUserBlind); 
 		return;
 	}
 
-	if (index == 3)
+	if (index == 2)
 	{
 		validationOfAllInButton(actualUserBlind);
 		return;
