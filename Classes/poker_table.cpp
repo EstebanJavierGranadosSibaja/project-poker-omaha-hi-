@@ -1,6 +1,5 @@
 #include "poker_table.h"
 
-
 PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 {
 	pot = 0;
@@ -21,7 +20,6 @@ PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 	dealer->setCommunityCards(deck);
 	dealer->createDealerSprites();
 }
-
 
 PokerTable::~PokerTable()
 {
@@ -111,7 +109,6 @@ void PokerTable::dealCardsToThePlayers()
 {
 	dealer->getPlayerCards(players, numberOfPlayers, deck);
 }
-
 
 bool PokerTable::validationOfThreeBigBlindButton(int& actualUserBlind)
 {
@@ -206,11 +203,14 @@ void PokerTable::createAHistoryRanking()
 {
 	srand(time(NULL));
 
-	int randNumber = rand() % 1000000;
-	string historyRankingName = "PokerHistory_Code" + to_string(randNumber) + ".txt";
+	int dealerCardsTextSize = numberOfPlayers + 4;
+	int playersCardsTextSize = 2;
 
-	file.save(historyRankingName, convertHandsToText(), 8);
-	file.addText(historyRankingName, convertCommunityCardsToText(), 2);
+	int randNumber = rand() % 100000;
+	string historyRankingName = "PokerHistory_Code_" + to_string(randNumber) + ".txt";
+
+	file.save(historyRankingName, convertHandsToText(), dealerCardsTextSize);
+	file.addText(historyRankingName, convertCommunityCardsToText(), playersCardsTextSize);
 }
 
 void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)

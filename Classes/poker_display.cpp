@@ -126,13 +126,29 @@ void PokerDisplay::loadGameWindow()
 
 void PokerDisplay::loadGameImage()
 {
+	// se puede cambiar a un try and catch
+
 	if (!backGround.loadFromFile("Images/poker_table.png"))
 	{
-		return;
+		throw runtime_error("ERROR AL CARGAR LA IMAGEN EN loadGameImage()");
 	}
+
 	spriteBackGround = Sprite(backGround);
 	spriteBackGround.setPosition(0, 0);
 	spriteBackGround.setScale(1.5f, 1.5f);
+
+}
+
+void PokerDisplay::tryAndCatchOfLoadGame()
+{
+	try
+	{
+		loadGameImage();
+	}
+	catch (const runtime_error& e)
+	{
+		cerr << "ERROR AL CARGAR LA PANTALLA DEL JUEGO" << e.what() <<  endl;
+	}
 }
 
 void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)

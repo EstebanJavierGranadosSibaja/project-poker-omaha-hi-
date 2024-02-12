@@ -69,6 +69,7 @@ void Menu::loadMenuWindow()
 
 void Menu::loadMenuImage(RenderWindow& window)
 {
+	// se puede cambiar a un try and catch
 	if (!background.loadFromFile("Images/menu2.png"))
 	{
 		return;
