@@ -49,6 +49,7 @@ public:
 	PokerDisplay();
 	void definingTextVariables();
 	void loadGameWindow();
+	void drawTheMethodsOnTheScreen(sf::RenderWindow& gameWindow);
 	void drawUserCards(RenderWindow& gameWindow);
 	void betButtonsIntoAction(Vector2f& mousePositionInWindow);
 	void drawingPostAndPreFlopButtons(RenderWindow& gameWindow);

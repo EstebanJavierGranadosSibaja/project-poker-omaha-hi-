@@ -18,7 +18,6 @@ PokerDisplay::PokerDisplay()
 	backGround = Texture();
 	spriteBackGround = Sprite();
 
-
 	clock = Clock();
 	time = seconds(0.5f);
 	isDealerThrowingCards = true;
@@ -29,7 +28,6 @@ PokerDisplay::PokerDisplay()
 
 	preFlopButton = new Button[SIZE_PREFLOP_BUTTON];
 	postFlopButton = new Button[SIZE_POSFLOP_BUTTON];
-
 
 	spacesForDealerCard = new RectangleShape[COMMUNITY_CARD_SIZE];
 
@@ -82,13 +80,11 @@ void PokerDisplay::loadGameWindow()
 	definePostflopButtons();
 	definePreflopButtons();
 	
-
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
 	while (gameWindow.isOpen())
 	{
 		Event event;
-
 		Vector2i mousePosition = sf::Mouse::getPosition(gameWindow);
 		Vector2f mousePositionInWindow = gameWindow.mapPixelToCoords(mousePosition);
 		//system("cls");
@@ -98,39 +94,40 @@ void PokerDisplay::loadGameWindow()
 			highLightingButtons(mousePositionInWindow);
 			showButtonPlayerHand(mousePositionInWindow, event);
 
-
 			if (event.type == Event::MouseButtonPressed)
 			{
 				betButtonsIntoAction(mousePositionInWindow);
 			}
 			//cout << " " << mousePosition.x << " , " << mousePosition.y;
-
 			if (event.type == Event::Closed)
 			{
 				gameWindow.close();
 			}
 		}
+
 		turnChange();
 		pokerTable->coutActualPlayerBlind(currentPlayersTurn);
 
 		gameWindow.clear();
-
-
-		gameWindow.draw(spriteBackGround);
-		checkThePlayersBoxes(gameWindow);
-		checkTheDealerBoxes(gameWindow);
-		drawingPostAndPreFlopButtons(gameWindow);
-		drawPotAccumulator(gameWindow);
-		drawBingAndSmallBling(gameWindow);
-		dealPreFlopCards(gameWindow);
-		drawAllCardsDown(gameWindow);
-		drawPot(gameWindow);
-		blinkingActualPlayerHand(gameWindow);
-		drawUserCards(gameWindow);
-		drawCommunityCards(gameWindow);
-
+		drawTheMethodsOnTheScreen(gameWindow);
 		gameWindow.display();
 	}
+}
+
+void PokerDisplay::drawTheMethodsOnTheScreen(RenderWindow& gameWindow)
+{
+	gameWindow.draw(spriteBackGround);
+	checkThePlayersBoxes(gameWindow);
+	checkTheDealerBoxes(gameWindow);
+	drawingPostAndPreFlopButtons(gameWindow);
+	drawPotAccumulator(gameWindow);
+	drawBingAndSmallBling(gameWindow);
+	dealPreFlopCards(gameWindow);
+	drawAllCardsDown(gameWindow);
+	drawPot(gameWindow);
+	blinkingActualPlayerHand(gameWindow);
+	drawUserCards(gameWindow);
+	drawCommunityCards(gameWindow);
 }
 
 void PokerDisplay::drawUserCards(RenderWindow& gameWindow)
@@ -490,7 +487,6 @@ void PokerDisplay::preFlopActionButtons(Vector2f clickPosition)
 
 			pokerTable->preFloatIncreaseThePot(i, userBB);
 			pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
-
 			currentPlayersTurn++;
 		}
 	}
@@ -507,7 +503,6 @@ void PokerDisplay::postFlopActionButtons(Vector2f clickPosition)
 				int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
 				pokerTable->posFloatIncreaseThePot(i, userBB);
 				pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
-
 				currentPlayersTurn++;
 			}
 		}
