@@ -175,14 +175,18 @@ bool PokerTable::validationOfAllInButton(int& actualUserBlind)
 
 string* PokerTable::convertHandsToText()
 {
-	string* newText = new string[numberOfPlayers + 60];
+	string* newText = new string[numberOfPlayers + 4];
+	int lastPosition = 0;
 
 	newText[0] = "    RANKING HISTORIAL DE LAS MANOS DE LOS JUGADORES    \n";
 
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
 		newText[i + 1] = players[i]->getUserHand()->getHandToText(i + 1);
+		lastPosition = i;
 	}
+
+	newText[lastPosition + 3] = "  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| \n";
 
 	return newText;
 }
