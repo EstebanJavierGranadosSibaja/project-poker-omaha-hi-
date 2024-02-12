@@ -2,26 +2,26 @@
 #include"dealer.h"
 #include"player.h"
 #include"menu.h"
-//#include"poker_display.h"
+
 #include"../poker_omaha_hi/winning_play.h"
 #include"../poker_omaha_hi/file_manager.h"
 
 class PokerTable
 {
-private: 
-	int pot; 
+private:
+	int pot;
 	int bigBlind;
-	int smallBlind; 
+	int smallBlind;
 	int numberOfPlayers;
-	Dealer* dealer; 
-	Deck* deck; 
+	Dealer* dealer;
+	Deck* deck;
 	Player** players;
 	fileManager file;
-	
 
-public: 
+
+public:
 	PokerTable() {};
-	PokerTable(int aBigBlind,int aNumberOfPlayers);
+	PokerTable(int aBigBlind, int aNumberOfPlayers);
 	~PokerTable();
 
 	void setPot(int aPot);
@@ -30,21 +30,21 @@ public:
 	void setNumberOfPlayers(int newNumberOfPlayers);
 	void setDealer(Dealer* newDealer);
 	void setDeck(Deck* newDeck);
-	void setPlayer(Player** newPlayers); 
+	void setPlayer(Player** newPlayers);
 
 	int getPot();
 	int getBigBlind();
 	int getSmallBlind();
 	int getNumberOfPlayers();
-	int getPlayerBlind(int index); 
+	int getPlayerBlind(int index);
+	void setPlayerBlind(int index, int newBlinds);
 	Dealer* getDealer();
 	Deck* getDeck();
-	Player** getPlayers(); 
+	Player** getPlayers();
 
-	void dealCardsToThePlayers(); 
+	void dealCardsToThePlayers();
 
-	void startPreFloatRound();
-	bool validationOfThreeBigBlindButton(int &actualUserBlind);
+	bool validationOfThreeBigBlindButton(int& actualUserBlind);
 	bool validationOfThreePartsPotButton(int& actualUserBlind);
 	bool validationOfTwoPartsPotButton(int& actualUserBlind);
 	bool validationOfPotButton(int& actualUserBlind);

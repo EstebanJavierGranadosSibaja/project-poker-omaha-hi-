@@ -3,7 +3,7 @@
 PokerDisplay::PokerDisplay()
 {
 	currentPlayersTurn = 0;
- 
+
 	menu = new Menu();
 	menu->loadMenuWindow();
 
@@ -31,19 +31,15 @@ PokerDisplay::PokerDisplay()
 	preFlopButton = new Button[SIZE_PREFLOP_BUTTON];
 	postFlopButton = new Button[SIZE_POSFLOP_BUTTON];
 
-	spacesInUserCard = new RectangleShape * [rows];
-
-	for (int i = 0; i < rows; i++)
-	{
-		spacesInUserCard[i] = new RectangleShape[columns];
-	}
 
 	spacesForDealerCard = new RectangleShape[COMMUNITY_CARD_SIZE];
 
+	spacesInUserCard = new RectangleShape * [rows];
 	cardDownTexture = new Texture * [rows];
 	cardDownSprite = new Sprite * [rows];
 	for (int i = 0; i < rows; i++)
 	{
+		spacesInUserCard[i] = new RectangleShape[columns];
 		cardDownTexture[i] = new Texture[columns];
 		cardDownSprite[i] = new Sprite[columns];
 	}
@@ -58,7 +54,6 @@ PokerDisplay::PokerDisplay()
 	}
 
 	pokerTable->createAHistoryRanking();
-	system("PAUSE");
 }
 
 void PokerDisplay::loadGameWindow()
@@ -83,7 +78,7 @@ void PokerDisplay::loadGameWindow()
 		while (gameWindow.pollEvent(event))
 		{
 
-			highlightButton(mousePositionInWindow,SIZE_PREFLOP_BUTTON,preFlopButton);
+			highlightButton(mousePositionInWindow, SIZE_PREFLOP_BUTTON, preFlopButton);
 			if (event.type == Event::MouseButtonPressed)
 			{
 				firstRoundOfBetting(mousePositionInWindow);
@@ -107,9 +102,9 @@ void PokerDisplay::loadGameWindow()
 		drawPotAccumulator(gameWindow);
 		drawBingAndSmallBling(gameWindow);
 		dealPreFlopCards(gameWindow);
-		drawAllCardsDown(gameWindow); 
+		drawAllCardsDown(gameWindow);
 
-		
+
 
 		gameWindow.display();
 	}
@@ -375,34 +370,38 @@ void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
 	Sprite bigBlindSprite(bigBlindTexture);
 	Sprite smallBlindSprite(smallBlindTexture);
 
-	float scale =0.1f; 
+	float scale = 0.1f;
 	bigBlindSprite.setScale(scale, scale);
 	smallBlindSprite.setScale(scale, scale);
 
-	
+
 	bigBlindSprite.setPosition(1155, 494);
 	smallBlindSprite.setPosition(1147, 385);
 
-	
+
 	gameWindow.draw(bigBlindSprite);
 	gameWindow.draw(smallBlindSprite);
 }
 
 void PokerDisplay::firstRoundOfBetting(Vector2f clickPosition)
 {
-	
+
 	for (int i = 0; i < BETS_AMOUNT; i++)
 	{
 		turnChange();
 
 		if (preFlopButton[i].theButtonWasClicked(clickPosition))
 		{
-			
+
 			int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
-			int cambioPot = pokerTable->getPot(); 
-			cout << cambioPot; 
-			pokerTable->preFloatIncreaseThePot(i, userBB); 
-			currentPlayersTurn++; 
+			int cambioPot = pokerTable->getPot();
+
+			pokerTable->preFloatIncreaseThePot(i, userBB);
+			pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
+
+			cout << cambioPot;
+
+			currentPlayersTurn++;
 		}
 	}
 }
@@ -411,10 +410,9 @@ void PokerDisplay::turnChange()
 {
 	if (currentPlayersTurn + 1 == menu->getNumPlayer())
 	{
-		currentPlayersTurn = 0; 
+		currentPlayersTurn = 0;
 	}
 }
-
 
 
 
