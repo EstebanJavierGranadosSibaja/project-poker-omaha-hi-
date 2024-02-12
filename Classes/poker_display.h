@@ -75,5 +75,5 @@ public:
 	void turnChange();
 	void drawPot(RenderWindow& gameWindow);
 	void showButtonPlayerHand(Vector2f clickPosition, Event userEvent);
-	void drawCommunityCards(RenderWindow& gameWindow);
+	void drawCommunityCards(RenderWindow& gameWindow); 
 };

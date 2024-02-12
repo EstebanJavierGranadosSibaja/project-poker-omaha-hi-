@@ -249,11 +249,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
 			cardDownSprite[i][j].setScale(spacesInUserCard[i][j].getSize().x / cardDownTexture[i][j].getSize().x, spacesInUserCard[i][j].getSize().y / cardDownTexture[i][j].getSize().y);
 
-			pokerTable->getPlayers()[i]->getUserHand()->setPositionAndScalesOfPlayerSprites(spacesInUserCard[i][j], j);
-
-
-			int playerBlind = players[i]->getUserBlind(); 
-			
+			pokerTable->getPlayers()[i]->getUserHand()->setPositionAndScalesOfPlayerSprites(spacesInUserCard[i][j], j);	
 
 		}
 		gameWindow.draw(numberOfPlayer);
@@ -281,8 +277,8 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
 		spacesForDealerCard[i] = RectangleShape(Vector2f(rectWidth, rectHeight));
-		spacesForDealerCard[i].setFillColor(Color::Red);
-		spacesForDealerCard[i].setOutlineColor(Color::Red);
+		spacesForDealerCard[i].setFillColor(Color::Transparent);
+		spacesForDealerCard[i].setOutlineColor(Color::Transparent);
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
@@ -491,7 +487,7 @@ void PokerDisplay::preFlopActionButtons(Vector2f clickPosition)
 
 void PokerDisplay::postFlopActionButtons(Vector2f clickPosition)
 {
-	if (gameRound < 5 && gameRound != 0)
+	if (gameRound < 4 && gameRound != 0)
 	{
 		for (int i = 0; i < BETS_AMOUNT - 1; i++)
 		{
