@@ -67,6 +67,9 @@ void PokerDisplay::definingTextVariables()
 	potNumber = Text("", arial, 40);
 	potNumber.setFillColor(Color::Black);
 	potNumber.setPosition(850.0f, 68.0f);
+
+	userBlind = Text("", arial, 35);
+	userBlind.setFillColor(Color::Black);
 }
 
 void PokerDisplay::loadGameWindow()
@@ -248,6 +251,9 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 			pokerTable->getPlayers()[i]->getUserHand()->setPositionAndScalesOfPlayerSprites(spacesInUserCard[i][j], j);
 
+
+			int playerBlind = players[i]->getUserBlind(); 
+			
 
 		}
 		gameWindow.draw(numberOfPlayer);
