@@ -203,11 +203,6 @@ void PokerTable::createAHistoryRanking()
 {
 	srand(time(NULL));
 
-	int randNumber = rand() % 1000000;
-	string historyRankingName = "PokerHistory_Code" + to_string(randNumber) + ".txt";
-
-	file.save(historyRankingName, convertHandsToText(), 8);
-	file.addText(historyRankingName, convertCommunityCardsToText(), 2);
 	int dealerCardsTextSize = numberOfPlayers + 4;
 	int playersCardsTextSize = 2;
 

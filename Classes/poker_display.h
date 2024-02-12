@@ -7,6 +7,7 @@ const int BETS_AMOUNT = 4;
 const int SIZE_PREFLOP_BUTTON = 6;
 const int SIZE_POSFLOP_BUTTON = 5;
 
+const int LOAD_GAME_ERR = 10;
 
 class PokerDisplay
 {
@@ -43,6 +44,7 @@ public:
 	PokerDisplay();
 	void loadGameWindow();
 	void loadGameImage();
+	void tryAndCatchOfLoadGame();
 	void checkThePlayersBoxes(RenderWindow& gameWindow);
 	void checkTheDealerBoxes(RenderWindow& gameWindow);
 	void definePreflopButtons();
@@ -51,7 +53,6 @@ public:
 	void drawPostFlopButtons(RenderWindow& gameWindow);
 	void highlightButton(Vector2f& mousePosition, int size, Button* preOfPosButton);
 	void drawPotAccumulator(RenderWindow& gameWindow);
-
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void drawAllCardsDown(RenderWindow& gameWindow);
 	void drawBingAndSmallBling(RenderWindow& gameWindow);

@@ -7,8 +7,7 @@ void fileManager::save(string newFileName, string* newText, int newQuantityOfLin
 	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
-		cerr << "ERROR AL MOMENTO DE ABRIR EL ARCHIVO " << newFileName << ".txt";
-		return;
+		throw runtime_error("ERROR AL ABRIR EL ARCHIVO EN save()");
 	}
 
 	for (int i = 0; i < newQuantityOfLines; i++)
@@ -17,6 +16,18 @@ void fileManager::save(string newFileName, string* newText, int newQuantityOfLin
 	}
 
 	myFile.close();
+}
+
+void fileManager::tryAndCatchOfSaveFile(string newFileName, string* newText, int newQuantityOfLines)
+{
+	try
+	{
+		save(newFileName, newText, newQuantityOfLines);
+	}
+	catch (const runtime_error& e)
+	{
+		cerr << "ERROR AL GUARDAR EL ARCHIVO" << e.what() << endl;
+	}
 }
 
 string* fileManager::load(string newFileName)
@@ -33,8 +44,7 @@ string* fileManager::load(string newFileName)
 	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
-		cerr << "ERROR AL MOMENTO DE ABRIR EL ARCHIVO " << newFileName << ".txt";
-		return newText;
+		throw runtime_error("ERROR AL ABRIR EL ARCHIVO EN load()");
 	}
 
 	while (getline(myFile, loadNewLine))
@@ -48,6 +58,18 @@ string* fileManager::load(string newFileName)
 	return newText;
 }
 
+void fileManager::tryAndCatchOfLoadFile(string newFileName)
+{
+	try
+	{
+		load(newFileName);
+	}
+	catch (const runtime_error& e)
+	{
+		cerr << "ERROR AL CARGAR EL ARCHIVO" << e.what() << endl;
+	}
+}
+
 void fileManager::addText(string newFileName, string* newText, int newQuantityOfLines)
 {
 	ofstream myFile;
@@ -57,8 +79,7 @@ void fileManager::addText(string newFileName, string* newText, int newQuantityOf
 	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
-		cerr << "ERROR AL MOMENTO DE ABRIR EL ARCHIVO " << newFileName << ".txt";
-		return;
+		throw runtime_error("ERROR AL ABRIR EL ARCHIVO EN AddText()");
 	}
 
 	for (int i = 0; i < newQuantityOfLines; i++)
@@ -67,6 +88,18 @@ void fileManager::addText(string newFileName, string* newText, int newQuantityOf
 	}
 
 	myFile.close();
+}
+
+void fileManager::tryAndCatchOfLoadAddText(string newFileName, string* newText, int newQuantityOfLines)
+{
+	try
+	{
+		addText(newFileName, newText, newQuantityOfLines);
+	}
+	catch (const runtime_error& e)
+	{
+		cerr << "ERROR AL AGREGAR TEXTO AL ARCHIVO" << e.what() << endl;
+	}
 }
 
 int fileManager::getQuantityOfLines(string newFileName)
