@@ -16,6 +16,7 @@ private:
 	Text numberOfPlayer;
 	Font arial;
 	PokerTable* pokerTable;
+	Player** players;
 	Menu* menu;
 	Button* preFlopButton;
 	Button* postFlopButton;
