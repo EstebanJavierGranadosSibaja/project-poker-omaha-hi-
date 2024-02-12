@@ -55,11 +55,8 @@ public:
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void drawAllCardsDown(RenderWindow& gameWindow);
 	void drawBingAndSmallBling(RenderWindow& gameWindow); 
-<<<<<<< HEAD
 
-=======
 	void firstRoundOfBetting(Vector2f clickPosition);
 	void turnChange();
 	
->>>>>>> 96b0613fd10844204dcb28c4da0806ab43d81b4f
 };
