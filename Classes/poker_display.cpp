@@ -77,7 +77,6 @@ void PokerDisplay::loadGameWindow()
 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
-
 	while (gameWindow.isOpen())
 	{
 		Event event;
@@ -117,7 +116,6 @@ void PokerDisplay::loadGameWindow()
 		drawAllCardsDown(gameWindow);
 		drawPot(gameWindow);
 		blinkingActualPlayerHand(gameWindow);
-
 
 		gameWindow.display();
 	}
