@@ -16,12 +16,12 @@ PokerTable::PokerTable(int aBigBlind, int aNumberOfPlayers)
 		players[i] = new Player(aBigBlind);
 	}
 
-	
+
 	dealer->shuffleDeck(deck);
 	dealer->setCommunityCards(deck);
 	dealer->createDealerSprites();
+	dealCardsToThePlayers();
 
-	
 }
 
 PokerTable::~PokerTable()
@@ -114,7 +114,7 @@ void PokerTable::dealCardsToThePlayers()
 
 	for (int i = 0; i < numberOfPlayers; i++)
 	{
-		players[i]->getUserHand()->createPlayerSprites(); 
+		players[i]->getUserHand()->createPlayerSprites();
 	}
 }
 
@@ -281,6 +281,6 @@ void PokerTable::drawActualPlayerHand(int index, RenderWindow& window)
 {
 	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
 	{
-		window.draw(players[index]->getUserHand()->getPlayerSprite()[i]); 
+		window.draw(players[index]->getUserHand()->getPlayerSprite()[i]);
 	}
 }

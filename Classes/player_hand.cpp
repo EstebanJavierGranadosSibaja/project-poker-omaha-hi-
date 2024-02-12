@@ -14,7 +14,7 @@ void PlayerHand::createPlayerSprites()
 {
 	for (int i = 0; i < SIZE_OF_PLAYER_DECK; i++)
 	{
-		vectorOfPlayerTextures[i].loadFromFile(hand[i]->getUrl()) ;
+		vectorOfPlayerTextures[i].loadFromFile(hand[i]->getUrl());
 		vectorOfPlayerSprites[i] = Sprite(vectorOfPlayerTextures[i]);
 	}
 }
@@ -54,4 +54,11 @@ Texture* PlayerHand::getPlayerTexture()
 Sprite* PlayerHand::getPlayerSprite()
 {
 	return vectorOfPlayerSprites;
+}
+
+void PlayerHand::setPositionAndScalesOfPlayerSprites(RectangleShape& userBox, int index)
+{
+	vectorOfPlayerSprites[index].setPosition(userBox.getPosition());
+	vectorOfPlayerSprites[index].setScale(userBox.getSize().x / vectorOfPlayerTextures[index].getSize().x,
+		userBox.getSize().y / vectorOfPlayerTextures[index].getSize().y);
 }

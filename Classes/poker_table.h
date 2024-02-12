@@ -20,7 +20,7 @@ private:
 
 
 public:
-	PokerTable() {};
+
 	PokerTable(int aBigBlind, int aNumberOfPlayers);
 	~PokerTable();
 
