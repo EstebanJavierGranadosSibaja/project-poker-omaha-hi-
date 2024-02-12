@@ -71,12 +71,11 @@ void PokerDisplay::definingTextVariables()
 
 void PokerDisplay::loadGameWindow()
 {
-	loadGameImage();
+	tryAndCatchOfLoadGame();
 	definePreflopButtons();
 	definePostflopButtons();
 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
-
 
 	while (gameWindow.isOpen())
 	{
@@ -117,7 +116,6 @@ void PokerDisplay::loadGameWindow()
 		drawAllCardsDown(gameWindow);
 		drawPot(gameWindow);
 		blinkingActualPlayerHand(gameWindow);
-
 
 		gameWindow.display();
 	}
@@ -418,7 +416,7 @@ void PokerDisplay::blinkingActualPlayerHand(RenderWindow& gameWindow)
 
 	if (!isDealerThrowingCards) {
 		bool isWhite = true;
-		if (clock.getElapsedTime() > seconds(1.0f)) {
+		if (clock.getElapsedTime() > seconds(0.3f)) {
 			isWhite = !isWhite;
 			clock.restart();
 		}

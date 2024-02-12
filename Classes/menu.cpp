@@ -33,7 +33,7 @@ int Menu::getBlindPrice()
 void Menu::loadMenuWindow()
 {
 	RenderWindow window(VideoMode(1920, 1080), "Game!");
-	loadMenuImage(window);
+	tryAndCatchOfTheLoadMenu(window);
 	while (window.isOpen())
 	{
 
