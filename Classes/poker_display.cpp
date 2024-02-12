@@ -71,7 +71,7 @@ void PokerDisplay::definingTextVariables()
 
 void PokerDisplay::loadGameWindow()
 {
-	loadGameImage();
+	tryAndCatchOfLoadGame();
 	definePreflopButtons();
 	definePostflopButtons();
 
@@ -418,7 +418,7 @@ void PokerDisplay::blinkingActualPlayerHand(RenderWindow& gameWindow)
 
 	if (!isDealerThrowingCards) {
 		bool isWhite = true;
-		if (clock.getElapsedTime() > seconds(1.0f)) {
+		if (clock.getElapsedTime() > seconds(0.3f)) {
 			isWhite = !isWhite;
 			clock.restart();
 		}

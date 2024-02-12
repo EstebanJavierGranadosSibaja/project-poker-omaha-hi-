@@ -4,7 +4,6 @@ void fileManager::save(string newFileName, string* newText, int newQuantityOfLin
 {
 	ofstream myFile(newFileName);
 
-	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
 		throw runtime_error("ERROR AL ABRIR EL ARCHIVO EN save()");

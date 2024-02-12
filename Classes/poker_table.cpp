@@ -242,7 +242,7 @@ void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
 
 void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
 {
-	
+
 	if (index == 0)
 	{
 		validationOfTwoPartsPotButton(actualUserBlind);
@@ -251,7 +251,7 @@ void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
 
 	if (index == 2)
 	{
-		validationOfThreePartsPotButton(actualUserBlind); 
+		validationOfThreePartsPotButton(actualUserBlind);
 		return;
 	}
 
