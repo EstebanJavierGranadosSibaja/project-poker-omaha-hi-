@@ -6,6 +6,11 @@ const int MAX_OF_USER_CARD = 4;
 const int BETS_AMOUNT = 4;
 const int SIZE_PREFLOP_BUTTON = 6;
 const int SIZE_POSFLOP_BUTTON = 5;
+const float rectWidth = 50.f;
+const float rectHeight = 76.f;
+const float startX = 812.f;
+const float yCenter = 320.f;
+const float midCard = 2.f;
 
 const int LOAD_GAME_ERR = 10;
 
@@ -29,6 +34,12 @@ private:
 
 	Texture** cardDownTexture;
 	Sprite** cardDownSprite;
+
+	Texture bigBlindTexture;
+	Texture smallBlindTexture;
+
+	Sprite bigBlindSprite;
+	Sprite smallBlindSprite;
 
 	Music soundCard;
 	Clock clock;
@@ -58,6 +69,10 @@ public:
 	void tryAndCatchOfLoadGame();
 	void checkThePlayersBoxes(RenderWindow& gameWindow);
 	void checkTheDealerBoxes(RenderWindow& gameWindow);
+
+	void createDealerCardShapes(const float rectWidth, const float rectHeight, const float startX, float yCenter, const float midCard);
+
+	void updateDealerPositions(RenderWindow& gameWindow);
 
 	void definePreflopButtons();
 	void definePostflopButtons();

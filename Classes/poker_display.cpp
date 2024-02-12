@@ -50,6 +50,9 @@ PokerDisplay::PokerDisplay()
 		}
 	}
 
+	bigBlindSprite = Sprite(bigBlindTexture);
+	smallBlindSprite = Sprite(smallBlindTexture);
+
 	//pokerTable->createAHistoryRanking();
 }
 
@@ -71,7 +74,7 @@ void PokerDisplay::definingTextVariables()
 	userBlind = Text("", arial, 20);
 	userBlind.setFillColor(Color::White);
 	userBlind.setOutlineThickness(2.5f);
-	userBlind.setOutlineColor(Color::Black); 
+	userBlind.setOutlineColor(Color::Black);
 }
 
 void PokerDisplay::loadGameWindow()
@@ -79,7 +82,7 @@ void PokerDisplay::loadGameWindow()
 	tryAndCatchOfLoadGame();
 	definePostflopButtons();
 	definePreflopButtons();
-	
+
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
 	while (gameWindow.isOpen())
@@ -206,8 +209,8 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 	{
 		numberOfPlayer.setString("Player: " + to_string(i + 1) + "\n");
 		// seguir esto
-		int playerBlind = pokerTable->getPlayers()[i]->getUserBlind(); 
-        userBlind.setString("\n Blind: " + to_string(playerBlind));
+		int playerBlind = pokerTable->getPlayers()[i]->getUserBlind();
+		userBlind.setString("\n Blind: " + to_string(playerBlind));
 
 		for (int j = 0; j < columns; j++)
 		{
@@ -224,7 +227,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 				gameWindow.draw(spacesInUserCard[i][j]);
 				if (j == 3) {
 					numberOfPlayer.setPosition(xRight + 30.f, y);
-					userBlind.setPosition(xRight+ 30.f, y);
+					userBlind.setPosition(xRight + 30.f, y);
 
 				}
 
@@ -256,7 +259,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
 			cardDownSprite[i][j].setScale(spacesInUserCard[i][j].getSize().x / cardDownTexture[i][j].getSize().x, spacesInUserCard[i][j].getSize().y / cardDownTexture[i][j].getSize().y);
 
-			pokerTable->getPlayers()[i]->getUserHand()->setPositionAndScalesOfPlayerSprites(spacesInUserCard[i][j], j);	
+			pokerTable->getPlayers()[i]->getUserHand()->setPositionAndScalesOfPlayerSprites(spacesInUserCard[i][j], j);
 
 		}
 		gameWindow.draw(numberOfPlayer);
@@ -272,13 +275,18 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 {
-	float rectWidth = 50.f;
-	float rectHeight = 76.f;
-	float totalWidth = COMMUNITY_CARD_SIZE * rectWidth;
-	float startX = 812.f;
-	float yCenter = 320.f;
-	float midCard = 2.f;
+	const float rectWidth = 50.f;
+	const float rectHeight = 76.f;
+	const float startX = 812.f;
+	const float yCenter = 320.f;
+	const float midCard = 2.f;
 
+	createDealerCardShapes(rectWidth, rectHeight, startX, yCenter, midCard);
+	updateDealerPositions(gameWindow);
+}
+
+void PokerDisplay::createDealerCardShapes(const float rectWidth, const float rectHeight, const float startX, float yCenter, const float midCard)
+{
 	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
 	{
 		spacesForDealerCard[i] = RectangleShape(Vector2f(rectWidth, rectHeight));
@@ -287,21 +295,22 @@ void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
 		spacesForDealerCard[i].setOutlineThickness(0);
 		spacesForDealerCard[i].setPosition(startX + i * rectWidth, yCenter);
 
-		pokerTable->getDealer()->setPositionAndScalesOfDealerSprites(spacesForDealerCard[i], i);
-
 		if (i < midCard)
-		{
 			yCenter += 10.f;
-		}
 		else
-		{
 			yCenter -= 10.f;
-		}
+	}
+}
 
-		startX += 10.f;
+void PokerDisplay::updateDealerPositions(RenderWindow& gameWindow)
+{
+	for (int i = 0; i < COMMUNITY_CARD_SIZE; i++)
+	{
+		pokerTable->getDealer()->setPositionAndScalesOfDealerSprites(spacesForDealerCard[i], i);
 		gameWindow.draw(spacesForDealerCard[i]);
 	}
 }
+
 
 void PokerDisplay::definePreflopButtons()
 {
@@ -451,9 +460,6 @@ void PokerDisplay::blinkingActualPlayerHand(RenderWindow& gameWindow)
 
 void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
 {
-	Texture bigBlindTexture;
-	Texture smallBlindTexture;
-
 	if (!bigBlindTexture.loadFromFile("Images/token.jpg") ||
 		!smallBlindTexture.loadFromFile("Images/small_blind.png"))
 	{
@@ -461,17 +467,11 @@ void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
 		return;
 	}
 
-	Sprite bigBlindSprite(bigBlindTexture);
-	Sprite smallBlindSprite(smallBlindTexture);
-
 	float scale = 0.1f;
 	bigBlindSprite.setScale(scale, scale);
 	smallBlindSprite.setScale(scale, scale);
-
-
 	bigBlindSprite.setPosition(1155, 494);
 	smallBlindSprite.setPosition(1147, 385);
-
 
 	gameWindow.draw(bigBlindSprite);
 	gameWindow.draw(smallBlindSprite);
