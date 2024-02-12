@@ -3,8 +3,8 @@
 PokerDisplay::PokerDisplay()
 {
 	currentPlayersTurn = 0;
-	gameRound = 0; 
-	posFloatStarts = false; 
+	gameRound = 0;
+	postFloatStarts = false;
 
 	menu = new Menu();
 	menu->loadMenuWindow();
@@ -73,7 +73,7 @@ void PokerDisplay::loadGameWindow()
 {
 	loadGameImage();
 	definePreflopButtons();
-	//definePostflopButtons();
+	definePostflopButtons();
 
 	RenderWindow gameWindow(VideoMode(1920, 1080), "Game!!");
 
@@ -85,14 +85,14 @@ void PokerDisplay::loadGameWindow()
 		Vector2i mousePosition = sf::Mouse::getPosition(gameWindow);
 		Vector2f mousePositionInWindow = gameWindow.mapPixelToCoords(mousePosition);
 
-
 		while (gameWindow.pollEvent(event))
 		{
+			highLightingButtons(mousePositionInWindow);
 
-			highlightButton(mousePositionInWindow, SIZE_PREFLOP_BUTTON, preFlopButton);
 			if (event.type == Event::MouseButtonPressed)
 			{
-				firstRoundOfBetting(mousePositionInWindow);
+				betButtonsIntoAction(mousePositionInWindow);
+
 			}
 
 			system("cls");
@@ -110,17 +110,46 @@ void PokerDisplay::loadGameWindow()
 		gameWindow.draw(spriteBackGround);
 		checkThePlayersBoxes(gameWindow);
 		checkTheDealerBoxes(gameWindow);
-		drawPreFlopButtons(gameWindow);
-		//drawPostFlopButtons(gameWindow);
+		drawingPostAndPreFlopButtons(gameWindow);
 		drawPotAccumulator(gameWindow);
 		drawBingAndSmallBling(gameWindow);
 		dealPreFlopCards(gameWindow);
 		drawAllCardsDown(gameWindow);
 		drawPot(gameWindow);
-		blinkingActualPlayerHand(gameWindow); 
+		blinkingActualPlayerHand(gameWindow);
 
 
 		gameWindow.display();
+	}
+}
+
+void PokerDisplay::betButtonsIntoAction(Vector2f& mousePositionInWindow)
+{
+	if (!postFloatStarts) {
+		preFlopActionButtons(mousePositionInWindow);
+	}
+	else {
+		postFlopActionButtons(mousePositionInWindow);
+	}
+}
+
+void PokerDisplay::drawingPostAndPreFlopButtons(RenderWindow& gameWindow)
+{
+	if (!postFloatStarts) {
+		drawPreFlopButtons(gameWindow);
+	}
+	else {
+		drawPostFlopButtons(gameWindow);
+	}
+}
+
+void PokerDisplay::highLightingButtons(Vector2f& mousePositionInWindow)
+{
+	if (postFloatStarts) {
+		highlightButton(mousePositionInWindow, SIZE_PREFLOP_BUTTON, preFlopButton);
+	}
+	else {
+		highlightButton(mousePositionInWindow, SIZE_POSFLOP_BUTTON, postFlopButton);
 	}
 }
 
@@ -147,7 +176,7 @@ void PokerDisplay::tryAndCatchOfLoadGame()
 	}
 	catch (const runtime_error& e)
 	{
-		cerr << "ERROR AL CARGAR LA PANTALLA DEL JUEGO" << e.what() <<  endl;
+		cerr << "ERROR AL CARGAR LA PANTALLA DEL JUEGO" << e.what() << endl;
 	}
 }
 
@@ -432,18 +461,13 @@ void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
 	gameWindow.draw(smallBlindSprite);
 }
 
-void PokerDisplay::firstRoundOfBetting(Vector2f clickPosition)
+void PokerDisplay::preFlopActionButtons(Vector2f clickPosition)
 {
-
 	for (int i = 0; i < BETS_AMOUNT; i++)
 	{
-		switchToSecondTurn(clickPosition); 
-
 		if (preFlopButton[i].theButtonWasClicked(clickPosition))
 		{
-
 			int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
-			int cambioPot = pokerTable->getPot();
 
 			pokerTable->preFloatIncreaseThePot(i, userBB);
 			pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
@@ -453,7 +477,7 @@ void PokerDisplay::firstRoundOfBetting(Vector2f clickPosition)
 	}
 }
 
-void PokerDisplay::nextBettingRounds(Vector2f clickPosition)
+void PokerDisplay::postFlopActionButtons(Vector2f clickPosition)
 {
 	if (gameRound < 5 && gameRound != 0)
 	{
@@ -463,6 +487,7 @@ void PokerDisplay::nextBettingRounds(Vector2f clickPosition)
 			{
 				int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);
 				pokerTable->posFloatIncreaseThePot(i, userBB);
+				pokerTable->setPlayerBlind(currentPlayersTurn, userBB);
 
 				currentPlayersTurn++;
 			}
@@ -471,20 +496,13 @@ void PokerDisplay::nextBettingRounds(Vector2f clickPosition)
 	}
 }
 
-void PokerDisplay::switchToSecondTurn(Vector2f clickPosition)
-{
-	if (currentPlayersTurn  == menu->getNumPlayer())
-	{
-		currentPlayersTurn = 0;
-		gameRound++; 
-		nextBettingRounds(clickPosition); 
-	}
-}
-
 void PokerDisplay::turnChange()
 {
-	if (currentPlayersTurn  == menu->getNumPlayer())
+	if (currentPlayersTurn == menu->getNumPlayer())
 	{
+		if (!postFloatStarts) {
+			postFloatStarts = true;
+		}
 		currentPlayersTurn = 0;
 		gameRound++;
 	}

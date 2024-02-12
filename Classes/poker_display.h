@@ -33,7 +33,7 @@ private:
 	Time time;
 	int limit;
 	bool isDealerThrowingCards;
-	bool posFloatStarts;
+	bool postFloatStarts;
 	int currentPlayersTurn;
 	int gameRound;
 	int rows;
@@ -46,23 +46,28 @@ public:
 	PokerDisplay();
 	void definingTextVariables();
 	void loadGameWindow();
+	void betButtonsIntoAction(Vector2f& mousePositionInWindow);
+	void drawingPostAndPreFlopButtons(sf::RenderWindow& gameWindow);
+	void highLightingButtons(sf::Vector2f& mousePositionInWindow);
 	void loadGameImage();
 	void tryAndCatchOfLoadGame();
 	void checkThePlayersBoxes(RenderWindow& gameWindow);
 	void checkTheDealerBoxes(RenderWindow& gameWindow);
+
 	void definePreflopButtons();
 	void definePostflopButtons();
+
 	void drawPreFlopButtons(RenderWindow& gameWindow);
 	void drawPostFlopButtons(RenderWindow& gameWindow);
+
 	void highlightButton(Vector2f& mousePosition, int size, Button* preOfPosButton);
 	void drawPotAccumulator(RenderWindow& gameWindow);
 	void dealPreFlopCards(RenderWindow& gameWindow);
 	void drawAllCardsDown(RenderWindow& gameWindow);
 	void blinkingActualPlayerHand(RenderWindow& gameWindow);
 	void drawBingAndSmallBling(RenderWindow& gameWindow);
-	void firstRoundOfBetting(Vector2f clickPosition);
-	void nextBettingRounds(Vector2f clickPosition); 
-	void switchToSecondTurn(Vector2f clickPosition);
+	void preFlopActionButtons(Vector2f clickPosition);
+	void postFlopActionButtons(Vector2f clickPosition);
 	void turnChange();
 	void drawPot(RenderWindow& gameWindow);
 
