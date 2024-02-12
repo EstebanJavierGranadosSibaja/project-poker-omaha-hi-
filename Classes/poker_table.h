@@ -55,6 +55,8 @@ public:
 	void createAHistoryRanking();
 
 	void preFloatIncreaseThePot(int index, int& actualUserBlind);
-	void posFloatIncreaseThePot(int index, int& actualUserBlind); 
+	void posFloatIncreaseThePot(int index, int& actualUserBlind);
 
+	void coutActualPlayerBlind(int index);
+	void drawActualPlayerHand(int index);
 };

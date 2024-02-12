@@ -118,7 +118,7 @@ bool PokerTable::validationOfThreeBigBlindButton(int& actualUserBlind)
 		pot += bigBlind * 3;
 		return true;
 	}
-
+	cout << " Se quedo sin fichas " << endl;
 	return false;
 }
 
@@ -128,9 +128,10 @@ bool PokerTable::validationOfThreePartsPotButton(int& actualUserBlind)
 	{
 		actualUserBlind -= (pot / 2) / 2;
 		pot += (pot / 2) / 2;
+
 		return true;
 	}
-
+	cout << " Se quedo sin fichas " << endl;
 	return false;
 }
 
@@ -142,7 +143,7 @@ bool PokerTable::validationOfTwoPartsPotButton(int& actualUserBlind)
 		pot += pot / 2;
 		return true;
 	}
-
+	cout << " Se quedo sin fichas " << endl;
 	return false;
 }
 
@@ -154,7 +155,7 @@ bool PokerTable::validationOfPotButton(int& actualUserBlind)
 		pot += pot;
 		return true;
 	}
-
+	cout << " Se quedo sin fichas " << endl;
 	return false;
 }
 
@@ -162,11 +163,12 @@ bool PokerTable::validationOfAllInButton(int& actualUserBlind)
 {
 	if (actualUserBlind != 0)
 	{
-		actualUserBlind -= actualUserBlind;
 		pot += actualUserBlind;
+		actualUserBlind -= actualUserBlind;
+
 		return true;
 	}
-
+	cout << " Se quedo sin fichas " << endl;
 	return false;
 }
 
@@ -209,10 +211,8 @@ void PokerTable::createAHistoryRanking()
 	int randNumber = rand() % 100000;
 	string historyRankingName = "PokerHistory_Code_" + to_string(randNumber) + ".txt";
 
-	/*file.tryAndCatchOfSaveFile(historyRankingName, convertHandsToText(), dealerCardsTextSize);
-	file.tryAndCatchOfLoadAddText(historyRankingName, convertCommunityCardsToText(), dealerCardsTextSize);*/
-	file.save(historyRankingName, convertHandsToText(), dealerCardsTextSize);
-	file.addText(historyRankingName, convertHandsToText(), dealerCardsTextSize);
+	file.tryAndCatchOfSaveFile(historyRankingName, convertHandsToText(), dealerCardsTextSize);
+	file.tryAndCatchOfLoadAddText(historyRankingName, convertCommunityCardsToText(), dealerCardsTextSize);
 }
 
 void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind)
@@ -262,4 +262,14 @@ void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind)
 		validationOfAllInButton(actualUserBlind);
 		return;
 	}
+}
+
+void PokerTable::coutActualPlayerBlind(int index)
+{
+	cout << " El jugador actual tiene: " << players[index]->getUserBlind() << endl;
+}
+
+void PokerTable::drawActualPlayerHand(int index)
+{
+	//este metodo dibuja el mazo del jugador actual, los sprites
 }

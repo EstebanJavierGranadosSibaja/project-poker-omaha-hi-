@@ -34,6 +34,7 @@ private:
 	int limit;
 	bool isDealerThrowingCards;
 	bool postFloatStarts;
+	bool showButtonIsBeingPressed;
 	int currentPlayersTurn;
 	int gameRound;
 	int rows;
@@ -70,5 +71,6 @@ public:
 	void postFlopActionButtons(Vector2f clickPosition);
 	void turnChange();
 	void drawPot(RenderWindow& gameWindow);
+	void showButtonPlayerHand(Vector2f clickPosition, Event userEvent);
 
 };

@@ -138,7 +138,7 @@ void Button::setButtonColor(Color color)
 	buttonShape.setFillColor(color);
 }
 
-bool Button::theButtonWasClicked(Vector2f clickPosition)
+bool Button::isTheMouseOverButton(Vector2f clickPosition)
 {
 	return buttonShape.getGlobalBounds().contains(clickPosition.x, clickPosition.y); 
 
