@@ -67,10 +67,6 @@ void PokerDisplay::definingTextVariables()
 	potNumber = Text("", arial, 40);
 	potNumber.setFillColor(Color::Black);
 	potNumber.setPosition(850.0f, 68.0f);
-
-	userBlind = Text("", arial, 40);
-	userBlind.setFillColor(Color::White);
-
 }
 
 void PokerDisplay::loadGameWindow()
@@ -150,8 +146,7 @@ void PokerDisplay::betButtonsIntoAction(Vector2f& mousePositionInWindow)
 
 void PokerDisplay::drawingPostAndPreFlopButtons(RenderWindow& gameWindow)
 {
-	if (!postFloatStarts) 
-	{
+	if (!postFloatStarts) {
 		drawPreFlopButtons(gameWindow);
 		return;
 	}
@@ -165,7 +160,6 @@ void PokerDisplay::highLightingButtons(Vector2f& mousePositionInWindow)
 		highlightButton(mousePositionInWindow, SIZE_PREFLOP_BUTTON, preFlopButton);
 		return;
 	}
-
 	highlightButton(mousePositionInWindow, SIZE_POSFLOP_BUTTON, postFlopButton);
 }
 
@@ -220,11 +214,9 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 				spacesInUserCard[i][j].setOutlineThickness(0);
 				spacesInUserCard[i][j].setPosition(xRight, y);
 				xRight += 55;
-				//
 				gameWindow.draw(spacesInUserCard[i][j]);
 				if (j == 3) {
 					numberOfPlayer.setPosition(xRight + 40.f, y);
-					
 				}
 
 				cardDownSprite[i][j].setPosition(spacesInUserCard[i][j].getPosition());
@@ -247,7 +239,6 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 			xLeft += 55.f;
 			gameWindow.draw(spacesInUserCard[i][j]);
 
-			// 
 			if (j == 0) {
 				numberOfPlayer.setPosition(xLeft + 530.f - incrementPosition, y);
 			}
@@ -266,6 +257,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 		y += 110.f;
 		incrementPosition += 40.f;
 	}
+
 }
 
 void PokerDisplay::checkTheDealerBoxes(RenderWindow& gameWindow)
@@ -345,6 +337,7 @@ void PokerDisplay::drawPostFlopButtons(RenderWindow& gameWindow)
 
 void PokerDisplay::highlightButton(Vector2f& mousePosition, int size, Button* preOfPosButton)
 {
+
 	for (int i = 0; i < size; i++)
 	{
 		bool isMouseOverButton = preOfPosButton[i].isTheMouseOverButton(mousePosition);
@@ -445,6 +438,7 @@ void PokerDisplay::blinkingActualPlayerHand(RenderWindow& gameWindow)
 			gameWindow.draw(spacesInUserCard[currentPlayersTurn][j]);
 		}
 	}
+
 }
 
 void PokerDisplay::drawBingAndSmallBling(RenderWindow& gameWindow)
@@ -531,4 +525,19 @@ void PokerDisplay::drawPot(RenderWindow& gameWindow)
 
 void PokerDisplay::showButtonPlayerHand(Vector2f clickPosition, Event userEvent)
 {
+	bool isMouseOverShowButton = preFlopButton[5].isTheMouseOverButton(clickPosition) ||
+		postFlopButton[4].isTheMouseOverButton(clickPosition);
+
+	bool hasMouseClickedOnButton = (userEvent.type == Event::MouseButtonPressed) &&
+		(userEvent.type == Event::MouseButtonReleased) == false;
+
+	if (isMouseOverShowButton && hasMouseClickedOnButton)
+	{
+		showButtonIsBeingPressed = true;
+	}
+
+	if (userEvent.type == Event::MouseButtonReleased)
+	{
+		showButtonIsBeingPressed = false;
+	}
 }

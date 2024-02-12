@@ -14,7 +14,6 @@ class PokerDisplay
 private:
 	Text potNumber;
 	Text numberOfPlayer;
-	Text userBlind; 
 	Font arial;
 	PokerTable* pokerTable;
 	Player** players;
