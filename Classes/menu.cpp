@@ -72,13 +72,25 @@ void Menu::loadMenuImage(RenderWindow& window)
 	// se puede cambiar a un try and catch
 	if (!background.loadFromFile("Images/menu2.png"))
 	{
-		return;
+		throw runtime_error("ERROR AL CARGAR LA IMAGEN EN loadMenuImage()");
 	}
 
 	spriteBackground = Sprite(background);
 	spriteBackground.setPosition(0, 0);
 	spriteBackground.setScale(static_cast<float>(window.getSize().x) / background.getSize().x,
 		static_cast<float>(window.getSize().y) / background.getSize().y);
+}
+
+void Menu::tryAndCatchOfTheLoadMenu(RenderWindow& window)
+{
+	try
+	{
+		loadMenuImage(window);
+	}
+	catch (const exception& e)
+	{
+		cerr << "ERROR AL CARGAR LA PANTALLA DEL MENU" << e.what() << endl;
+	}
 }
 
 void Menu::drawRectangle()

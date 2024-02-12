@@ -41,7 +41,6 @@ string* fileManager::load(string newFileName)
 
 	myFile.open(newFileName, ios::in);
 
-	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
 		throw runtime_error("ERROR AL ABRIR EL ARCHIVO EN load()");
@@ -76,7 +75,6 @@ void fileManager::addText(string newFileName, string* newText, int newQuantityOf
 
 	myFile.open(newFileName, ios::app);
 
-	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
 		throw runtime_error("ERROR AL ABRIR EL ARCHIVO EN AddText()");
@@ -110,7 +108,6 @@ int fileManager::getQuantityOfLines(string newFileName)
 
 	myFile.open(newFileName, ios::in);
 
-	// se puede cambiar a un try and catch
 	if (myFile.fail())
 	{
 		cerr << "ERROR AL MOMENTO DE ABRIR EL ARCHIVO " << newFileName << ".txt";

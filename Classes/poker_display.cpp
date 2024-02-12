@@ -155,8 +155,6 @@ void PokerDisplay::highLightingButtons(Vector2f& mousePositionInWindow)
 
 void PokerDisplay::loadGameImage()
 {
-	// se puede cambiar a un try and catch
-
 	if (!backGround.loadFromFile("Images/poker_table.png"))
 	{
 		throw runtime_error("ERROR AL CARGAR LA IMAGEN EN loadGameImage()");
