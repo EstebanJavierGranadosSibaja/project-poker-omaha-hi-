@@ -51,7 +51,7 @@ PokerDisplay::PokerDisplay()
 		}
 	}
 	defineBingAndSmallBling();
-
+//NOTE:Eliminar Código comentado
 	//pokerTable->createAHistoryRanking();
 }
 
@@ -89,7 +89,7 @@ void PokerDisplay::loadGameWindow()
 		Event event;
 		Vector2i mousePosition = sf::Mouse::getPosition(gameWindow);
 		Vector2f mousePositionInWindow = gameWindow.mapPixelToCoords(mousePosition);
-		//system("cls");
+		//system("cls");//NOTE:Eliminar Código comentado
 
 		if (gameWindow.pollEvent(event))
 		{
@@ -100,7 +100,7 @@ void PokerDisplay::loadGameWindow()
 			{
 				betButtonsIntoAction(mousePositionInWindow);
 				checkThatUserPressGoOut = false;
-			}
+			}//NOTE:Eliminar Código comentado
 			//cout << " " << mousePosition.x << " , " << mousePosition.y;
 			if (event.type == Event::Closed)
 			{
@@ -214,7 +214,7 @@ void PokerDisplay::checkThePlayersBoxes(RenderWindow& gameWindow)
 
 		for (int j = 0; j < columns; j++)
 		{
-
+//NOTE:Código anidado, muy anidado, función candidato a refactorizar
 			if (i < 3)
 			{
 
@@ -408,7 +408,7 @@ void PokerDisplay::dealCardsInRow(int& amountOfCardsToDraw, RenderWindow& gameWi
 		{
 			limit++;
 			clock.restart();
-
+//NOTE:Código anidado 
 			if (limit == columns * rows)
 			{
 				isDealerThrowingCards = false;
@@ -427,7 +427,7 @@ void PokerDisplay::dealCardsInRow(int& amountOfCardsToDraw, RenderWindow& gameWi
 }
 
 void PokerDisplay::drawAllCardsDown(RenderWindow& gameWindow)
-{
+{//NOTE:Código anidado, muy anidado, función candidato a refactorizar
 	if (!isDealerThrowingCards) {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
@@ -463,7 +463,7 @@ void PokerDisplay::defineBingAndSmallBling()
 	if (!bigBlindTexture.loadFromFile("Images/token.jpg") ||
 		!smallBlindTexture.loadFromFile("Images/small_blind.png"))
 	{
-		cerr << "Error al cargar las im�genes de las blinds." << endl;
+		cerr << "Error al cargar las im�genes de las blinds." << endl;
 		return;
 	}
 
@@ -497,7 +497,7 @@ void PokerDisplay::postFlopActionButtons(Vector2f clickPosition)
 	if (gameRound < 4 && gameRound != 0)
 	{
 		for (int i = 0; i < BETS_AMOUNT; i++)
-		{
+		{//NOTE:Código anidado, muy anidado, función candidato a refactorizar
 			if (postFlopButton[i].isTheMouseOverButton(clickPosition))
 			{
 				int userBB = pokerTable->getPlayerBlind(currentPlayersTurn);

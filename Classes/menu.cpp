@@ -42,7 +42,7 @@ void Menu::loadMenuWindow()
 
 		while (window.pollEvent(userEvent))
 		{
-
+//NOTE:Eliminar Código comentado
 		/*	system("cls");
 			cout << " " << mousePosition.x << " , " << mousePosition.y;*/
 
@@ -68,7 +68,7 @@ void Menu::loadMenuWindow()
 }
 
 void Menu::loadMenuImage(RenderWindow& window)
-{
+{//NOTE:Eliminar Código comentado
 	// se puede cambiar a un try and catch
 	if (!background.loadFromFile("Images/menu2.png"))
 	{
@@ -132,6 +132,7 @@ void Menu::blindInput(RenderWindow& window)
 	{
 
 		Vector2i mousePos = Mouse::getPosition(window);
+		//NOTE:isEnteringText =textBox.getGlobalBounds().contains(mousePos.x, mousePos.y);
 		if (textBox.getGlobalBounds().contains(mousePos.x, mousePos.y))
 		{
 			isEnteringText = true;
@@ -205,6 +206,7 @@ void Menu::nextUserRequest()
 bool Menu::isLenghtOfUserTextCorrect()
 {
 	string textValues = userText.getString();
+	//NOTE: return (textValues.length() + 1 <= amountOfNumbersThatUserCanPress)
 	if (textValues.length() + 1 <= amountOfNumbersThatUserCanPress) {
 		return true;
 	}

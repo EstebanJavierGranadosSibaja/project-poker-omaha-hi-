@@ -73,7 +73,7 @@ bool Straight::isAStraigt(Card** vectorOfCombinations)
 	{
 		index++;
 	}
-
+//NOTE: return  (isACheckStraight(vectorOfCombinations, index));
 	if (isACheckStraight(vectorOfCombinations, index))
 	{
 		return true;
@@ -94,7 +94,8 @@ bool Straight::isACheckStraight(Card** vectorOfCombinations, int startOfTheStair
 		}
 		startOfTheStaircase++; 
 	}
-
+//NOTE: return (straightCounter == COMMUNITY_CARD_SIZE ||
+	//	(straightCounter == COMMUNITY_CARD_SIZE - 1 && ARRAY_OF_VALUES[0] == 'A'))
 	if (straightCounter == COMMUNITY_CARD_SIZE ||
 		(straightCounter == COMMUNITY_CARD_SIZE - 1 && ARRAY_OF_VALUES[0] == 'A'))
 	{

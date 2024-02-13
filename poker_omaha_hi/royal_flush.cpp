@@ -83,7 +83,7 @@ bool RoyalFlush::isRoyalFlush(Card** vectorOfCombinations)
 	bool isRoyalFlush = (vectorOfCombinations[0]->getValue() == ROYAL_FLUSH_VALUES[0]) && (vectorOfCombinations[1]->getValue() == ROYAL_FLUSH_VALUES[1]) &&
 		(vectorOfCombinations[2]->getValue() == ROYAL_FLUSH_VALUES[2]) && (vectorOfCombinations[3]->getValue() == ROYAL_FLUSH_VALUES[3]) &&
 		(vectorOfCombinations[4]->getValue() == ROYAL_FLUSH_VALUES[4]);
-
+//NOTE: return (isRoyalFlush);
 	if (isRoyalFlush)
 	{
 		return true;

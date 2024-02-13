@@ -7,7 +7,7 @@ int main()
 {
 	PokerDisplay menuTwo;
 	menuTwo.loadGameWindow();
-
+//NOTE:Eliminar Código comentado
 	/*Menu menu;
 	menu.loadMenuWindow();*/
 

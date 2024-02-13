@@ -68,7 +68,7 @@ bool Pair::isAPair(Card** vectorOfCombinations)
 	bool secondPair = vectorOfCombinations[1] == vectorOfCombinations[2];
 	bool thirdPair = vectorOfCombinations[2] == vectorOfCombinations[3];
 	bool fourthPair = vectorOfCombinations[3] == vectorOfCombinations[4];
-
+//NOTE: return   (firstPair || secondPair || thirdPair || fourthPair);
 	if (firstPair || secondPair || thirdPair || fourthPair)
 	{
 		return true; 

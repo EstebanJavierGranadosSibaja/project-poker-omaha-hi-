@@ -81,7 +81,7 @@ bool Poker::isAPoker(Card** vectorOfCombinations)
 			}
 		}
 	}
-
+//NOTE: return  (count == threeCombinations);
 	if (count == threeCombinations)
 	{
 

@@ -42,7 +42,7 @@ bool Flush::communityCardCombinations(Card** combinationOfCards, Card** newCommu
 			combinationOfCards[2] = newCommunityCards[firstCardCommunity];
 			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
 			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
-
+//NOTE:Código anidado 
 			if (isSameColor(combinationOfCards)) {
 				return true;
 			}
@@ -66,7 +66,7 @@ bool Flush::isSameColor(Card** vectorOfCombinations)
 		(vectorOfCombinations[1]->getType() == vectorOfCombinations[2]->getType()) &&
 		(vectorOfCombinations[2]->getType() == vectorOfCombinations[3]->getType()) &&
 		(vectorOfCombinations[3]->getType() == vectorOfCombinations[4]->getType());
-
+//NOTE: return isColor;
 	if (isColor)
 	{
 		return true;

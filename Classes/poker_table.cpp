@@ -188,7 +188,7 @@ void PokerTable::validationOfGoOut(int& actualUserBlind, int playerIndex)
 		cout << "SE SALIO EL JUGADOR NUMERO " + to_string(playerIndex + 1) << endl;
 		return;
 	}
-	else
+	else//Note: No tiene sentido el else
 	{
 		if (actualUserBlind >= bigBlind)
 		{
@@ -246,7 +246,7 @@ void PokerTable::createAHistoryRanking()
 }
 
 void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind, int actualUser)
-{
+{//NOTE: Se puede mejorar con valores en arreglos
 	if (index == 0)
 	{
 		if (players[actualUser]->getIsActive()) {
@@ -291,7 +291,7 @@ void PokerTable::preFloatIncreaseThePot(int index, int& actualUserBlind, int act
 }
 
 void PokerTable::posFloatIncreaseThePot(int index, int& actualUserBlind, int actualUser)
-{
+{//NOTE: Se puede mejorar con valores en arreglos
 	if (index == 0)
 	{
 		if (players[actualUser]->getIsActive()) {

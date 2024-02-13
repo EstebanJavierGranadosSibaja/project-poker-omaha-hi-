@@ -42,7 +42,7 @@ bool ThreeOfAkind::communityCardCombinations(Card** combinationOfCards, Card** n
 			combinationOfCards[2] = newCommunityCards[firstCardCommunity];
 			combinationOfCards[3] = newCommunityCards[secondCardCommunity];
 			combinationOfCards[4] = newCommunityCards[thirdCardCommunity];
-
+//NOTE:Código anidado, muy anidado, función candidato a refactorizar
 			if (isAThreeOfAkind(combinationOfCards)) {
 				return true;
 			}
@@ -68,7 +68,7 @@ bool ThreeOfAkind::isAThreeOfAkind(Card** vectorOfCombinations)
 
 	bool threeCardsToTheLeft = vectorOfCombinations[0] == vectorOfCombinations[1] && vectorOfCombinations[1] == vectorOfCombinations[2]; 
 	bool threeCardsToTheRight = vectorOfCombinations[2] == vectorOfCombinations[3] && vectorOfCombinations[3] == vectorOfCombinations[4];
-
+//NOTE: return (threeCardsToTheLeft || threeCardsToTheRight) ;
 	if (threeCardsToTheLeft || threeCardsToTheRight) 
 	{
 		return true; 

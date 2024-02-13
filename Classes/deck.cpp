@@ -20,7 +20,7 @@ Deck::Deck()
 		}
 	}
 }
-
+//NOTE:Eliminar CÃ³digo comentado
 //Deck::~Deck()
 //{
 //	/*for (int i = 0; i < amountCards; i++) 
@@ -49,19 +49,19 @@ int Deck::getAmountCards()
 {
 	return amountCards;
 }
-
+//NOTE:Eliminar CÃ³digo comentado
 //void Deck::eraseAPosition(int index)
 //{
-//	// Eliminar la carta en la posición index
+//	// Eliminar la carta en la posiciï¿½n index
 //	delete deck[index];
 //
-//	// Mover todas las cartas después de la posición index una posición hacia adelante
+//	// Mover todas las cartas despuï¿½s de la posiciï¿½n index una posiciï¿½n hacia adelante
 //	for (int i = index; i < amountCards - 1; ++i)
 //	{
 //		deck[i] = deck[i + 1];
 //	}
 //
-//	// Reducir el tamaño del mazo en una carta
+//	// Reducir el tamaï¿½o del mazo en una carta
 //	amountCards--;
 //}
 
@@ -75,7 +75,7 @@ Deck* Deck::eraseAPosition(int index)
 	{
 		bool isSameCard = deck[i] == deck[index];
 
-		if (isSameCard)
+		if (isSameCard)//NOTE:es mas sencillo de entender si niegan el if y hacen lo de abajo
 		{
 			continue;
 		}

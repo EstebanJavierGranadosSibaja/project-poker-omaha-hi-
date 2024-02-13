@@ -69,7 +69,7 @@ bool TwoPair::isATwoPair(Card** vectorOfCombinations)
 	bool twoPairAtTheBeginning = vectorOfCombinations[0] == vectorOfCombinations[1] && vectorOfCombinations[2] == vectorOfCombinations[3];
 	bool twoPairInTheMiddle = vectorOfCombinations[0] == vectorOfCombinations[1] && vectorOfCombinations[3] == vectorOfCombinations[4];
 	bool twoPairAtTheEnd = vectorOfCombinations[1] == vectorOfCombinations[2] && vectorOfCombinations[3] == vectorOfCombinations[4];
-
+return (twoPairAtTheBeginning || twoPairInTheMiddle || twoPairAtTheEnd);
 	if (twoPairAtTheBeginning || twoPairInTheMiddle || twoPairAtTheEnd)
 	{
 		return true; 

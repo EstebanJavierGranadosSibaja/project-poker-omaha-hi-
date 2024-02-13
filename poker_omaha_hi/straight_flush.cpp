@@ -67,7 +67,7 @@ bool StraightFlush::isSameColor(Card** vectorOfCombinations)
 		(vectorOfCombinations[1]->getType() == vectorOfCombinations[2]->getType()) &&
 		(vectorOfCombinations[2]->getType() == vectorOfCombinations[3]->getType()) &&
 		(vectorOfCombinations[3]->getType() == vectorOfCombinations[4]->getType());
-
+//NOTE: return  (isColor);
 	if (isColor)
 	{
 		return true;
@@ -82,7 +82,7 @@ bool StraightFlush::isConsecutiveNumber(Card** vectorOfCombinations)
 		(vectorOfCombinations[2]->getNumber() == vectorOfCombinations[1]->getNumber() + 1) &&
 		(vectorOfCombinations[3]->getNumber() == vectorOfCombinations[2]->getNumber() + 1) &&
 		(vectorOfCombinations[4]->getNumber() == vectorOfCombinations[3]->getNumber() + 1);
-
+//NOTE: return  (isConsecutiveNumber);
 	if (isConsecutiveNumber)
 	{
 		return true;
